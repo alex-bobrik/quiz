@@ -36,17 +36,35 @@ $(document).ready(function () {
         }
     });
 
-    // validate form before submit
+    // validate question_form before submit
     $("#question_submit").on('click', function(e){
 
-        let checkboxesAmount = $("[type='checkbox']:checked").length;
-        if (checkboxesAmount > 1) {
-            alert('only one correct answer');
-        } else if (checkboxesAmount === 0) {
-            alert('select answer');
+        let anwsersAmount = $("#type-fields-list").children().length;
+        if (anwsersAmount < 1){
+            alert('add at least 1 answer');
+        } else {
+            let checkboxesAmount = $("[type='checkbox']:checked").length;
+            if (checkboxesAmount > 1) {
+                alert('only one correct answer');
+            } else if (checkboxesAmount === 0) {
+                alert('select correct answer');
+            } else {
+                e.preventDefault();
+                $('#question_form').submit();
+            }
+        }
+
+    });
+
+    // validate quiz_form before submit
+    $("#quiz_submit").on('click', function(e){
+
+       let questionsAmount = $("#type-fields-list").children().length;
+       if (questionsAmount === 0) {
+            alert('add at least 1 question for quiz');
         } else {
             e.preventDefault();
-            $('#main_form').submit();
+            $('#quiz_form').submit();
         }
 
     });

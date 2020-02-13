@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuizController!{% endblock %}
+
+{% block body %}
+
+<table>
+    <thead>
+    <tr>
+        <td>Quiz</td>
+        <td>Amount questions</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for quiz in quizes %}
+        <tr>
+            <td>{{ quiz.name }}</td>
+            <td>{{ quiz.questions.count }}</td>
+            <td><a href={{ path('admin_quiz_update', {'id': quiz.id}) }}>edit</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

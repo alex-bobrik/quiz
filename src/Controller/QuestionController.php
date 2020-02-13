@@ -21,12 +21,10 @@ class QuestionController extends AbstractController
     public function showAllQuestions(EntityManagerInterface $em)
     {
         $questions = $em->getRepository(Question::class)->findAll();
-//        $answers = $question->getAnswers();
 
         return $this->render('question/index.html.twig', [
             'controller_name' => 'QuestionController',
             'questions' => $questions,
-//            'answers' => $answers,
         ]);
     }
 

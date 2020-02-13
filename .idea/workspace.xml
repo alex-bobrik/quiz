@@ -136,18 +136,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/question" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Service" />
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\nginx\public_html\quiz\src\Form\Quiz" />
       <recent name="C:\nginx\public_html\quiz\src\Form\Question" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\nginx\public_html\quiz\src\Service" />
+      <recent name="C:\nginx\public_html\quiz\templates\quiz" />
       <recent name="C:\nginx\public_html\quiz\templates\question" />
       <recent name="C:\nginx\public_html\quiz\public" />
       <recent name="C:\nginx\public_html\quiz\templates\answer" />
-      <recent name="C:\nginx\public_html\quiz\templates\security" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -174,7 +176,7 @@
       <updated>1580812588645</updated>
       <workItem from="1580812589929" duration="2501000" />
       <workItem from="1580843047944" duration="732000" />
-      <workItem from="1581113517048" duration="44391000" />
+      <workItem from="1581113517048" duration="49369000" />
     </task>
     <servers />
   </component>
@@ -210,6 +212,10 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="346" y="94" key="SettingsEditor/0.0.1676.902@0.0.1676.902" timestamp="1580812701216" />
+    <state x="494" y="206" key="run.anything.popup" timestamp="1581602659153">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1581602659153" />
     <state x="888" y="334" width="672" height="678" key="search.everywhere.popup" timestamp="1581525703811">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
