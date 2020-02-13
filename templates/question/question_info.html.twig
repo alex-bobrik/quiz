@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuestionController!{% endblock %}
+
+{% block body %}
+
+    <h1>Question: {{ question.text }}</h1>
+    <a href={{ path('question_update', {'id': question.id}) }}>edit question</a>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Answer</td>
+            <td>Is correct</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for answer in answers %}
+            <tr>
+                <td>{{ answer.answer.text }}</td>
+                {% if answer.isCorrect %}
+                    <td>Correct</td>
+                {% else %}
+                    <td>-</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#    <h1>Question: {{ question.text }}</h1>#}
+{#    <a href={{ path('question_update', {'id': question.id}) }}>edit question</a>#}
+
+{% endblock %}

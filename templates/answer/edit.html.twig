@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnswerController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+        {{ form_row(form.text) }}
+    {{ form_end(form) }}
+
+    <a href={{ path('admin_answers_delete', {'id': app.request.get('id')}) }}>Delete answer</a>
+
+{% endblock %}

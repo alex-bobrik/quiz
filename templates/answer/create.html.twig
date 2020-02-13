@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnswerController!{% endblock %}
+
+{% block body %}
+
+   {{ form_start(form) }}
+      {{ form_row(form.text) }}
+   {{ form_end(form) }}
+
+{% endblock %}

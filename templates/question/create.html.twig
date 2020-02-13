@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Question!{% endblock %}
+
+{% block body %}
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    ></script>
+
+
+    <script src="{{ asset('js/embeddedFormHelper.js') }}"></script>
+    {{ form_start(form) }}
+
+    <div class="example-wrapper">
+        <div class="row">
+
+            <div class="col-6">
+
+                <h1>Hello {{ controller_name }}! ✅</h1>
+                {{ form_row(form.text) }}
+            </div>
+            <div class="col-6">
+                There is answers:
+
+                <ul>
+                    <div class="col-10 mr-4 float-left">
+                        <ul id="type-fields-list"
+                            data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}"
+                            data-widget-tags="{{ '<li></li>'|e }}"
+                            data-widget-counter="{{ form.answers|length }}">
+                            {% for answer in form.answers %}
+                                <li>
+                                    {{ form_errors(answer) }}
+                                    {{ form_widget(answer) }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <button type="button"
+                            class="add-another-collection-widget"
+                            data-list-selector="#type-fields-list">Add another answer
+                    </button>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+
+{% endblock %}

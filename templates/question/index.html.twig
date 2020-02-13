@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuestionController!{% endblock %}
+
+{% block body %}
+
+    <table>
+        <thead>
+        <tr>
+            <td>Question</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td><a href={{ path('admin_question_show_info', {'id': question.id}) }}>{{ question.text }}</a></td>
+                <td><a href={{ path('question_update', {'id': question.id}) }}>edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#    <h1>Question: {{ question.text }}</h1>#}
+{#    <a href={{ path('question_update', {'id': question.id}) }}>edit question</a>#}
+
+{% endblock %}
