@@ -23,15 +23,25 @@ class Question
      */
     private $text;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\QuestionAnswer", mappedBy="question", orphanRemoval=true, cascade={"persist"})
-     */
-    private $answers;
+//    /**
+//     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question", orphanRemoval=true, cascade={"persist"})
+//     */
+//    private $answers;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\QuizQuestion", mappedBy="question")
      */
     private $quizQuestions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question" ,orphanRemoval=true, cascade={"persist"})
+     */
+    private $answers;
+
+//    /**
+//     * @ORM\ManyToOne(targetEntity="App\Entity\Answer")
+//     */
+//    private $answers;
 
     public function __construct()
     {
@@ -56,36 +66,36 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Collection|QuestionAnswer[]
-     */
-    public function getAnswers(): Collection
-    {
-        return $this->answers;
-    }
-
-    public function addAnswer(QuestionAnswer $questionAnswer): self
-    {
-        if (!$this->answers->contains($questionAnswer)) {
-            $this->answers[] = $questionAnswer;
-            $questionAnswer->setQuestion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnswer(QuestionAnswer $questionAnswer): self
-    {
-        if ($this->answers->contains($questionAnswer)) {
-            $this->answers->removeElement($questionAnswer);
-            // set the owning side to null (unless already changed)
-            if ($questionAnswer->getQuestion() === $this) {
-                $questionAnswer->setQuestion(null);
-            }
-        }
-
-        return $this;
-    }
+//    /**
+//     * @return Collection|QuestionAnswer[]
+//     */
+//    public function getAnswers(): Collection
+//    {
+//        return $this->answers;
+//    }
+//
+//    public function addAnswer(QuestionAnswer $questionAnswer): self
+//    {
+//        if (!$this->answers->contains($questionAnswer)) {
+//            $this->answers[] = $questionAnswer;
+//            $questionAnswer->setQuestion($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeAnswer(QuestionAnswer $questionAnswer): self
+//    {
+//        if ($this->answers->contains($questionAnswer)) {
+//            $this->answers->removeElement($questionAnswer);
+//            // set the owning side to null (unless already changed)
+//            if ($questionAnswer->getQuestion() === $this) {
+//                $questionAnswer->setQuestion(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * @return Collection|QuizQuestion[]
@@ -117,4 +127,47 @@ class Question
 
         return $this;
     }
+
+    /**
+     * @return Collection|Answer[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
+            $answer->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): self
+    {
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+            // set the owning side to null (unless already changed)
+            if ($answer->getQuestion() === $this) {
+                $answer->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+//    public function getAnswers(): ?Answer
+//    {
+//        return $this->answers;
+//    }
+//
+//    public function setAnswers(?Answer $answers): self
+//    {
+//        $this->answers = $answers;
+//
+//        return $this;
+//    }
 }

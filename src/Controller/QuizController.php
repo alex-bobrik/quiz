@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -29,8 +29,7 @@ class QuizController extends AbstractController
     }
 
     /**
-     * @Route("/admin/quizes/create", name="admin_quiz_create", requirements={"id"="\d+"})
-     *
+     * @Route("/admin/quizes/create", name="admin_quizes_create")
      * @param QuizService $quizService
      * @param EntityManagerInterface $em
      * @param Request $request
@@ -38,14 +37,14 @@ class QuizController extends AbstractController
      */
     public function createQuiz(QuizService $quizService, EntityManagerInterface $em, Request $request): Response
     {
-        /** @var Quiz $quiz */
         $quiz = new Quiz();
         $form = $this->createForm(QuizType::class, $quiz);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $quiz = $form->getData();
-            $quizService->createQuiz($quiz);
+            $quizService->saveQuiz($quiz);
+            return $this->redirectToRoute('admin_quizes_show_all');
         }
 
         return $this->render('quiz/create.html.twig', [
@@ -55,27 +54,26 @@ class QuizController extends AbstractController
     }
 
     /**
-     * @Route("/admin/quizes/update{id}", name="admin_quiz_update", requirements={"id"="\d+"})
+     * @Route("/admin/quizes/update/{id}", name="admin_quizes_update", requirements={"id"="\d+"})
      *
+     * @param QuizService $quizService
      * @param EntityManagerInterface $em
      * @param Request $request
      * @param int $id
      *
      * @return Response
      */
-    public function updateQuiz(EntityManagerInterface $em, Request $request, int $id): Response
+    public function updateQuiz(QuizService $quizService, EntityManagerInterface $em, Request $request, int $id): Response
     {
         /** @var Quiz $quiz */
         $quiz = $em->getRepository(Quiz::class)->find($id);
-        $quiz->setName('first quiz');
         $form = $this->createForm(QuizType::class, $quiz);
+
         $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $quiz = $form->getData();
-            $em->persist($quiz);
-            $em->flush();
+            $quizService->saveQuiz($quiz);
+            return $this->redirectToRoute('admin_quizes_show_all');
         }
 
         return $this->render('quiz/update.html.twig', [

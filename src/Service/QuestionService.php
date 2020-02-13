@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
 
 namespace App\Service;
 
 
+use App\Entity\Question;
 use Doctrine\ORM\EntityManagerInterface;
 
 class QuestionService
@@ -16,7 +16,9 @@ class QuestionService
         $this->em = $em;
     }
 
-    public function createQuestion()
+    public function saveQuestion(Question $question): void
     {
+        $this->em->persist($question);
+        $this->em->flush();
     }
 }

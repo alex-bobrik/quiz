@@ -17,7 +17,7 @@
         <tbody>
         {% for answer in answers %}
             <tr>
-                <td>{{ answer.answer.text }}</td>
+                <td>{{ answer.text }}</td>
                 {% if answer.isCorrect %}
                     <td>Correct</td>
                 {% else %}

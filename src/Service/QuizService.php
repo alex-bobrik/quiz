@@ -19,7 +19,7 @@ class QuizService
         $this->em = $em;
     }
 
-    public function createQuiz(Quiz $quiz): void
+    public function saveQuiz(Quiz $quiz): void
     {
         $date = new \DateTime('now');
         $quiz->setCreated($date);
