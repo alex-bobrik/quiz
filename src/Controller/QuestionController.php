@@ -30,7 +30,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/admin/questions/{id}", name="admin_question_info")
+     * @Route("/admin/questions/{id}", name="admin_question_info", requirements={"id"="\d+"})
      * @param EntityManagerInterface $em
      * @param int $id
      * @return Response
@@ -48,7 +48,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/admin/questions/create", name="questions_create")
+     * @Route("/admin/questions/create", name="admin_questions_create")
      *
      * @param QuestionService $questionService
      * @param EntityManagerInterface $em

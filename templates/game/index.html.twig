@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GameController!{% endblock %}
+
+{% block body %}
+
+    <table>
+        <thead>
+        <tr>
+            <td>Quiz</td>
+            <td>Created</td>
+            <td>Questions amount</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for quiz in quizes %}
+            <tr>
+                <td><a href={{ path('game_show_info', {'id': quiz.id}) }}> {{ quiz.name }} </a></td>
+                <td>{{ quiz.created.format('d/m/Y h:i:sa') }}</td>
+                <td>{{ quiz.questions.count }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

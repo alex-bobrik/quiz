@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GameController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Game name: {{ game.name }}</h1>
+        <h2>Questions amount: {{ game.questions.count }}</h2>
+        <input type="button" value="Start" class="btn btn-outline-success">
+    </div>
+
+    <div class="container">
+        <div class="leaders">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+        </div>
+    </div>
+
+{% endblock %}

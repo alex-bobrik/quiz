@@ -41,9 +41,15 @@ class Quiz
      */
     private $questions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="quiz", orphanRemoval=true, cascade={"persist"})
+     */
+    private $games;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +118,37 @@ class Quiz
             // set the owning side to null (unless already changed)
             if ($question->getQuiz() === $this) {
                 $question->setQuiz(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Game[]
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game ): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->contains($game)) {
+            $this->games->removeElement($game);
+            // set the owning side to null (unless already changed)
+            if ($game->getQuiz() === $this) {
+                $game->setQuiz(null);
             }
         }
 

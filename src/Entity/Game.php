@@ -47,6 +47,16 @@ class Game
      */
     private $quiz;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="games")
+     */
+    private $currentQuestion;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $gameIsOver;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +130,30 @@ class Game
     public function setQuiz(?Quiz $quiz): self
     {
         $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    public function getCurrentQuestion(): ?Question
+    {
+        return $this->currentQuestion;
+    }
+
+    public function setCurrentQuestion(?Question $currentQuestion): self
+    {
+        $this->currentQuestion = $currentQuestion;
+
+        return $this;
+    }
+
+    public function getGameIsOver(): ?bool
+    {
+        return $this->gameIsOver;
+    }
+
+    public function setGameIsOver(bool $gameIsOver): self
+    {
+        $this->gameIsOver = $gameIsOver;
 
         return $this;
     }

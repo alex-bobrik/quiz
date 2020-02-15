@@ -38,6 +38,11 @@ class Question
      */
     private $answers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="currentQuestion")
+     */
+    private $games;
+
 //    /**
 //     * @ORM\ManyToOne(targetEntity="App\Entity\Answer")
 //     */
@@ -47,6 +52,7 @@ class Question
     {
         $this->answers = new ArrayCollection();
         $this->quizQuestions = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +159,37 @@ class Question
             // set the owning side to null (unless already changed)
             if ($answer->getQuestion() === $this) {
                 $answer->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Game[]
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setCurrentQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->contains($game)) {
+            $this->games->removeElement($game);
+            // set the owning side to null (unless already changed)
+            if ($game->getCurrentQuestion() === $this) {
+                $game->setCurrentQuestion(null);
             }
         }
 

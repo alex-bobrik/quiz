@@ -5,7 +5,7 @@
 {% block body %}
 
     <h1>Question: {{ question.text }}</h1>
-    <a href={{ path('question_update', {'id': question.id}) }}>edit question</a>
+    <a href={{ path('admin_questions_update', {'id': question.id}) }}>edit question</a>
 
     <table>
         <thead>
