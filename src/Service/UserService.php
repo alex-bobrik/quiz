@@ -32,4 +32,16 @@ class UserService
         $this->em->persist($user);
         $this->em->flush();
     }
+
+    public function getIdByUsername(string $username): ?int
+    {
+        $user = $this->em->getRepository(User::class)->findOneBy(['username' => $username]);
+
+        if ($user)
+        {
+            return $user->getId();
+        }
+
+        return null;
+    }
 }

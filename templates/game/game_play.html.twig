@@ -1,0 +1,135 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Hello GameController!{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script src="{{ asset('js/game.js') }}"></script>
+
+    <script>
+
+        $('input[type=checkbox]').each(function() {
+            this.checked = false;
+        });
+
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+<style>
+
+    #question_answers > label{
+        visibility: hidden;
+    }
+
+    input[type=checkbox]{
+        margin: 20px;
+        transform:scale(2.3);
+        opacity:0.8;
+        cursor:pointer;
+    }
+</style>
+
+
+    <div class="container">
+{#        <h1>Game name: {{ game.name }}</h1>#}
+{#        <h2>Questions amount: {{ game.questions.count }}</h2>#}
+{#    </div>#}
+
+
+    {{ form_start(form, {
+        'action': path('game_play',{'gameId': game.id}),
+        'attr':{novalidate:'novalidate'},
+    }) }}
+
+        <div class="container question-text">
+            {{ form_widget(form.text, {
+                    'attr': {'class': 'form-control-plaintext text-center shadow-none',
+                    'autocomplete': 'off',
+                    'readonly': true,
+                }
+            }) }}
+        </div>
+
+        <div class="row">
+            <div class="answers col-md-12">
+                {% for answer in form.answers %}
+                    <div class="answer">
+                        <div class="answer-isCorrect">
+                            {{ form_row(answer.isCorrect, {
+                                'attr': {'checked': true}
+                            }) }}
+
+                        </div>
+                        <div class="answer-text">
+                            {{ form_row(answer.text, {
+                                    'attr': {'class': 'form-control shadow-none',
+                                    'readonly': true,
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="answer-result col-md-0">
+                <p>result</p>
+            </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="container">
+            <input type="button" id="send" value="Send answer" class="btn btn-primary" >
+            <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>
+        </div>
+
+
+    {{ form_widget(form.submit, {
+        'attr': {'disabled': true, 'hidden': true},
+    }) }}
+    </div>
+
+    <div class="container">
+        <input type="hidden" id="game_id" value="{{ game.id }}">
+        <input type="hidden" id="question_id" value="{{ question.id }}">
+    </div>
+
+    <div class="container">
+{#        <input type="button" id="send" value="Send answer" class="btn btn-primary" >#}
+{#        <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>#}
+    </div>
+
+    {{ form_end(form) }}
+
+
+
+
+    <div class="result">
+        <span id="result"></span>
+    </div>
+
+
+{% endblock %}
+
+

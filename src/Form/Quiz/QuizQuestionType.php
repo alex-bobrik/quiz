@@ -19,6 +19,7 @@ class QuizQuestionType extends AbstractType
                 'choice_label' => 'text',
                 'mapped' => true,
                 'multiple' => false,
+                'attr' => ['class'=> 'selectpicker form-control', 'data-live-search'=>'true']
             ])
         ;
     }
@@ -27,6 +28,8 @@ class QuizQuestionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => QuizQuestion::class,
+            'attr' => ['class' => 'form-group answer-box',
+            ]
         ]);
     }
 }

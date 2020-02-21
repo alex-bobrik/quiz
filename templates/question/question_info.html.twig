@@ -1,34 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Hello QuestionController!{% endblock %}
 
 {% block body %}
 
-    <h1>Question: {{ question.text }}</h1>
-    <a href={{ path('admin_questions_update', {'id': question.id}) }}>edit question</a>
+    <div class="container">
 
-    <table>
-        <thead>
-        <tr>
-            <td>Answer</td>
-            <td>Is correct</td>
-        </tr>
-        </thead>
-        <tbody>
-        {% for answer in answers %}
+        <div>
+            <div class="question-info">
+                <h4>QUESTION:</h4>
+                <span>{{ question.text }}</span>
+            </div>
+        </div>
+
+        <div class="question-buttons">
+            <a href="{{ path('admin_questions_update', {'id': question.id}) }}" class="btn btn-primary">Edit</a>
+        </div>
+
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
-                <td>{{ answer.text }}</td>
-                {% if answer.isCorrect %}
-                    <td>Correct</td>
-                {% else %}
-                    <td>-</td>
-                {% endif %}
+                <th scope="col">Answer</th>
+                <th scope="col">Is correct</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
 
-{#    <h1>Question: {{ question.text }}</h1>#}
-{#    <a href={{ path('question_update', {'id': question.id}) }}>edit question</a>#}
+            <tbody>
+                {% for answer in answers %}
+                    <tr>
+                        <td>{{ answer.text }}</td>
+                        {% if answer.isCorrect %}
+                            <td>✓</td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="buttons-footer">
+            <a href="{{ path('admin_questions_show_all') }}" class="btn btn-outline-dark">All questions</a>
+        </div>
+    </div>
 
 {% endblock %}

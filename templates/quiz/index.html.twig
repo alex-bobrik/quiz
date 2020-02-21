@@ -1,27 +1,51 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Hello QuizController!{% endblock %}
 
 {% block body %}
 
-<table>
-    <thead>
-    <tr>
-        <td>Quiz</td>
-        <td>Amount questions</td>
-        <td>Action</td>
-    </tr>
-    </thead>
+    <div class="container">
+        <div class="buttons-header">
+            <a href="{{ path('admin_quizes_create') }}" class="btn btn-primary">New quiz</a>
+        </div>
 
-    <tbody>
-    {% for quiz in quizes %}
-        <tr>
-            <td>{{ quiz.name }}</td>
-            <td>{{ quiz.questions.count }}</td>
-            <td><a href={{ path('admin_quizes_update', {'id': quiz.id}) }}>edit</a></td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">{{ knp_pagination_sortable(quizes, 'Quiz', ['q.name']) }}</th>
+                <th scope="col">Questions amount</th>
+                <th>{{ knp_pagination_sortable(quizes, 'Created', ['q.created']) }}</th>
+                <th scope="col">Action</th>
+                <th>{{ knp_pagination_sortable(quizes, 'Is Active', ['q.isActive']) }}</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for quiz in quizes %}
+                <tr>
+                    <td>
+                        <a href="{{ path('admin_quizes_info', {'quizId': quiz.id}) }}" class="text-decoration-none">{{ quiz.name }}</a>
+                    </td>
+                    <td>{{ quiz.questions.count }}</td>
+                    <td>{{ quiz.created.format('d/m/Y H:i:s') }}</td>
+                    <td><a href="{{ path('admin_quizes_update', {'id': quiz.id}) }}" class="text-decoration-none">Edit</a></td>
+
+                    <td>
+                        {% if quiz.isActive %}
+                            <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-success">Active</a>
+                        {% else %}
+                            <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-danger">Inactive</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(quizes) }}
+        </div>
+    </div>
 
 {% endblock %}

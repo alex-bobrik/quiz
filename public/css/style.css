@@ -1,0 +1,88 @@
+/*.loading {*/
+/*    background-color: #ffffff;*/
+/*    background-image: url("http://loadinggif.com/images/image-selection/3.gif");*/
+/*    background-size: 25px 25px;*/
+/*    background-position:right center;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
+
+/*cool*/
+.pagination > span {
+    margin-right: 10px;
+    font-size: large;
+}
+
+.font-weight-light {
+    font-size: x-large;
+}
+
+.question-info {
+    display: inline-block;
+}
+
+.question-buttons {
+    height: 50px;
+    float: right;
+    /*margin-bottom: 5px;*/
+    margin-top: 10px;
+}
+
+.question-block {
+    margin-top: 20px;
+}
+
+.checkbox-sized {
+    margin: 20px;
+    transform:scale(2.3);
+    opacity:0.8;
+    cursor:pointer;
+}
+
+.answer > div{
+    display: inline-block;
+}
+
+.buttons-header {
+    float: right;
+    margin: 10px 0 10px 0;
+}
+
+div.form-group > div{
+    display: inline-block;
+}
+
+.answer-box {
+    display: inline;
+}
+
+.answers-block {
+    margin: 10px;
+}
+
+.answer-box > div:first-child {
+    width: 80%;
+}
+
+.answer-text > div:first-child {
+    width: 100%;
+}
+
+.add-answer-block {
+    margin-top: 10px;
+}
+
+.add-answer-block > button {
+    float: right;
+}
+
+.answer-text {
+    width: 90%;
+}
+
+.answers {
+    display: block;
+}
+
+.question-text {
+    margin: 10px 0 10px 0;
+}

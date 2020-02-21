@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Question;
 use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,16 +17,41 @@ class QuizController extends AbstractController
 {
     /**
      * @Route("/admin/quizes", name="admin_quizes_show_all")
-     * @param EntityManagerInterface $em
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function index(EntityManagerInterface $em)
+    public function index(PaginatorInterface $paginator, Request $request)
     {
-        $quizes = $em->getRepository(Quiz::class)->findAll();
+        $quizesRepository = $this->getDoctrine()->getRepository(Quiz::class);
+
+        $quizesQuery = $quizesRepository->createQueryBuilder('q')
+            ->getQuery();
+
+        $quizes = $paginator->paginate(
+            $quizesQuery,
+            $request->query->getInt('page', 1),
+            7
+        );
 
         return $this->render('quiz/index.html.twig', [
             'controller_name' => 'QuizController',
             'quizes' => $quizes,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/quizes/{quizId}", name="admin_quizes_info", requirements={"quizId"="\d+"})
+     * @param QuizService $quizService
+     * @param int $quizId
+     * @return Response
+     */
+    public function showInfo(QuizService $quizService, int $quizId)
+    {
+        $quiz = $quizService->findById($quizId);
+
+        return $this->render('quiz/quiz_info.html.twig', [
+            'questions' => $quiz->getQuestions(),
         ]);
     }
 
@@ -80,5 +107,17 @@ class QuizController extends AbstractController
             'controller_name' => 'QuizController',
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/admin/quizes/status/change/{quizId}", name="admin_quiz_change-status")
+     * @param QuizService $quizService
+     * @param int $quizId
+     * @return Response
+     */
+    public function changeQuizStatus(QuizService $quizService, int $quizId)
+    {
+        $quizService->changeStatus($quizId);
+        return $this->redirectToRoute('admin_quizes_show_all');
     }
 }

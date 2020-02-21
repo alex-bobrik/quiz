@@ -2,12 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
+use App\Entity\Question;
 use App\Entity\Quiz;
+use App\Form\AnswerType;
+use App\Form\QuestionType;
 use App\Service\GameService;
+use App\Service\QuestionService;
+use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Symfony\Component\Validator\Constraints\Json;
 
 class GameController extends AbstractController
 {
@@ -27,34 +40,139 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/games/{id}", name="game_show_info")
+     * @Route("/games/start/{quizId}", name="games_start_play")
+     * @param QuizService $quizService
      * @param GameService $gameService
-     * @param int $id
+     * @param int $quizId
      * @return Response
      */
-    public function showGameInfo(EntityManagerInterface $em, GameService $gameService, int $id): Response
+    public function startGame(QuizService $quizService, GameService $gameService, int $quizId): Response
     {
-//        $game = $gameService->getGameById($id);
-        $game = $em->getRepository(Quiz::class)->find($id);
+        $quiz = $quizService->findById($quizId);
 
-        return $this->render('game/game_info.html.twig', [
+        $game = $gameService->findByQuizUser($quiz, $this->getUser());
+
+        if (!$game)
+        {
+            $game = $gameService->startGame($quiz);
+        }
+
+        if (!$game->getGameIsOver())
+        {
+            return $this->redirectToRoute('game_play', [
+                'gameId' => $game->getId(),
+            ]);
+
+        }else
+        {
+            return $this->redirectToRoute('games_leaders', ['quizId' => $quiz->getId()]);
+        }
+
+    }
+
+    /**
+     * @Route("/games/play/{gameId}", name="game_play")
+     * @param GameService $gameService
+     * @param Request $request
+     * @param int $gameId
+     * @return Response
+     */
+    public function playGame(GameService $gameService, Request $request, int $gameId): Response
+    {
+        $game = $gameService->getGameById($gameId);
+
+        if (!$gameService->checkUserPermission($game, $this->getUser()))
+        {
+            throw $this->createNotFoundException();
+        }
+
+        if (!$gameService->checkGameAccess($game))
+        {
+            throw new NotFoundHttpException('Quiz is inactive');
+//            return $this->redirectToRoute('games_show');
+//            throw $this->createAccessDeniedException('Quiz is disabled');
+        }
+
+        if ($game->getGameIsOver())
+        {
+            return $this->redirectToRoute('games_leaders', ['quizId' => $game->getQuiz()->getId()]);
+        }
+
+        $question = $gameService->getCurrentQuestion($game);
+        $form = $this->createForm(QuestionType::class, $question);
+
+        $correctAnswer = $gameService->getCorrectAnswer($question);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted()) {
+
+            $userQuestion = $form->getData();
+            $userAnswer = $gameService->getCorrectAnswer($userQuestion);
+
+            if ($userAnswer === $correctAnswer)
+            {
+                $gameService->addPoint($game);
+                $response = 'CORRECT';
+            }else
+            {
+                $response = 'incorrect';
+            }
+
+            if (!($gameService->getQuestionsAmount($game) === $gameService->getQuestionNumber($game)))
+                $gameService->setNextQuestion($game);
+            else
+                $gameService->endGame($game);
+
+            return new JsonResponse($response);
+        }
+
+        return $this->render('game/game_play.html.twig', [
             'controller_name' => 'GameController',
             'game' => $game,
+            'question' => $question,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/games/{id}/play", name="games_play")
-     * @param EntityManagerInterface $em
+     * @Route("/games/leaders/{quizId}", name="games_leaders")
+     * @param QuizService $quizService
+     * @param GameService $gameService
+     * @param int $quizId
      * @return Response
      */
-    public function playGame(EntityManagerInterface $em): Response
+    public function gameLeaders(QuizService $quizService, GameService $gameService, int $quizId): Response
     {
-        $quizes = $em->getRepository(Quiz::class)->findAll();
+        $quiz = $quizService->findById($quizId);
 
-        return $this->render('game/index.html.twig', [
-            'controller_name' => 'GameController',
-            'quizes' => $quizes,
+        $leaders = $gameService->getLeaders($quiz);
+        $userPosition = $gameService->getUserLeaderboardPosition($leaders);
+
+        $game = $gameService->findByQuizUser($quiz, $this->getUser());
+
+        if (!$game)
+        {
+            $isPassed = false;
+        }else
+        {
+            if (!$game->getGameIsOver())
+            {
+                return $this->redirectToRoute('game_play', ['gameId' => $game->getId()]);
+            }
+
+            $isPassed = true;
+        }
+
+
+//        $gameService->checkUserPermission($game, $this->getUser());
+
+        return $this->render('game/game_leaders.html.twig', [
+            'quizId' => $quiz->getId(),
+            'isPassed' => $isPassed,
+            'leaders' => $leaders,
+            'userPos' => $userPosition,
+            'game' => $game,
         ]);
+
     }
 }

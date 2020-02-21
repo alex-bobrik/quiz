@@ -16,8 +16,8 @@
         <tbody>
         {% for quiz in quizes %}
             <tr>
-                <td><a href={{ path('game_show_info', {'id': quiz.id}) }}> {{ quiz.name }} </a></td>
-                <td>{{ quiz.created.format('d/m/Y h:i:sa') }}</td>
+                <td><a href={{ path('games_start_play', {'quizId': quiz.id}) }}> {{ quiz.name }} </a></td>
+                <td>{{ quiz.created.format('d/m/Y H:i:s') }}</td>
                 <td>{{ quiz.questions.count }}</td>
             </tr>
         {% endfor %}

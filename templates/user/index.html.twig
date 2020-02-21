@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Hello UserController!{% endblock %}
 
@@ -18,13 +18,14 @@
 {#    </ul>#}
 {#</div>#}
 
-    <div class="users">
-        <table>
-            <thead>
+    <div class="container">
+        <table class="table table-hover">
+            <thead class="thead-dark">
             <tr>
-                <td>Email</td>
-                <td>Roles</td>
-                <td>Is Active</td>
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+{#                <th scope="col">Is Active</th>#}
+                <th scope="col">{{ knp_pagination_sortable(users, 'Is Active', ['u.isActive']) }}</th>
             </tr>
             </thead>
             <tbody>
@@ -32,18 +33,18 @@
                 {% if user.roles[0] != 'ROLE_ADMIN' %}
                     <tr>
                         <td>
+                            {{ user.id }}
+                        </td>
+
+                        <td>
                             {{ user.email }}
                         </td>
 
                         <td>
-                            {{ user.roles[0] }}
-                        </td>
-
-                        <td>
                             {% if user.isActive %}
-                                <a href={{ path('admin_user_change-status', {'id': user.id}) }}>Active</a>
+                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-success">Active</a>
                             {% else %}
-                                <a href={{ path('admin_user_change-status', {'id': user.id}) }}>Inactive</a>
+                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-danger">Inactive</a>
                             {% endif %}
                         </td>
                     </tr>

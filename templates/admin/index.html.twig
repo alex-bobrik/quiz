@@ -1,0 +1,14 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <a href="{{ path('admin_users_show') }}" class="btn btn-primary">Users</a>
+        <a href="{{ path('admin_quizes_show_all') }}" class="btn btn-primary">Quizes</a>
+        <a href="{{ path('admin_questions_show_all') }}" class="btn btn-primary">Questions</a>
+    </div>
+
+{% endblock %}

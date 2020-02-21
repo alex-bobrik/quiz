@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
@@ -43,7 +44,7 @@ class Game
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Quiz")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Quiz", inversedBy="games")
      */
     private $quiz;
 
@@ -56,6 +57,11 @@ class Game
      * @ORM\Column(type="boolean")
      */
     private $gameIsOver;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $QuestionNumber;
 
     public function getId(): ?int
     {
@@ -110,12 +116,12 @@ class Game
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?UserInterface $user): self
     {
         $this->user = $user;
 
@@ -154,6 +160,18 @@ class Game
     public function setGameIsOver(bool $gameIsOver): self
     {
         $this->gameIsOver = $gameIsOver;
+
+        return $this;
+    }
+
+    public function getQuestionNumber(): ?int
+    {
+        return $this->QuestionNumber;
+    }
+
+    public function setQuestionNumber(?int $QuestionNumber): self
+    {
+        $this->QuestionNumber = $QuestionNumber;
 
         return $this;
     }

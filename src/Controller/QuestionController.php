@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\QuestionType;
 use App\Service\QuestionService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +17,22 @@ class QuestionController extends AbstractController
 {
     /**
      * @Route("/admin/questions", name="admin_questions_show_all")
-     * @param EntityManagerInterface $em
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function showAllQuestions(EntityManagerInterface $em)
+    public function showAllQuestions(PaginatorInterface $paginator, Request $request)
     {
-        $questions = $em->getRepository(Question::class)->findAll();
+        $questionsRepository = $this->getDoctrine()->getRepository(Question::class);
+
+        $questionsQuery = $questionsRepository->createQueryBuilder('q')
+            ->getQuery();
+
+        $questions = $paginator->paginate(
+            $questionsQuery,
+            $request->query->getInt('page', 1),
+            7
+        );
 
         return $this->render('question/index.html.twig', [
             'controller_name' => 'QuestionController',
@@ -80,7 +91,6 @@ class QuestionController extends AbstractController
      * @param EntityManagerInterface $em
      * @param Request $request
      * @param int $id
-     *
      * @return Response
      */
     public function updateQuestion(QuestionService $questionService, EntityManagerInterface $em, Request $request, int $id): Response
@@ -92,10 +102,10 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $question = $form->getData();
             $questionService->saveQuestion($question);
-            return $this->redirectToRoute('admin_question_info', array('id' => $question->getId()));
+            return $this->redirectToRoute('admin_question_info', ['id' => $question->getId()]);
         }
 
-        return $this->render('question/create.html.twig', [
+        return $this->render('question/update.html.twig', [
             'controller_name' => 'QuestionController',
             'form' => $form->createView(),
         ]);

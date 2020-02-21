@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     function addTagFormDeleteLink(tagFormLi) {
-        let removeFormButton = $('<button type="button">X</button>');
+        let removeFormButton = $('<button type="button" class="btn btn-danger">X</button>');
         $(tagFormLi).append($(removeFormButton));
 
         $(removeFormButton).on('click', function (e) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
         let counter = list.data('widget-counter') || list.children().length;
         let answersOnForm = list.children().length + 1;
 
-        if(answersOnForm > 5){
+        if(answersOnForm > 3){
             return 0;
         }else {
 
@@ -31,8 +31,8 @@ $(document).ready(function () {
             let newElem = $(list.attr('data-widget-tags')).html(newWidget);
             newElem.appendTo(list);
             addTagFormDeleteLink(newElem);
-
-            console.log(counter);
+            $('.selectpicker').selectpicker('refresh')
+            // console.log(counter);
         }
     });
 
@@ -40,15 +40,15 @@ $(document).ready(function () {
     $('#question_form').submit(function () {
         let anwsersAmount = $("#type-fields-list").children().length;
         if (anwsersAmount < 1) {
-            alert('add at least 1 answer');
+            alert('Add at least 1 answer');
             return false;
         } else {
             let checkboxesAmount = $("[type='checkbox']:checked").length;
             if (checkboxesAmount > 1) {
-                alert('only one correct answer');
+                alert('There can only be 1 correct answer');
                 return false;
             } else if (checkboxesAmount === 0) {
-                alert('select correct answer');
+                alert('Choose correct answer');
                 return false;
             } else {
                 return true;
@@ -60,7 +60,7 @@ $(document).ready(function () {
     $('#quiz_form').submit(function () {
         let questionsAmount = $("#type-fields-list").children().length;
         if (questionsAmount === 0) {
-            alert('add at least 1 question for quiz');
+            alert('Add at least 1 question for quiz');
             return false;
         } else {
             return true;

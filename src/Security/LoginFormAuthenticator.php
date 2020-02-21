@@ -69,9 +69,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
-        if (!$user) {
-// fail authentication with a custom error
+        if (!$user)
+        {
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
+        }
+
+        if (!$user->getIsActive())
+        {
+            throw new CustomUserMessageAuthenticationException('Your profile is inactive.');
         }
 
         return $user;
@@ -91,8 +96,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     // For example : return new RedirectResponse($this->router->generate('some_route'));
     //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     // redirect to some "app_homepage" route - of wherever you want
-        return new RedirectResponse($this->urlGenerator->generate('app_login'));
-
+        return new RedirectResponse($this->router->generate('games_show'));
+//        return new RedirectResponse($this->urlGenerator->generate('app_login'));
     }
 
     protected function getLoginUrl()

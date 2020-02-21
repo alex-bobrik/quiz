@@ -1,0 +1,34 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Hello QuizController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Answers amount</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for question in questions %}
+                <tr>
+                    <td>
+                        <a href="{{ path('admin_question_info', {'id': question.question.id}) }}" class="text-decoration-none">{{ question.question.text }}</a>
+                    </td>
+                    <td>
+                        {{ question.question.answers.count }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="buttons-footer">
+            <a href="{{ path('admin_quizes_show_all') }}" class="btn btn-outline-dark">All quizes</a>
+        </div>
+    </div>
+
+{% endblock %}

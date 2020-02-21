@@ -24,6 +24,7 @@ class QuizType extends AbstractType
                 'prototype' => true,
                 'data_class' => null,
                 'by_reference' => false,
+                'label' => false,
             ])
             ->add('submit', SubmitType::class, ['label' => 'Save the quiz'])
         ;

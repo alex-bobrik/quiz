@@ -1,23 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Hello QuestionController!{% endblock %}
 
 {% block body %}
 
-    <table>
-        <thead>
-        <tr>
-            <td>Question</td>
-            <td>Action</td>
-        </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td><a href={{ path('admin_question_info', {'id': question.id}) }}>{{ question.text }}</a></td>
-                <td><a href={{ path('admin_questions_update', {'id': question.id}) }}>edit</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="container">
+            <div class="question-buttons">
+                <a href="{{ path('admin_questions_create') }}" class="btn btn-primary">New question</a>
+            </div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">{{ knp_pagination_sortable(questions, 'Question', ['q.text']) }}</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <td><a href="{{ path('admin_question_info', {'id': question.id}) }}" class="text-decoration-none">{{ question.text }}</a></td>
+                        <td><a href="{{ path('admin_questions_update', {'id': question.id}) }}" class="text-decoration-none">Edit</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(questions) }}
+            </div>
+        </div>
 {% endblock %}
