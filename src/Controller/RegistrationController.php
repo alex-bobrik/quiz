@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,38 +18,56 @@ class RegistrationController extends AbstractController
      * @Route("/register", name="user_registration")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param UserService $userService
+     * @param \Swift_Mailer $mailer
      * @return RedirectResponse|Response
      */
     public function register(Request $request,
-                             UserPasswordEncoderInterface $passwordEncoder)
+                             UserPasswordEncoderInterface $passwordEncoder,
+                             UserService $userService,
+                            \Swift_Mailer $mailer) : Response
     {
-        // 1) build the form
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
-        // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-            $user->setIsActive(true);
+            $user->setIsActive(false);
+            $userService->saveUser($passwordEncoder, $user);
 
-            // 4) save the User!
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            // send mail for verification
+            $message = (new \Swift_Message('Profile verification'))
+                ->setFrom('example@example.com')
+                ->setTo($user->getEmail())
+                ->setBody('http://quiz.test:90/register/verificate/' . $user->getToken());
 
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
+            $mailer->send($message);
 
-            return $this->redirectToRoute('app_login');
+            // TODO: Add flash 'Email was send to your email'
+            return $this->redirectToRoute('user_registration');
         }
 
         return $this->render(
             'registration/index.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+    /**
+     * @Route("/register/verificate/{token}", name="user_verification")
+     * @param UserService $userService
+     * @param string $token
+     * @return Response
+     */
+    public function userVerification(UserService $userService, string $token): Response
+    {
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['token' => $token]);
+
+        $userService->activateUser($user);
+
+        return $this->redirectToRoute('app_login');
     }
 }

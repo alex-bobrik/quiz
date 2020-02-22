@@ -7,14 +7,40 @@ namespace App\Service;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserService
 {
     private $em;
 
-    public function __construct(EntityManagerInterface $em)
+    private $tokenGenerator;
+
+    public function __construct(EntityManagerInterface $em, TokenGenerator $tokenGenerator)
     {
         $this->em = $em;
+        $this->tokenGenerator = $tokenGenerator;
+    }
+
+    public function saveUser(UserPasswordEncoderInterface $passwordEncoder, User $user): void
+    {
+        $user->setPassword($this->encodePassword($passwordEncoder, $user));
+        $user->setToken($this->tokenGenerator->getToken());
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    public function activateUser(User $user): void
+    {
+        $user->setIsActive(true);
+        $user->setToken('');
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    private function encodePassword(UserPasswordEncoderInterface $passwordEncoder, User $user): string
+    {
+        return $passwordEncoder->encodePassword($user, $user->getPlainPassword());
     }
 
     public function changeStatus(int $id): void

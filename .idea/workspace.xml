@@ -142,16 +142,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/recovery_password" />
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\nginx\public_html\quiz\templates\recovery_password" />
       <recent name="C:\nginx\public_html\quiz\templates" />
       <recent name="C:\nginx\public_html\quiz\translations" />
       <recent name="C:\nginx\public_html\quiz\templates\question" />
       <recent name="C:\nginx\public_html\quiz\public" />
-      <recent name="C:\nginx\public_html\quiz\templates\quiz" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\nginx\public_html\quiz\src\Form\Question" />
@@ -183,7 +183,7 @@
       <workItem from="1580812589929" duration="2501000" />
       <workItem from="1580843047944" duration="732000" />
       <workItem from="1581113517048" duration="68803000" />
-      <workItem from="1581792275373" duration="112697000" />
+      <workItem from="1581792275373" duration="119699000" />
     </task>
     <servers />
   </component>
@@ -195,26 +195,30 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="429" y="110" key="#Inspections/0.0.1676.902@0.0.1676.902" timestamp="1581878754664" />
-    <state x="534" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581512405152">
+    <state x="534" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582389061483">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="534" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1676.902@0.0.1676.902" timestamp="1581512405152" />
+    <state x="534" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1676.902@0.0.1676.902" timestamp="1582389061483" />
     <state x="567" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581439872725">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="567" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1676.902@0.0.1676.902" timestamp="1581439872725" />
-    <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582373864950">
+    <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1582390200797">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1676.902@0.0.1676.902" timestamp="1582373864950" />
+    <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1676.902@0.0.1676.902" timestamp="1582390200797" />
     <state x="617" y="206" key="FileChooserDialogImpl" timestamp="1582067878671">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="617" y="206" key="FileChooserDialogImpl/0.0.1676.902@0.0.1676.902" timestamp="1582067878671" />
-    <state x="640" y="266" key="NewPhpClassDialog" timestamp="1582024462062">
+    <state x="640" y="266" key="NewPhpClassDialog" timestamp="1582387483413">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="640" y="266" key="NewPhpClassDialog/0.0.1676.902@0.0.1676.902" timestamp="1582024462062" />
+    <state x="640" y="266" key="NewPhpClassDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387483413" />
+    <state x="674" y="375" key="NewPhpFileDialog" timestamp="1582387472597">
+      <screen x="0" y="0" width="1676" height="902" />
+    </state>
+    <state x="674" y="375" key="NewPhpFileDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387472597" />
     <state x="346" y="94" key="SettingsEditor" timestamp="1580812701216">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
