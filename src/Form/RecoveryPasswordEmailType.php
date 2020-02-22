@@ -19,7 +19,10 @@ class RecoveryPasswordEmailType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-//                'required' => true,
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Email',
+                ]
             ])
             ->add('submit', SubmitType::class)
         ;
@@ -28,7 +31,7 @@ class RecoveryPasswordEmailType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-//            'data_class' => User::class,
+            'attr' => ['class' => 'form-container']
         ]);
     }
 }

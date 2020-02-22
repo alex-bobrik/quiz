@@ -3,26 +3,6 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-{#    <form method="post">#}
-{#        {% if error %}#}
-{#            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-{#        {% endif %}#}
-
-{#        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
-{#        <label for="inputEmail" class="sr-only">Email</label>#}
-{#        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>#}
-{#        <label for="inputPassword" class="sr-only">Password</label>#}
-{#        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>#}
-
-{#        <input type="hidden" name="_csrf_token"#}
-{#               value="{{ csrf_token('authenticate') }}"#}
-{#        >#}
-
-{#        <button class="btn btn-lg btn-primary" type="submit">#}
-{#            Sign in#}
-{#        </button>#}
-{#    </form>#}
-
 
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -32,6 +12,9 @@
             <div class="col-12 col-sm-6 col-md-3">
                 <form method="post" class="form-container">
                     <div class="form-group">
+                        <h3>{{ 'Login'|trans }}</h3>
+                    </div>
+                    <div class="form-group">
                         <label for="inputEmail">Email</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus autocomplete="off">
                     </div>
@@ -40,12 +23,14 @@
                         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                     </div>
                     <div class="form-group">
+                        <a href="{{ path('user_registration') }}">Register</a>
+                    </div>
+                    <div class="form-group">
                         <a href="{{ path('recovery_password') }}">Forgot password?</a>
                     </div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}">
 
                     <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                 </form>

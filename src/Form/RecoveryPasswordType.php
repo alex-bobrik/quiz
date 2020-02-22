@@ -17,8 +17,8 @@ class RecoveryPasswordType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
+                'first_options' => array('label' => 'Password', 'attr' => ['class' => 'form-control']),
+                'second_options' => array('label' => 'Repeat Password', 'attr' => ['class' => 'form-control']),
             ))
             ->add('submit', SubmitType::class)
         ;
@@ -29,6 +29,7 @@ class RecoveryPasswordType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'attr' => ['class' => 'form-container']
         ]);
     }
 }

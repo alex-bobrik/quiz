@@ -41,9 +41,9 @@ class RecoveryPasswordController extends AbstractController
                 ->findOneBy(['email' => $form->get('email')->getData()]);
 
             if (!$user) {
-                throw $this->createNotFoundException(
-                    'No user found with email ' . $form->get('email')->getData()
-                );
+                $this->addFlash('success', 'No user found with this email');
+
+                return $this->redirectToRoute('recovery_password');
             }
 
             // generate token and save user
@@ -61,7 +61,8 @@ class RecoveryPasswordController extends AbstractController
 
             $mailer->send($message);
 
-//            TODO: Add flash 'Email was send'
+            $this->addFlash('success', 'Email was send');
+
             return $this->render('recovery_password/index.html.twig', [
                 'form' => $form->createView(),
             ]);

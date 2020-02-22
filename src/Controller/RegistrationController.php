@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RegistrationController extends AbstractController
 {
@@ -21,6 +22,7 @@ class RegistrationController extends AbstractController
      * @param UserService $userService
      * @param \Swift_Mailer $mailer
      * @return RedirectResponse|Response
+     * @throws \Exception
      */
     public function register(Request $request,
                              UserPasswordEncoderInterface $passwordEncoder,
@@ -33,6 +35,15 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $user = $this->getDoctrine()->getRepository(User::class)
+                ->findOneBy(['email' => $form->get('email')->getData()]);
+
+            if ($user) {
+                $this->addFlash('success', 'User already exists');
+                return $this->redirectToRoute('user_registration');
+            }
+
+            $user = $form->getData();
             $user->setIsActive(false);
             $userService->saveUser($passwordEncoder, $user);
 
@@ -44,7 +55,7 @@ class RegistrationController extends AbstractController
 
             $mailer->send($message);
 
-            // TODO: Add flash 'Email was send to your email'
+            $this->addFlash('success', 'Email was send');
             return $this->redirectToRoute('user_registration');
         }
 
