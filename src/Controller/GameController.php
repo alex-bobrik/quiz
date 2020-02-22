@@ -27,10 +27,12 @@ class GameController extends AbstractController
     /**
      * @Route("/games", name="games_show")
      * @param EntityManagerInterface $em
+     * @param GameService $gameService
      * @return Response
      */
-    public function showGames(EntityManagerInterface $em): Response
+    public function showGames(EntityManagerInterface $em, GameService $gameService): Response
     {
+//        TODO: ADD PAGINATION
         $quizes = $em->getRepository(Quiz::class)->findAll();
 
         return $this->render('game/index.html.twig', [
@@ -162,9 +164,6 @@ class GameController extends AbstractController
 
             $isPassed = true;
         }
-
-
-//        $gameService->checkUserPermission($game, $this->getUser());
 
         return $this->render('game/game_leaders.html.twig', [
             'quizId' => $quiz->getId(),

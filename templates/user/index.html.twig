@@ -25,7 +25,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Email</th>
 {#                <th scope="col">Is Active</th>#}
-                <th scope="col">{{ knp_pagination_sortable(users, 'Is Active', ['u.isActive']) }}</th>
+                <th scope="col">{{ knp_pagination_sortable(users, 'IsActive'|trans, ['u.isActive']) }}</th>
             </tr>
             </thead>
             <tbody>
@@ -42,9 +42,9 @@
 
                         <td>
                             {% if user.isActive %}
-                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-success">Active</a>
+                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-success">{{ 'Active'|trans }}</a>
                             {% else %}
-                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-danger">Inactive</a>
+                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-danger">{{ 'Inactive'|trans }}</a>
                             {% endif %}
                         </td>
                     </tr>

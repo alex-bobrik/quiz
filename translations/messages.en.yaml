@@ -1,0 +1,36 @@
+# Admin navbar
+Users: Users
+Quizes: Quizes
+Questions: Questions
+
+# User navbar
+Games: Games
+Home Page: Home page
+All Games: All games
+About Us: About us
+
+Logout: Logout
+Login: Login
+Register: Register
+
+IsActive: Is Active
+Active: Active
+Inctive: Inactive
+Action: Action
+Edit: Edit
+Back: Back
+
+# Quizes Admin
+Quiz: Quiz
+Questions Amount: Questions Amount
+Created: Created
+New Quiz: New quiz
+Save Quiz: Save the quiz
+Add Question: Add question
+
+# Questions Admin
+Question: Question
+New Question: New question
+Save Question: Save the question
+Add Answer: Add answer
+Answer: Answer

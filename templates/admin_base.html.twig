@@ -19,11 +19,14 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{{ path('admin_users_show') }}">Users</a>
-                        <a class="nav-item nav-link" href="{{ path('admin_quizes_show_all') }}">Quizes</a>
-                        <a class="nav-item nav-link" href="{{ path('admin_questions_show_all') }}">Questions</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_users_show') }}">{{ 'Users'|trans }}</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_quizes_show_all') }}">{{ 'Quizes'|trans }}</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_questions_show_all') }}">{{ 'Questions'|trans }}</a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Logout</a>
                     </div>
                 </div>
             </nav>
