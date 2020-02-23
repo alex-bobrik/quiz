@@ -31,7 +31,7 @@ class QuestionType extends AbstractType
                 'prototype' => true,
                 'data_class' => null,
                 'by_reference' => false,
-                'required' => false,
+                'required' => true,
                 'label' => false,
             ])
             ->add('submit', SubmitType::class, [

@@ -15,6 +15,7 @@ class AnswerType extends AbstractType
     {
         $builder
             ->add('text', TextType::class, [
+                'required' => true,
                 'attr' => ['class' => 'form-control answer-input',
                     'maxLength' => 50,
                     'placeholder' => 'Answer',

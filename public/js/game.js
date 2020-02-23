@@ -19,10 +19,10 @@ $(document).ready(function () {
     function checkValidation(){
         let checkboxesAmount = $("[type='checkbox']:checked").length;
         if (checkboxesAmount > 1) {
-            alert('only one correct answer');
+            alert('There can only be one correct answer');
             return false;
         } else if (checkboxesAmount === 0) {
-            alert('select correct answer');
+            alert('Choose the correct answer');
             return false;
         }
 
@@ -33,7 +33,6 @@ $(document).ready(function () {
 
         if(!checkValidation())
             return false;
-
 
         let form = $("#question_form");
         let data = form.serializeObject();
