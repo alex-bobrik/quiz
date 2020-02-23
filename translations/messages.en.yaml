@@ -16,7 +16,7 @@ Recovery Password: Recovery Password
 
 IsActive: Is Active
 Active: Active
-Inctive: Inactive
+Inactive: Inactive
 Action: Action
 Edit: Edit
 Back: Back
@@ -35,3 +35,11 @@ New Question: New question
 Save Question: Save the question
 Add Answer: Add answer
 Answer: Answer
+
+# Game
+Quiz Is Passed: Quiz is passed
+Quiz Not Passed: Quiz is not passed
+Points: Points
+Your Place: Your place
+Sort By: Sort by
+Details: Details
