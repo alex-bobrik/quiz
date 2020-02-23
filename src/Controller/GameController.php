@@ -11,6 +11,7 @@ use App\Service\GameService;
 use App\Service\QuestionService;
 use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -28,12 +29,22 @@ class GameController extends AbstractController
      * @Route("/games", name="games_show")
      * @param EntityManagerInterface $em
      * @param GameService $gameService
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function showGames(EntityManagerInterface $em, GameService $gameService): Response
+    public function showGames(EntityManagerInterface $em, GameService $gameService, PaginatorInterface $paginator, Request $request): Response
     {
-//        TODO: ADD PAGINATION
-        $quizes = $em->getRepository(Quiz::class)->findAll();
+        $quizesRepository = $this->getDoctrine()->getRepository(Quiz::class);
+
+        $quizesQuery = $quizesRepository->createQueryBuilder('q')
+            ->getQuery();
+
+        $quizes = $paginator->paginate(
+            $quizesQuery,
+            $request->query->getInt('page', 1),
+            3
+        );
 
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
@@ -51,6 +62,10 @@ class GameController extends AbstractController
     public function startGame(QuizService $quizService, GameService $gameService, int $quizId): Response
     {
         $quiz = $quizService->findById($quizId);
+
+        if (!$quiz->getIsActive()) {
+            throw new NotFoundHttpException('Quiz is inactive');
+        }
 
         $game = $gameService->findByQuizUser($quiz, $this->getUser());
 
@@ -91,8 +106,6 @@ class GameController extends AbstractController
         if (!$gameService->checkGameAccess($game))
         {
             throw new NotFoundHttpException('Quiz is inactive');
-//            return $this->redirectToRoute('games_show');
-//            throw $this->createAccessDeniedException('Quiz is disabled');
         }
 
         if ($game->getGameIsOver())
@@ -146,6 +159,10 @@ class GameController extends AbstractController
     public function gameLeaders(QuizService $quizService, GameService $gameService, int $quizId): Response
     {
         $quiz = $quizService->findById($quizId);
+
+        if (!$quiz) {
+            throw $this->createNotFoundException('Quiz is not found');
+        }
 
         $leaders = $gameService->getLeaders($quiz);
         $userPosition = $gameService->getUserLeaderboardPosition($leaders);

@@ -1,39 +1,55 @@
-{% extends 'base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Hello GameController!{% endblock %}
 
 {% block body %}
 
-    {% if isPassed %}
-        <h1>Proshel, krasava</h1>
-        <h1>Points: {{ game.resultScore }}</h1>
-        <h1>User position: {{ app.user.email }} - {{ userPos }}</h1>
-    {% else %}
-        <h1>Ne proshel, try dis</h1>
-        <input type="button" value="start">
-    {% endif %}
 
-
+    <div class="container">
     {% block leaders %}
+        <div class="leaderboard row">
+            <div class="total-leaderboard col-md-6">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Place</th>
+                        <th scope="col">{{ 'Users'|trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for leader in leaders|slice(0, 3) %}
+                        <tr class="place-{{ loop.index }}">
+                            <td>{{ loop.index }}</td>
+                            <td >{{ leader.email ?? '-' }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="user-leaderboard col-md-6">
+                {% if isPassed %}
+                    <div class="quiz-result">
+                        <p class="font-weight-light quiz-passed-text">{{ 'Quiz Is Passed'|trans }}</p>
+                        <p class="font-weight-light">{{ 'Points'|trans }}: {{ game.resultScore }}</p>
+                        <div class="user-position">
+                            <p class="font-weight-light">{{ 'Your Place'|trans }}: {{ userPos }}</p>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="game-start">
+                        <p class="font-weight-light quiz-not-passed-text">{{ 'Quiz Not Passed'|trans }}</p>
+                        <a href="{{ path('games_start_play', {'quizId': quizId  }) }}" class="btn btn-primary btn-block">Start</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
 
 
-        <table>
-            <thead>
-                <tr>
-                    <td>N</td>
-                    <td>User</td>
-                </tr>
-            </thead>
-
-            <tbody>
-            {% for leader in leaders  %}
-                <tr class="{{ loop.index }}-place">
-                    <td>{{ loop.index }}</td>
-                    <td >{{ leader.email ?? '-' }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
     {% endblock %}
+
+    </div>
 
 {% endblock %}

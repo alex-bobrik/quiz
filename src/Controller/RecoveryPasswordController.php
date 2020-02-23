@@ -29,8 +29,6 @@ class RecoveryPasswordController extends AbstractController
            throw $this->createNotFoundException('Access denied');
        }
 
-//       dump($this->getUser()); die;
-
         $form = $this->createForm(RecoveryPasswordEmailType::class);
 
         $form->handleRequest($request);
@@ -41,7 +39,7 @@ class RecoveryPasswordController extends AbstractController
                 ->findOneBy(['email' => $form->get('email')->getData()]);
 
             if (!$user) {
-                $this->addFlash('success', 'No user found with this email');
+                $this->addFlash('info', 'No user found with this email');
 
                 return $this->redirectToRoute('recovery_password');
             }
@@ -54,14 +52,14 @@ class RecoveryPasswordController extends AbstractController
 
 
             //generate and send messages to the mail
-            $message = (new \Swift_Message('Profile verification'))
+            $message = (new \Swift_Message('Password recovery'))
                 ->setFrom('example@example.com')
                 ->setTo($user->getEmail())
                 ->setBody('http://quiz.test:90/recovery/' . $user->getToken());
 
             $mailer->send($message);
 
-            $this->addFlash('success', 'Email was send');
+            $this->addFlash('info', 'Email was send');
 
             return $this->render('recovery_password/index.html.twig', [
                 'form' => $form->createView(),

@@ -39,7 +39,7 @@ class RegistrationController extends AbstractController
                 ->findOneBy(['email' => $form->get('email')->getData()]);
 
             if ($user) {
-                $this->addFlash('success', 'User already exists');
+                $this->addFlash('info', 'User already exists');
                 return $this->redirectToRoute('user_registration');
             }
 
@@ -55,7 +55,7 @@ class RegistrationController extends AbstractController
 
             $mailer->send($message);
 
-            $this->addFlash('success', 'Email was send');
+            $this->addFlash('info', 'Email was send');
             return $this->redirectToRoute('user_registration');
         }
 

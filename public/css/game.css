@@ -1,0 +1,108 @@
+.answer-text {
+    width: 90%;
+}
+
+.answers {
+    display: block;
+}
+
+.question-text {
+    margin: 10px 0 10px 0;
+}
+
+.answer-text > div:first-child {
+    width: 100%;
+}
+
+.answer > div{
+    display: inline-block;
+}
+
+.quiz {
+    border-radius: 20px;
+    box-shadow: 0 0 2px 0;
+    padding: 10px 30px 10px 30px;
+    width: 50%;
+    margin: 10px auto;
+    background-color: #F8F9FA;
+}
+
+.quiz-sort {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.quiz-sort > p {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.quiz-footer {
+    width: 100%;
+}
+
+.quiz-active {
+    display: inline-block;
+    color: #34ce57;
+}
+
+.quiz-details {
+    display: inline-block;
+    float: right;
+}
+
+.quiz-inactive {
+    display: inline-block;
+    color: red;
+}
+
+.quiz-details-disable{
+    display: inline-block;
+    float: right;
+}
+
+.result {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.wrong-answer {
+    color: red;
+}
+
+.correct-answer {
+    color: green;
+}
+
+.leaderboard {
+    margin-top: 20px;
+}
+
+.quiz-result {
+    text-align: center;
+}
+
+.game-start {
+    text-align: center;
+}
+
+.quiz-passed-text {
+    color: green;
+}
+
+.quiz-not-passed-text {
+    color: red;
+}
+
+.place-1 {
+    background-color: gold;
+}
+
+.place-2 {
+    background-color: silver;
+}
+
+.place-3 {
+    background-color: #cd7f32;
+}

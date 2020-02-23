@@ -1,0 +1,42 @@
+.buttons-header {
+    float: right;
+    margin: 10px 0 10px 0;
+}
+
+.question-info {
+    display: inline-block;
+}
+
+.question-buttons {
+    height: 50px;
+    float: right;
+    margin-top: 10px;
+}
+
+.question-block {
+    margin-top: 20px;
+}
+
+.answer-box {
+    display: inline;
+}
+
+.answers-block {
+    margin: 10px;
+}
+
+.answer-box > div:first-child {
+    width: 80%;
+}
+
+.add-answer-block {
+    margin-top: 10px;
+}
+
+.add-answer-block > button {
+    float: right;
+}
+
+.submit-block {
+    margin-bottom: 30px;
+}

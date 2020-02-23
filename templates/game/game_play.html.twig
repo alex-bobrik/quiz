@@ -1,4 +1,4 @@
-{% extends 'admin_base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Hello GameController!{% endblock %}
 
@@ -23,42 +23,21 @@
     <script src="{{ asset('js/game.js') }}"></script>
 
     <script>
-
         $('input[type=checkbox]').each(function() {
             this.checked = false;
         });
-
     </script>
 
 {% endblock %}
 
 {% block body %}
 
-<style>
-
-    #question_answers > label{
-        visibility: hidden;
-    }
-
-    input[type=checkbox]{
-        margin: 20px;
-        transform:scale(2.3);
-        opacity:0.8;
-        cursor:pointer;
-    }
-</style>
-
 
     <div class="container">
-{#        <h1>Game name: {{ game.name }}</h1>#}
-{#        <h2>Questions amount: {{ game.questions.count }}</h2>#}
-{#    </div>#}
-
-
-    {{ form_start(form, {
-        'action': path('game_play',{'gameId': game.id}),
-        'attr':{novalidate:'novalidate'},
-    }) }}
+        {{ form_start(form, {
+            'action': path('game_play',{'gameId': game.id}),
+            'attr':{novalidate:'novalidate'},
+        }) }}
 
         <div class="container question-text">
             {{ form_widget(form.text, {
@@ -90,9 +69,10 @@
                 {% endfor %}
             </div>
 
-            <div class="answer-result">
-                <p>result</p>
+            <div class="result">
+                <span id="result" class="font-weight-light"></span>
             </div>
+
             </div>
 
         </div>
@@ -125,9 +105,7 @@
 
 
 
-    <div class="result">
-        <span id="result"></span>
-    </div>
+
 
 
 {% endblock %}

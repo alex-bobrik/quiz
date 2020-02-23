@@ -1,0 +1,13 @@
+.container-fluid {
+    position: relative;
+    top: 30vh;
+    width: 100%;
+}
+
+.info {
+    text-align: center;
+}
+
+hr {
+    width: 15%;
+}

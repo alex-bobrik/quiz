@@ -1,0 +1,27 @@
+.navigation {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination > span {
+    margin-right: 10px;
+    font-size: large;
+}
+
+.font-weight-light {
+    font-size: x-large;
+}
+
+.checkbox-sized {
+    margin: 20px;
+    transform:scale(2.3);
+    opacity:0.8;
+    cursor:pointer;
+}
+
+div.form-group > div{
+    display: inline-block;
+}

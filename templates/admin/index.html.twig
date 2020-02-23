@@ -3,12 +3,15 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
+    <head>
+        <link rel="stylesheet" href={{ asset('css/main-page.css') }}>
+    </head>
 
-
-    <div class="container">
-        <a href="{{ path('admin_users_show') }}" class="btn btn-primary">Users</a>
-        <a href="{{ path('admin_quizes_show_all') }}" class="btn btn-primary">Quizes</a>
-        <a href="{{ path('admin_questions_show_all') }}" class="btn btn-primary">Questions</a>
+    <div class="container-fluid">
+        <div class="info">
+            <div class="description">
+                <p class="font-weight-light">GitHub: <a href="https://github.com/alex-bobrik/quiz/">https://github.com/alex-bobrik/quiz/</a></p>
+            </div>
+        </div>
     </div>
-
 {% endblock %}

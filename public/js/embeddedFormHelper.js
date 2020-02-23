@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    const MAX_ELEMENTS = 10;
+
     function addTagFormDeleteLink(tagFormLi) {
         let removeFormButton = $('<button type="button" class="btn btn-danger">X</button>');
         $(tagFormLi).append($(removeFormButton));
@@ -18,9 +20,9 @@ $(document).ready(function () {
     $('.add-another-collection-widget').click(function (e) {
         let list = $($(this).attr('data-list-selector'));
         let counter = list.data('widget-counter') || list.children().length;
-        let answersOnForm = list.children().length + 1;
+        let elementsOnForm = list.children().length + 1;
 
-        if(answersOnForm > 3){
+        if(elementsOnForm > MAX_ELEMENTS){
             return 0;
         }else {
 
@@ -32,7 +34,6 @@ $(document).ready(function () {
             newElem.appendTo(list);
             addTagFormDeleteLink(newElem);
             $('.selectpicker').selectpicker('refresh')
-            // console.log(counter);
         }
     });
 

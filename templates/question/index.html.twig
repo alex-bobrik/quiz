@@ -9,7 +9,7 @@
                 <a href="{{ path('admin_questions_create') }}" class="btn btn-primary">New question</a>
             </div>
 
-            <table class="table">
+            <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">{{ knp_pagination_sortable(questions, 'Question', ['q.text']) }}</th>

@@ -9,12 +9,13 @@
         <link rel="stylesheet" href={{ asset('css/style.css') }}>
         <link rel="stylesheet" href={{ asset('js/embeddedFormHelper.js') }}>
         <link rel="stylesheet" href={{ asset('css/security.css') }}>
+        <link rel="stylesheet" href={{ asset('css/global.css') }}>
 
     {% endblock %}
 </head>
 <body>
 
-    {% for message in app.flashes('success') %}
+    {% for message in app.flashes('info') %}
         <div class="alert alert-primary">
             {{ message }}
         </div>
