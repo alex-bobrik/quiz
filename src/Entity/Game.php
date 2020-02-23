@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -47,11 +47,6 @@ class Game
      * @ORM\ManyToOne(targetEntity="App\Entity\Quiz", inversedBy="games")
      */
     private $quiz;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="games")
-     */
-    private $currentQuestion;
 
     /**
      * @ORM\Column(type="boolean")
@@ -136,18 +131,6 @@ class Game
     public function setQuiz(?Quiz $quiz): self
     {
         $this->quiz = $quiz;
-
-        return $this;
-    }
-
-    public function getCurrentQuestion(): ?Question
-    {
-        return $this->currentQuestion;
-    }
-
-    public function setCurrentQuestion(?Question $currentQuestion): self
-    {
-        $this->currentQuestion = $currentQuestion;
 
         return $this;
     }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -74,20 +74,4 @@ class Answer
 
         return $this;
     }
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getQuestion()
-//    {
-//        return $this->question;
-//    }
-//
-//    /**
-//     * @param mixed $question
-//     */
-//    public function setQuestion($question): void
-//    {
-//        $this->question = $question;
-//    }
 }

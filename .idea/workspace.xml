@@ -142,7 +142,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/recovery_password" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
@@ -183,7 +183,8 @@
       <workItem from="1580812589929" duration="2501000" />
       <workItem from="1580843047944" duration="732000" />
       <workItem from="1581113517048" duration="68803000" />
-      <workItem from="1581792275373" duration="147072000" />
+      <workItem from="1581792275373" duration="147385000" />
+      <workItem from="1582489662972" duration="3900000" />
     </task>
     <servers />
   </component>
@@ -227,9 +228,9 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1582485704378" />
-    <state x="888" y="334" width="672" height="678" key="search.everywhere.popup" timestamp="1582486880468">
+    <state x="888" y="334" width="672" height="678" key="search.everywhere.popup" timestamp="1582492141908">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
-    <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582486880468" />
+    <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582492141908" />
   </component>
 </project>

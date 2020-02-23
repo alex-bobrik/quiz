@@ -1,34 +1,8 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Hello GameController!{% endblock %}
+{% block title %}Games{% endblock %}
 
 {% block body %}
-
-{#    <div class="container">#}
-{#        <table class="table">#}
-{#            <thead>#}
-{#            <tr>#}
-{#                <td>Quiz</td>#}
-{#                <td>Created</td>#}
-{#                <td>Questions amount</td>#}
-{#            </tr>#}
-{#            </thead>#}
-
-{#            <tbody>#}
-{#            {% for quiz in quizes %}#}
-{#                <tr>#}
-{#                    <td><a href={{ path('games_start_play', {'quizId': quiz.id}) }}> {{ quiz.name }} </a></td>#}
-{#                    <td>{{ quiz.created.format('d/m/Y H:i:s') }}</td>#}
-{#                    <td>{{ quiz.questions.count }}</td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
-
-{#        {{ knp_pagination_render(quizes) }}#}
-{#    </div>#}
-
-
     <div class="container">
         <div class="quiz-sort">
             <p>{{ 'Sort By'|trans }}</p>
@@ -57,28 +31,22 @@
                                 <p>{{ 'Active'|trans }}</p>
                             </div>
                             <div class="quiz-details">
-                                <a href="{{ path('games_leaders', {'quizId': quiz.id}) }}" class="btn btn-primary">{{ 'Details'|trans }}</a>
+                                <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="btn btn-primary">{{ 'Details'|trans }}</a>
                             </div>
                         {% else %}
                             <div class="quiz-inactive">
                                 <p>{{ 'Inactive'|trans }}</p>
                             </div>
                             <div class="quiz-details-disable">
-                                <a href="{{ path('games_leaders', {'quizId': quiz.id}) }}" class="btn btn-primary disabled">{{ 'Details'|trans }}</a>
+                                <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="btn btn-primary disabled">{{ 'Details'|trans }}</a>
                             </div>
                         {% endif %}
-
                     </div>
-
                 </div>
-
             {% endfor %}
         </div>
         <div class="navigation">
             {{ knp_pagination_render(quizes) }}
         </div>
     </div>
-
-
-
 {% endblock %}

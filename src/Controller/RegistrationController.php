@@ -11,12 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="user_registration")
+     * @Route("/register", name="app_register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param UserService $userService
@@ -27,7 +26,8 @@ class RegistrationController extends AbstractController
     public function register(Request $request,
                              UserPasswordEncoderInterface $passwordEncoder,
                              UserService $userService,
-                            \Swift_Mailer $mailer) : Response
+                            \Swift_Mailer $mailer
+    ) : Response
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
 
             if ($user) {
                 $this->addFlash('info', 'User already exists');
-                return $this->redirectToRoute('user_registration');
+                return $this->redirectToRoute('app_register');
             }
 
             $user = $form->getData();
@@ -56,7 +56,7 @@ class RegistrationController extends AbstractController
             $mailer->send($message);
 
             $this->addFlash('info', 'Email was send');
-            return $this->redirectToRoute('user_registration');
+            return $this->redirectToRoute('app_register');
         }
 
         return $this->render(
@@ -76,6 +76,10 @@ class RegistrationController extends AbstractController
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->findOneBy(['token' => $token]);
+
+        if (!$user) {
+            throw $this->createNotFoundException('Invalid token');
+        }
 
         $userService->activateUser($user);
 

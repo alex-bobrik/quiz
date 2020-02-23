@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Question;
 use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Service\QuizService;
@@ -16,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizController extends AbstractController
 {
     /**
-     * @Route("/admin/quizes", name="admin_quizes_show_all")
+     * @Route("/admin/quizes", name="admin_quizes_show")
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request)
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
         $quizesRepository = $this->getDoctrine()->getRepository(Quiz::class);
 
@@ -46,7 +45,7 @@ class QuizController extends AbstractController
      * @param int $quizId
      * @return Response
      */
-    public function showInfo(QuizService $quizService, int $quizId)
+    public function showInfo(QuizService $quizService, int $quizId): Response
     {
         $quiz = $quizService->findById($quizId);
 
@@ -58,11 +57,10 @@ class QuizController extends AbstractController
     /**
      * @Route("/admin/quizes/create", name="admin_quizes_create")
      * @param QuizService $quizService
-     * @param EntityManagerInterface $em
      * @param Request $request
      * @return Response
      */
-    public function createQuiz(QuizService $quizService, EntityManagerInterface $em, Request $request): Response
+    public function createQuiz(QuizService $quizService, Request $request): Response
     {
         $quiz = new Quiz();
         $form = $this->createForm(QuizType::class, $quiz);
@@ -71,7 +69,7 @@ class QuizController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $quiz = $form->getData();
             $quizService->saveQuiz($quiz);
-            return $this->redirectToRoute('admin_quizes_show_all');
+            return $this->redirectToRoute('admin_quizes_show');
         }
 
         return $this->render('quiz/create.html.twig', [
@@ -90,7 +88,11 @@ class QuizController extends AbstractController
      *
      * @return Response
      */
-    public function updateQuiz(QuizService $quizService, EntityManagerInterface $em, Request $request, int $id): Response
+    public function updateQuiz(QuizService $quizService,
+                               EntityManagerInterface $em,
+                               Request $request,
+                               int $id
+    ): Response
     {
         /** @var Quiz $quiz */
         $quiz = $em->getRepository(Quiz::class)->find($id);
@@ -100,7 +102,7 @@ class QuizController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $quiz = $form->getData();
             $quizService->saveQuiz($quiz);
-            return $this->redirectToRoute('admin_quizes_show_all');
+            return $this->redirectToRoute('admin_quizes_show');
         }
 
         return $this->render('quiz/update.html.twig', [
@@ -115,9 +117,9 @@ class QuizController extends AbstractController
      * @param int $quizId
      * @return Response
      */
-    public function changeQuizStatus(QuizService $quizService, int $quizId)
+    public function changeQuizStatus(QuizService $quizService, int $quizId): Response
     {
         $quizService->changeStatus($quizId);
-        return $this->redirectToRoute('admin_quizes_show_all');
+        return $this->redirectToRoute('admin_quizes_show');
     }
 }

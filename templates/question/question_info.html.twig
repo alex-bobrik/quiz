@@ -1,18 +1,15 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}Hello QuestionController!{% endblock %}
+{% block title %}Question Info{% endblock %}
 
 {% block body %}
-
     <div class="container">
-
         <div>
             <div class="question-info">
                 <h4>QUESTION:</h4>
                 <span>{{ question.text }}</span>
             </div>
         </div>
-
         <div class="question-buttons">
             <a href="{{ path('admin_questions_update', {'id': question.id}) }}" class="btn btn-primary">Edit</a>
         </div>
@@ -24,7 +21,6 @@
                 <th scope="col">Is correct</th>
             </tr>
             </thead>
-
             <tbody>
                 {% for answer in answers %}
                     <tr>
@@ -40,8 +36,7 @@
         </table>
 
         <div class="buttons-footer">
-            <a href="{{ path('admin_questions_show_all') }}" class="btn btn-outline-dark">All questions</a>
+            <a href="{{ path('admin_questions_show') }}" class="btn btn-outline-dark">All questions</a>
         </div>
     </div>
-
 {% endblock %}

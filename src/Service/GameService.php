@@ -8,14 +8,8 @@ use App\Entity\Answer;
 use App\Entity\Game;
 use App\Entity\Question;
 use App\Entity\Quiz;
-use App\Entity\QuizQuestion;
 use App\Entity\User;
-use App\Form\AnswerType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Array_;
-use phpDocumentor\Reflection\Types\Boolean;
-use phpDocumentor\Reflection\Types\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Security;
 
@@ -181,18 +175,4 @@ class GameService
         return true;
     }
 
-    public function checkIsUserPlaying(Quiz $quiz, UserInterface $user): bool
-    {
-        $game = $this->em->getRepository(Game::class)->findOneBy(['quiz' => $quiz, 'user' => $user]);
-
-        if (!$game) {
-            return false;
-        }
-
-        if (!$game->getGameIsOver()) {
-            return true;
-        }
-
-        return false;
-    }
 }

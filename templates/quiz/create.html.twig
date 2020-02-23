@@ -1,6 +1,6 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}New quiz{% endblock %}
+{% block title %}New Quiz{% endblock %}
 
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -62,13 +62,10 @@
             {{ form_widget(form.submit, {
                 'attr': {'class': 'btn btn-success'},
             }) }}
-            <a href="{{ path('admin_quizes_show_all') }}" class="btn btn-outline-dark">Back</a>
+            <a href="{{ path('admin_quizes_show') }}" class="btn btn-outline-dark">Back</a>
         </div>
     </div>
 
     {{ form_end(form) }}
-
-
-
 
 {% endblock %}

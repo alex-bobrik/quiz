@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Entity\Question;
-use App\Entity\User;
 use App\Form\QuestionType;
 use App\Service\QuestionService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/admin/questions", name="admin_questions_show_all")
+     * @Route("/admin/questions", name="admin_questions_show")
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response
      */
-    public function showAllQuestions(PaginatorInterface $paginator, Request $request)
+    public function showAllQuestions(PaginatorInterface $paginator, Request $request): Response
     {
         $questionsRepository = $this->getDoctrine()->getRepository(Question::class);
 
@@ -46,7 +45,7 @@ class QuestionController extends AbstractController
      * @param int $id
      * @return Response
      */
-    public function showQuestionInfo(EntityManagerInterface $em, int $id)
+    public function showQuestionInfo(EntityManagerInterface $em, int $id): Response
     {
         $question = $em->getRepository(Question::class)->find($id);
         $answers = $question->getAnswers();
@@ -62,11 +61,10 @@ class QuestionController extends AbstractController
      * @Route("/admin/questions/create", name="admin_questions_create")
      *
      * @param QuestionService $questionService
-     * @param EntityManagerInterface $em
      * @param Request $request
      * @return Response
      */
-    public function createQuestion(QuestionService $questionService, EntityManagerInterface $em, Request $request): Response
+    public function createQuestion(QuestionService $questionService, Request $request): Response
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
@@ -93,7 +91,11 @@ class QuestionController extends AbstractController
      * @param int $id
      * @return Response
      */
-    public function updateQuestion(QuestionService $questionService, EntityManagerInterface $em, Request $request, int $id): Response
+    public function updateQuestion(QuestionService $questionService,
+                                   EntityManagerInterface $em,
+                                   Request $request,
+                                   int $id
+    ): Response
     {
         $question = $em->getRepository(Question::class)->find($id);
         $form = $this->createForm(QuestionType::class, $question);

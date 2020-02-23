@@ -2,38 +2,27 @@
 
 namespace App\Controller;
 
-use App\Entity\Game;
-use App\Entity\Question;
 use App\Entity\Quiz;
-use App\Form\AnswerType;
 use App\Form\QuestionType;
 use App\Service\GameService;
-use App\Service\QuestionService;
 use App\Service\QuizService;
-use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
-use Symfony\Component\Validator\Constraints\Json;
 
 class GameController extends AbstractController
 {
     /**
      * @Route("/games", name="games_show")
-     * @param EntityManagerInterface $em
-     * @param GameService $gameService
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response
      */
-    public function showGames(EntityManagerInterface $em, GameService $gameService, PaginatorInterface $paginator, Request $request): Response
+    public function showGames(PaginatorInterface $paginator, Request $request): Response
     {
         $quizesRepository = $this->getDoctrine()->getRepository(Quiz::class);
 
@@ -82,7 +71,7 @@ class GameController extends AbstractController
 
         }else
         {
-            return $this->redirectToRoute('games_leaders', ['quizId' => $quiz->getId()]);
+            return $this->redirectToRoute('games_details', ['quizId' => $quiz->getId()]);
         }
 
     }
@@ -110,7 +99,7 @@ class GameController extends AbstractController
 
         if ($game->getGameIsOver())
         {
-            return $this->redirectToRoute('games_leaders', ['quizId' => $game->getQuiz()->getId()]);
+            return $this->redirectToRoute('games_details', ['quizId' => $game->getQuiz()->getId()]);
         }
 
         $question = $gameService->getCurrentQuestion($game);
@@ -150,7 +139,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/games/leaders/{quizId}", name="games_leaders")
+     * @Route("/games/details/{quizId}", name="games_details")
      * @param QuizService $quizService
      * @param GameService $gameService
      * @param int $quizId
@@ -182,13 +171,12 @@ class GameController extends AbstractController
             $isPassed = true;
         }
 
-        return $this->render('game/game_leaders.html.twig', [
+        return $this->render('game/game_details.html.twig', [
             'quizId' => $quiz->getId(),
             'isPassed' => $isPassed,
             'leaders' => $leaders,
             'userPos' => $userPosition,
             'game' => $game,
         ]);
-
     }
 }

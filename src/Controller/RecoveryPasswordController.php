@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RecoveryPasswordController extends AbstractController
 {
@@ -23,7 +22,10 @@ class RecoveryPasswordController extends AbstractController
      * @param \Swift_Mailer $mailer
      * @return Response
      */
-    public function recoveryPassword(TokenGenerator $tokenGenerator, Request $request, \Swift_Mailer $mailer): Response
+    public function recoveryPassword(TokenGenerator $tokenGenerator,
+                                     Request $request,
+                                     \Swift_Mailer $mailer
+    ): Response
     {
        if ($this->getUser()){
            throw $this->createNotFoundException('Access denied');
@@ -50,7 +52,6 @@ class RecoveryPasswordController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-
             //generate and send messages to the mail
             $message = (new \Swift_Message('Password recovery'))
                 ->setFrom('example@example.com')
@@ -64,13 +65,11 @@ class RecoveryPasswordController extends AbstractController
             return $this->render('recovery_password/index.html.twig', [
                 'form' => $form->createView(),
             ]);
-
         }
 
         return $this->render('recovery_password/index.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 
     /**
@@ -78,11 +77,14 @@ class RecoveryPasswordController extends AbstractController
      * @param UserPasswordEncoderInterface $encoder
      * @param Request $request
      * @param UserService $userService
-     * @param \Swift_Mailer $mailer
      * @param string $token
      * @return Response
      */
-    public function recoveryPasswordEnd(UserPasswordEncoderInterface $encoder, Request $request, UserService $userService, \Swift_Mailer $mailer, string $token)
+    public function recoveryPasswordEnd(UserPasswordEncoderInterface $encoder,
+                                        Request $request,
+                                        UserService $userService,
+                                        string $token
+    ): Response
     {
         $user = $this->getDoctrine()
             ->getRepository(User::class)

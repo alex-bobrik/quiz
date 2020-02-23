@@ -1,10 +1,7 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Quiz;
 use App\Entity\User;
 use App\Service\UserService;
 use Knp\Component\Pager\PaginatorInterface;

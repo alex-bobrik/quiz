@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Service;
 
@@ -8,7 +6,6 @@ namespace App\Service;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserService
 {
@@ -57,17 +54,5 @@ class UserService
 
         $this->em->persist($user);
         $this->em->flush();
-    }
-
-    public function getIdByUsername(string $username): ?int
-    {
-        $user = $this->em->getRepository(User::class)->findOneBy(['username' => $username]);
-
-        if ($user)
-        {
-            return $user->getId();
-        }
-
-        return null;
     }
 }

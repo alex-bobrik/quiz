@@ -1,6 +1,6 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Hello GameController!{% endblock %}
+{% block title %}Game Play{% endblock %}
 
 {% block javascripts %}
 
@@ -31,14 +31,11 @@
 {% endblock %}
 
 {% block body %}
-
-
     <div class="container">
         {{ form_start(form, {
             'action': path('game_play',{'gameId': game.id}),
             'attr':{novalidate:'novalidate'},
         }) }}
-
         <div class="container question-text">
             {{ form_widget(form.text, {
                     'attr': {'class': 'form-control-plaintext text-center shadow-none',
@@ -47,7 +44,6 @@
                 }
             }) }}
         </div>
-
         <div class="row">
             <div class="answers col-md-12">
                 {% for answer in form.answers %}
@@ -56,7 +52,6 @@
                             {{ form_row(answer.isCorrect, {
                                 'attr': {'checked': true}
                             }) }}
-
                         </div>
                         <div class="answer-text">
                             {{ form_row(answer.text, {
@@ -68,46 +63,24 @@
                     </div>
                 {% endfor %}
             </div>
-
             <div class="result">
                 <span id="result" class="font-weight-light"></span>
             </div>
-
-            </div>
-
         </div>
-
-
-
-        <div class="container">
-            <input type="button" id="send" value="Send answer" class="btn btn-primary" >
-            <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>
-        </div>
-
+    </div>
+    <div class="container">
+        <input type="button" id="send" value="Send answer" class="btn btn-primary" >
+        <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>
+    </div>
 
     {{ form_widget(form.submit, {
         'attr': {'disabled': true, 'hidden': true},
     }) }}
-    </div>
 
     <div class="container">
         <input type="hidden" id="game_id" value="{{ game.id }}">
         <input type="hidden" id="question_id" value="{{ question.id }}">
     </div>
 
-    <div class="container">
-{#        <input type="button" id="send" value="Send answer" class="btn btn-primary" >#}
-{#        <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>#}
-    </div>
-
     {{ form_end(form) }}
-
-
-
-
-
-
-
 {% endblock %}
-
-

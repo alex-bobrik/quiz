@@ -1,9 +1,8 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}New question{% endblock %}
+{% block title %}Update Question{% endblock %}
 
 {% block body %}
-
     {{ form_start(form) }}
 
     <div class="container">
@@ -26,7 +25,6 @@
                                 </li>
                             {% endfor %}
                         </ul>
-
                         <div class="add-answer-block">
                             <button type="button"
                                     class="add-another-collection-widget btn btn-info"
@@ -42,13 +40,9 @@
             {{ form_widget(form.submit, {
                 'attr': {'class': 'btn btn-success'},
             }) }}
-            <a href="{{ path('admin_questions_show_all') }}" class="btn btn-outline-dark">Back</a>
+            <a href="{{ path('admin_questions_show') }}" class="btn btn-outline-dark">Back</a>
         </div>
     </div>
 
-
-
     {{ form_end(form) }}
-
-
 {% endblock %}

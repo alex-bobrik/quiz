@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecoveryPasswordController!{% endblock %}
+{% block title %}End Recovery{% endblock %}
 
 {% block body %}
 
@@ -20,7 +20,8 @@
                 {{ form_widget(form.submit, {
                     'attr': {'class': 'btn btn-primary btn-block'}
                 }) }}
-                </form>
+
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

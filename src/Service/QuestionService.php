@@ -5,7 +5,6 @@ namespace App\Service;
 
 
 use App\Entity\Question;
-use App\Entity\Quiz;
 use Doctrine\ORM\EntityManagerInterface;
 
 class QuestionService
@@ -21,10 +20,5 @@ class QuestionService
     {
         $this->em->persist($question);
         $this->em->flush();
-    }
-
-    public function getQuestionById($questionId) : ?Question
-    {
-        return $this->em->getRepository(Question::class)->find($questionId);
     }
 }

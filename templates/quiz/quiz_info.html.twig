@@ -1,9 +1,8 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}Hello QuizController!{% endblock %}
+{% block title %}Quiz info{% endblock %}
 
 {% block body %}
-
     <div class="container">
         <table class="table">
             <thead class="thead-dark">
@@ -27,8 +26,7 @@
         </table>
 
         <div class="buttons-footer">
-            <a href="{{ path('admin_quizes_show_all') }}" class="btn btn-outline-dark">All quizes</a>
+            <a href="{{ path('admin_quizes_show') }}" class="btn btn-outline-dark">All quizes</a>
         </div>
     </div>
-
 {% endblock %}

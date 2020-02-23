@@ -1,10 +1,8 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Hello GameController!{% endblock %}
+{% block title %}Details{% endblock %}
 
 {% block body %}
-
-
     <div class="container">
     {% block leaders %}
         <div class="leaderboard row">
@@ -16,7 +14,6 @@
                         <th scope="col">{{ 'Users'|trans }}</th>
                     </tr>
                     </thead>
-
                     <tbody>
                     {% for leader in leaders|slice(0, 3) %}
                         <tr class="place-{{ loop.index }}">
@@ -37,7 +34,6 @@
                             <p class="font-weight-light">{{ 'Your Place'|trans }}: {{ userPos }}</p>
                         </div>
                     </div>
-
                 {% else %}
                     <div class="game-start">
                         <p class="font-weight-light quiz-not-passed-text">{{ 'Quiz Not Passed'|trans }}</p>
@@ -46,10 +42,7 @@
                 {% endif %}
             </div>
         </div>
-
-
     {% endblock %}
-
     </div>
 
 {% endblock %}
