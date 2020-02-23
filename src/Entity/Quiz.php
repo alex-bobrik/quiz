@@ -21,8 +21,13 @@ class Quiz
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="not blank btw")
-     * @Assert\Length(min="5", minMessage="Min {{ limit }} characters.")
+     * @Assert\NotBlank(message="Can't be blank.")
+     * @Assert\Length(
+     *     min="5",
+     *     max="50",
+     *     minMessage="Min {{ limit }} characters.",
+     *     maxMessage="Max {{ limit }} characters"
+     * )
      */
     private $name;
 

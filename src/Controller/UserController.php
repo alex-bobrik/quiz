@@ -38,7 +38,9 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/users/status/change/{userId}", name="admin_user_change-status")
+     * @Route("/admin/users/status/change/{userId}",
+     *     name="admin_user_change-status",
+     *     requirements={"userId"="\d+"})
      * @param UserService $service
      * @param int $userId
      * @return Response

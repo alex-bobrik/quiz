@@ -19,8 +19,13 @@ class Answer
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min="3", minMessage="Limit min {{limit}} syms.")
+     * @Assert\NotBlank(message="Can't be blank.")
+     * @Assert\Length(
+     *     min="5",
+     *     max="50",
+     *     minMessage="Min {{ limit }} characters.",
+     *     maxMessage="Max {{ limit }} characters."
+     * )
      */
     private $text;
 

@@ -42,7 +42,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/games/start/{quizId}", name="games_start_play")
+     * @Route("/games/start/{quizId}", name="games_start_play", requirements={"quizId"="\d+"})
      * @param QuizService $quizService
      * @param GameService $gameService
      * @param int $quizId
@@ -77,7 +77,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/games/play/{gameId}", name="game_play")
+     * @Route("/games/play/{gameId}", name="game_play", requirements={"quizId"="\d+"})
      * @param GameService $gameService
      * @param Request $request
      * @param int $gameId
@@ -139,7 +139,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/games/details/{quizId}", name="games_details")
+     * @Route("/games/details/{quizId}", name="games_details", requirements={"quizId"="\d+"})
      * @param QuizService $quizService
      * @param GameService $gameService
      * @param int $quizId

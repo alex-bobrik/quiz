@@ -112,7 +112,9 @@ class QuizController extends AbstractController
     }
 
     /**
-     * @Route("/admin/quizes/status/change/{quizId}", name="admin_quiz_change-status")
+     * @Route("/admin/quizes/status/change/{quizId}",
+     *     name="admin_quiz_change-status",
+     *     requirements={"quizId"="\d+"})
      * @param QuizService $quizService
      * @param int $quizId
      * @return Response

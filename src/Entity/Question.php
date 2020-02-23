@@ -23,10 +23,10 @@ class Question
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Can't be blank.")
      * @Assert\Length(
-     *     max="50",
      *     min="5",
-     *     maxMessage="Max {{ limit }} characters.",
-     *     minMessage="Min {{ limit }} characters."
+     *     max="50",
+     *     minMessage="Min {{ limit }} characters.",
+     *     maxMessage="Max {{ limit }} characters."
      * )
      */
     private $text;

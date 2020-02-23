@@ -23,7 +23,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email()
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Can't be blank.")
      */
     private $email;
 
