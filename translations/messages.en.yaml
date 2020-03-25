@@ -9,6 +9,7 @@ Home Page: Home page
 All Games: All games
 About Us: About us
 
+# Security
 Logout: Logout
 Login: Login
 Register: Register
@@ -20,6 +21,9 @@ Inactive: Inactive
 Action: Action
 Edit: Edit
 Back: Back
+
+# QuizCategories Admin
+Save Category: Save the category
 
 # Quizes Admin
 Quiz: Quiz

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
-use App\Form\QuestionType;
+use App\Form\Question\QuestionType;
 use App\Service\QuestionService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;

@@ -51,6 +51,11 @@ class Quiz
      */
     private $games;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\QuizCategory", inversedBy="quizes")
+     */
+    private $quizCategory;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -156,6 +161,18 @@ class Quiz
                 $game->setQuiz(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuizCategory(): ?QuizCategory
+    {
+        return $this->quizCategory;
+    }
+
+    public function setQuizCategory(?QuizCategory $quizCategory): self
+    {
+        $this->quizCategory = $quizCategory;
 
         return $this;
     }

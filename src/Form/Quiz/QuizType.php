@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Quiz;
 
 use App\Entity\Quiz;
+use App\Entity\QuizCategory;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -16,6 +18,13 @@ class QuizType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('quizCategory', EntityType::class, [
+                'class' => QuizCategory::class,
+                'choice_label' => 'name',
+                'mapped' => true,
+                'multiple' => false,
+                'attr' => ['class'=> 'form-control']
+            ])
             ->add('questions', CollectionType::class, [
                 'entry_type' => QuizQuestionType::class,
                 'allow_add' => true,

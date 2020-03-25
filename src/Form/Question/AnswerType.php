@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Question;
 
 use App\Entity\Answer;
 use Symfony\Component\Form\AbstractType;

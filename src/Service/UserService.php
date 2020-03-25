@@ -23,6 +23,8 @@ class UserService
     {
         $user->setPassword($this->encodePassword($passwordEncoder, $user));
         $user->setToken($this->tokenGenerator->getToken());
+        $user->setRoles(['ROLE_USER']);
+
         $this->em->persist($user);
         $this->em->flush();
     }

@@ -3,13 +3,12 @@
 namespace App\Service;
 
 use App\Entity\Quiz;
+use App\Entity\QuizCategory;
 use Doctrine\ORM\EntityManagerInterface;
 
 class QuizService
 {
     private $em;
-
-    private $quiz;
 
     public function __construct(EntityManagerInterface $em)
     {
@@ -44,6 +43,12 @@ class QuizService
         }
 
         $this->em->persist($quiz);
+        $this->em->flush();
+    }
+
+    public function saveQuizCategory(QuizCategory $quizCategory)
+    {
+        $this->em->persist($quizCategory);
         $this->em->flush();
     }
 

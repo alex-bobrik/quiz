@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Quiz;
-use App\Form\QuestionType;
+use App\Form\Question\QuestionType;
 use App\Service\GameService;
 use App\Service\QuizService;
 use Knp\Component\Pager\PaginatorInterface;

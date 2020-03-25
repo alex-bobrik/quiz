@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Quiz;
 
 use App\Entity\Question;
 use App\Entity\QuizQuestion;
