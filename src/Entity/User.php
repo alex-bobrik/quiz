@@ -59,10 +59,16 @@ class User implements UserInterface
      */
     private $token;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="user")
+     */
+    private $ratings;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
         $this->roles = array('ROLE_USER');
+        $this->ratings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -202,6 +208,37 @@ class User implements UserInterface
     public function setToken(string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rating[]
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    public function addRating(Rating $rating): self
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): self
+    {
+        if ($this->ratings->contains($rating)) {
+            $this->ratings->removeElement($rating);
+            // set the owning side to null (unless already changed)
+            if ($rating->getUser() === $this) {
+                $rating->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -56,10 +56,16 @@ class Quiz
      */
     private $quizCategory;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="quiz")
+     */
+    private $ratings;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->games = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,6 +179,37 @@ class Quiz
     public function setQuizCategory(?QuizCategory $quizCategory): self
     {
         $this->quizCategory = $quizCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rating[]
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    public function addRating(Rating $rating): self
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): self
+    {
+        if ($this->ratings->contains($rating)) {
+            $this->ratings->removeElement($rating);
+            // set the owning side to null (unless already changed)
+            if ($rating->getQuiz() === $this) {
+                $rating->setQuiz(null);
+            }
+        }
 
         return $this;
     }
