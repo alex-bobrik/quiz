@@ -4,15 +4,20 @@ namespace App\Service;
 
 use App\Entity\Quiz;
 use App\Entity\QuizCategory;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 
 class QuizService
 {
     private $em;
 
-    public function __construct(EntityManagerInterface $em)
+    private $security;
+
+    public function __construct(EntityManagerInterface $em, Security $security)
     {
         $this->em = $em;
+        $this->security = $security;
     }
 
     public function findById(int $id): ?Quiz
@@ -22,9 +27,14 @@ class QuizService
 
     public function saveQuiz(Quiz $quiz): void
     {
+        $currentUser = $this->security->getUser();
+
+        $user = $this->em->getRepository(User::class)->find($currentUser);
+
         $date = new \DateTime('now');
         $quiz->setCreated($date);
         $quiz->setIsActive(true);
+        $quiz->setUser($user);
 
         $this->em->persist($quiz);
         $this->em->flush();

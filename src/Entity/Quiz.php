@@ -61,6 +61,11 @@ class Quiz
      */
     private $ratings;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="quizzes")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -210,6 +215,18 @@ class Quiz
                 $rating->setQuiz(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

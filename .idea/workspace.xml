@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="" />
+    <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/QuestionService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/QuestionService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/QuizService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/QuizService.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +198,7 @@
       <workItem from="1583317807983" duration="1566000" />
       <workItem from="1583338470399" duration="20000" />
       <workItem from="1583427043068" duration="29922000" />
-      <workItem from="1585142702691" duration="2578000" />
+      <workItem from="1585142702691" duration="4050000" />
     </task>
     <servers />
   </component>

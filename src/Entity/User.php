@@ -64,11 +64,23 @@ class User implements UserInterface
      */
     private $ratings;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Quiz", mappedBy="user")
+     */
+    private $quizzes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="user")
+     */
+    private $questions;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
         $this->roles = array('ROLE_USER');
         $this->ratings = new ArrayCollection();
+        $this->quizzes = new ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -237,6 +249,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($rating->getUser() === $this) {
                 $rating->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Quiz[]
+     */
+    public function getQuizzes(): Collection
+    {
+        return $this->quizzes;
+    }
+
+    public function addQuiz(Quiz $quiz): self
+    {
+        if (!$this->quizzes->contains($quiz)) {
+            $this->quizzes[] = $quiz;
+            $quiz->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuiz(Quiz $quiz): self
+    {
+        if ($this->quizzes->contains($quiz)) {
+            $this->quizzes->removeElement($quiz);
+            // set the owning side to null (unless already changed)
+            if ($quiz->getUser() === $this) {
+                $quiz->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        if ($this->questions->contains($question)) {
+            $this->questions->removeElement($question);
+            // set the owning side to null (unless already changed)
+            if ($question->getUser() === $this) {
+                $question->setUser(null);
             }
         }
 
