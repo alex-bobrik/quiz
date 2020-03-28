@@ -4,6 +4,7 @@ namespace App\Form\Quiz;
 
 use App\Entity\Question;
 use App\Entity\QuizQuestion;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +17,11 @@ class QuizQuestionType extends AbstractType
         $builder
             ->add('question', EntityType::class, [
                 'class' => Question::class,
+                'query_builder' => function (EntityRepository $er) use ($options) {
+                        return $er->createQueryBuilder('q')
+                            ->where('q.user = ?1')
+                            ->setParameter(1, $options['user']);
+                    },
                 'choice_label' => 'text',
                 'mapped' => true,
                 'multiple' => false,
@@ -29,7 +35,11 @@ class QuizQuestionType extends AbstractType
         $resolver->setDefaults([
             'data_class' => QuizQuestion::class,
             'attr' => ['class' => 'form-group answer-box',
-            ]
+            ],
+        ]);
+
+        $resolver->setRequired([
+            'user',
         ]);
     }
 }

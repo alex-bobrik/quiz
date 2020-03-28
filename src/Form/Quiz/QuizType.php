@@ -4,6 +4,8 @@ namespace App\Form\Quiz;
 
 use App\Entity\Quiz;
 use App\Entity\QuizCategory;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -27,6 +29,9 @@ class QuizType extends AbstractType
             ])
             ->add('questions', CollectionType::class, [
                 'entry_type' => QuizQuestionType::class,
+                'entry_options' => [
+                    'user' => $options['user'],
+                ],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,
@@ -43,6 +48,10 @@ class QuizType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Quiz::class,
             'attr' => ['id' => 'quiz_form'],
+        ]);
+
+        $resolver->setRequired([
+            'user',
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Quiz;
+use App\Entity\User;
 use App\Form\Quiz\QuizType;
 use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,7 +64,11 @@ class QuizController extends AbstractController
     public function createQuiz(QuizService $quizService, Request $request): Response
     {
         $quiz = new Quiz();
-        $form = $this->createForm(QuizType::class, $quiz);
+        $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
+
+        $quiz->setUser($user);
+
+        $form = $this->createForm(QuizType::class, $quiz, ['user' => $user]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -94,9 +99,10 @@ class QuizController extends AbstractController
                                int $id
     ): Response
     {
-        /** @var Quiz $quiz */
         $quiz = $em->getRepository(Quiz::class)->find($id);
-        $form = $this->createForm(QuizType::class, $quiz);
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
+        $form = $this->createForm(QuizType::class, $quiz, ['user' => $user]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
