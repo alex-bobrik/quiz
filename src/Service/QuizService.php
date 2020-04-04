@@ -33,7 +33,8 @@ class QuizService
 
         $date = new \DateTime('now');
         $quiz->setCreated($date);
-        $quiz->setIsActive(true);
+        $quiz->setIsActive(false);
+        $quiz->setIsChecked(false);
         $quiz->setUser($user);
 
         $this->em->persist($quiz);

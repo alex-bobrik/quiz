@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Quiz;
 use App\Entity\User;
 use App\Form\Quiz\QuizType;
+use App\Service\ModerService;
 use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -130,4 +131,6 @@ class QuizController extends AbstractController
         $quizService->changeStatus($quizId);
         return $this->redirectToRoute('admin_quizes_show');
     }
+
+
 }

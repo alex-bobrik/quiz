@@ -74,6 +74,11 @@ class User implements UserInterface
      */
     private $questions;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $violation;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -313,6 +318,18 @@ class User implements UserInterface
                 $question->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getViolation(): ?int
+    {
+        return $this->violation;
+    }
+
+    public function setViolation(?int $violation): self
+    {
+        $this->violation = $violation;
 
         return $this;
     }

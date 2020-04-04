@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModerController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <a href="{{ path('moder_quiz_deny', {'id': quiz.id}) }}" class="btn btn-danger">Deny</a>
+        <a href="{{ path('moder_quiz_confirm', {'id': quiz.id}) }}" class="btn btn-success">Confirm</a>
+        <p>Quiz: {{ quiz.name }}, author {{ quiz.user.username }}</p>
+        <p>Question:</p>
+        {% for question in questions %}
+            <h5>{{ question.question.text }}</h5>
+                {% for answer in question.question.answers %}
+                    <p>{{ answer.text }}</p>
+                {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(questions) }}
+    </div>
+
+{% endblock %}

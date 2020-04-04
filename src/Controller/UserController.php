@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\AdminService;
 use App\Service\UserService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,6 +49,36 @@ class UserController extends AbstractController
     public function changeUserStatus(UserService $service, int $userId): Response
     {
         $service->changeStatus($userId);
+        return $this->redirectToRoute('admin_users_show');
+    }
+
+    /**
+     * @Route("/admin/users/appoint-as-moder/{userId}",
+     *     name="admin_user_appoint-as-moder",
+     *     requirements={"userId"="\d+"})
+     * @param AdminService $service
+     * @param int $userId
+     * @return Response
+     */
+    public function appointAsModer(AdminService $service, int $userId): Response
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
+        $service->appointAsModer($user);
+        return $this->redirectToRoute('admin_users_show');
+    }
+
+    /**
+     * @Route("/admin/users/reject-moder/{userId}",
+     *     name="admin_user_reject-moder",
+     *     requirements={"userId"="\d+"})
+     * @param AdminService $service
+     * @param int $userId
+     * @return Response
+     */
+    public function rejectModer(AdminService $service, int $userId): Response
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
+        $service->rejectModer($user);
         return $this->redirectToRoute('admin_users_show');
     }
 }

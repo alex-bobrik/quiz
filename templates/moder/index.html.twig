@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModerController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {% for quiz in quizes %}
+            <div>
+                {{ quiz.name }}
+            </div>
+            <div>
+                <a href="{{ path('moder_quizes_info', {'id': quiz.id}) }}">check</a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
