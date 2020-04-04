@@ -75,9 +75,9 @@ class User implements UserInterface
     private $questions;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\ViolationAct", mappedBy="user", cascade={"persist"})
      */
-    private $violation;
+    private $violationActs;
 
     public function __construct()
     {
@@ -86,6 +86,7 @@ class User implements UserInterface
         $this->ratings = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->violationActs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -322,14 +323,33 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getViolation(): ?int
+    /**
+     * @return Collection|ViolationAct[]
+     */
+    public function getViolationActs(): Collection
     {
-        return $this->violation;
+        return $this->violationActs;
     }
 
-    public function setViolation(?int $violation): self
+    public function addViolationAct(ViolationAct $violationAct): self
     {
-        $this->violation = $violation;
+        if (!$this->violationActs->contains($violationAct)) {
+            $this->violationActs[] = $violationAct;
+            $violationAct->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeViolationAct(ViolationAct $violationAct): self
+    {
+        if ($this->violationActs->contains($violationAct)) {
+            $this->violationActs->removeElement($violationAct);
+            // set the owning side to null (unless already changed)
+            if ($violationAct->getUser() === $this) {
+                $violationAct->setUser(null);
+            }
+        }
 
         return $this;
     }

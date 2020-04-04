@@ -5,6 +5,7 @@ namespace App\Controller\Moder;
 use App\Entity\Question;
 use App\Entity\Quiz;
 use App\Entity\QuizQuestion;
+use App\Form\DenyQuizType;
 use App\Service\ModerService;
 use App\Service\QuizService;
 use Knp\Component\Pager\PaginatorInterface;
@@ -35,36 +36,30 @@ class ModerController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function quizInfo(int $id, PaginatorInterface $paginator, Request $request)
+    public function quizInfo(int $id, PaginatorInterface $paginator, Request $request, ModerService $moderService)
     {
-//        $questionsRepository = $this->getDoctrine()->getRepository(Question::class);
         $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($id);
 
+        // pagination
         $questions = $quiz->getQuestions();
-
         $questions = $paginator->paginate($questions, $request->query->getInt('page', 1), 1);
+
+        // deny form
+        $form = $this->createForm(DenyQuizType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $violation = $form->get('violation')->getData();
+            $moderService->denyQuiz($quiz, $violation);
+
+            return $this->redirectToRoute('moder_quizes');
+        }
 
         return $this->render('moder/quiz_info.html.twig', [
             'controller_name' => 'ModerController',
             'quiz' => $quiz,
             'questions' => $questions,
+            'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/moder/quiz/deny/{id}",
-     *     name="moder_quiz_deny",
-     *     requirements={"id"="\d+"})
-     * @param int $id
-     * @param ModerService $moderService
-     * @return Response
-     */
-    public function denyQuiz(int $id, ModerService $moderService): Response
-    {
-        $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($id);
-
-        $moderService->denyQuiz($quiz);
-        return $this->redirectToRoute('moder_quizes');
     }
 
     /**
