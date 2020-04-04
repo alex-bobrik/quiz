@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        {% if user.roles[0] == 'ROLE_ADMIN' %}
+            admin
+        {% elseif user.roles[0] == 'ROLE_MODER' %}
+            moder
+        {% endif %}
+
+        <p>Name: {{ user.username }}</p>
+        <p>Amount of violations: {{ user.violationActs.count }} *emoji*</p>
+        <p>User's games:</p>
+        {% for quiz in user.quizzes %}
+            {% if quiz.isActive %}
+                <p>{{ quiz.name }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
