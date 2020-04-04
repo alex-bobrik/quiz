@@ -61,9 +61,14 @@ class GameService
 
     public function addPoint(Game $game): void
     {
-        $game->setResultScore($game->getResultScore() + 1);
-        $this->em->persist($game);
-        $this->em->flush();
+        $this->em->getRepository(Game::class)
+            ->createQueryBuilder('g')
+            ->update()
+            ->set('g.result_score', $game->getResultScore() + 1)
+            ->where('g.id = :id')
+            ->setParameter('id', $game->getId())
+            ->getQuery()
+            ->execute();
     }
 
     public function getLeaders(Quiz $quiz): ?array
@@ -103,10 +108,19 @@ class GameService
 
     public function setNextQuestion(Game $game): void
     {
-        $game->setQuestionNumber($game->getQuestionNumber() + 1);
+//        $game->setQuestionNumber($game->getQuestionNumber() + 1);
 
-        $this->em->persist($game);
-        $this->em->flush();
+//        $this->em->persist($game);
+//        $this->em->flush();
+
+        $this->em->getRepository(Game::class)
+            ->createQueryBuilder('g')
+            ->update()
+            ->set('g.QuestionNumber', $game->getQuestionNumber() + 1)
+            ->where('g.id = :id')
+            ->setParameter('id', $game->getId())
+            ->getQuery()
+            ->execute();
     }
 
     public function getQuestionNumber(Game $game): ?int
@@ -123,18 +137,25 @@ class GameService
 
     public function endGame(Game $game): void
     {
-        $game->setGameIsOver(true);
 
-        $currentDate = new \DateTime('now');
-        $game->setEndDate($currentDate);
-
+        $date = new \DateTime('now');
         $dateStart = $game->getStartDate();
-        $dateEnd = $game->getEndDate();
-        $dateDiff = $dateEnd->getTimestamp() - $dateStart->getTimestamp();
-        $game->setResultTime($dateDiff);
+//        $dateEnd = $game->getEndDate();
+        $dateDiff = $date->getTimestamp() - $dateStart->getTimestamp();
 
-        $this->em->persist($game);
-        $this->em->flush();
+        $this->em->getRepository(Game::class)
+            ->createQueryBuilder('g')
+            ->update()
+            ->set('g.end_date', '?1')
+            ->set('g.result_time', '?2')
+            ->set('g.gameIsOver', '?3')
+            ->where('g.id = :id')
+            ->setParameter('id', $game->getId())
+            ->setParameter(1, $date)
+            ->setParameter(2, $dateDiff)
+            ->setParameter(3, true)
+            ->getQuery()
+            ->execute();
     }
 
     public function getCorrectAnswer(Question $question): ?Answer
@@ -173,6 +194,20 @@ class GameService
         }
 
         return true;
+    }
+
+    public function getCorrectArray(Question $question): array
+    {
+        $arr = array();
+
+        foreach ($question->getAnswers() as $answer) {
+            if ($answer->getIsCorrect())
+            {
+                $arr[] = $answer->getText();
+            }
+        }
+
+        return $arr;
     }
 
 }

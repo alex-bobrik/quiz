@@ -105,15 +105,15 @@ class GameController extends AbstractController
         $question = $gameService->getCurrentQuestion($game);
         $form = $this->createForm(QuestionType::class, $question);
 
-        $correctAnswer = $gameService->getCorrectAnswer($question);
+        $currentArray = $gameService->getCorrectArray($question);
 
         $form->handleRequest($request);
         if($form->isSubmitted()) {
 
             $userQuestion = $form->getData();
-            $userAnswer = $gameService->getCorrectAnswer($userQuestion);
+            $userArray = $gameService->getCorrectArray($userQuestion);
 
-            if ($userAnswer === $correctAnswer)
+            if ($currentArray === $userArray)
             {
                 $gameService->addPoint($game);
                 $response = 'CORRECT';
