@@ -3,6 +3,13 @@
 {% block title %}Details{% endblock %}
 
 {% block body %}
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
+
+
     <div class="container">
     {% block leaders %}
         <div class="leaderboard row">
@@ -45,4 +52,32 @@
     {% endblock %}
     </div>
 
+    {% if isPassed %}
+        <div class="my-rating-4" data-rating="{{ rating.stars }}"></div>
+    {% endif %}
+
+
+    <script>
+        $(".my-rating-4").starRating({
+            totalStars: 5,
+            starShape: 'rounded',
+            starSize: 40,
+            emptyColor: 'lightgray',
+            hoverColor: 'gold',
+            activeColor: 'gold',
+            useGradient: false,
+            useFullStars: true,
+            {% if rating.stars > 0 %}
+                readOnly: true,
+            {% endif %}
+            callback: function (currentRating, $el) {
+                $.ajax({
+                    url: '/games/'+ {{ quizId }} +'/rating/' + currentRating,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: currentRating
+                });
+            }
+        });
+    </script>
 {% endblock %}

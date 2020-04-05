@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Quiz;
+use App\Entity\Rating;
+use App\Entity\User;
 use App\Form\Question\QuestionType;
 use App\Service\GameService;
 use App\Service\QuizService;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -147,6 +150,7 @@ class GameController extends AbstractController
      */
     public function gameLeaders(QuizService $quizService, GameService $gameService, int $quizId): Response
     {
+        $rating = new Rating();
         $quiz = $quizService->findById($quizId);
 
         if (!$quiz) {
@@ -169,6 +173,15 @@ class GameController extends AbstractController
             }
 
             $isPassed = true;
+            $user = $this->getDoctrine()->getRepository(User::class)->find($game->getUser());
+            // Check is user rated this quiz and set stars amount
+            $rating = $this->getDoctrine()->getRepository(Rating::class)->findOneBy(['user' => $user, 'quiz' => $quiz]);
+
+
+            if (!$rating) {
+                $rating = new Rating();
+                $rating->setStars(0);
+            }
         }
 
         return $this->render('game/game_details.html.twig', [
@@ -177,6 +190,38 @@ class GameController extends AbstractController
             'leaders' => $leaders,
             'userPos' => $userPosition,
             'game' => $game,
+            'rating' => $rating,
         ]);
+    }
+
+    /**
+     * @Route("games/{quizId}/rating/{stars}", name="games_rate", methods={"POST"})
+     * @param int $stars
+     * @param int $quizId
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function rateGame(int $stars, int $quizId, Request $request, EntityManagerInterface $em)
+    {
+        $rating = new Rating();
+
+        $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
+        $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($quizId);
+
+        $rating = $this->getDoctrine()->getRepository(Rating::class)->findOneBy(['quiz' => $quiz, 'user' => $user]);
+
+        if (!$rating) {
+            $rating = new Rating();
+        }
+
+        $rating->setUser($user);
+        $rating->setQuiz($quiz);
+        $rating->setStars($stars);
+
+        $em->persist($rating);
+        $em->flush();
+
+        return new JsonResponse();
     }
 }
