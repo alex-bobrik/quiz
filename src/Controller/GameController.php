@@ -36,6 +36,7 @@ class GameController extends AbstractController
             $quizesQuery,
             $request->query->getInt('page', 1),
             3
+//            ['pageParameterName' => 'otherPage']
         );
 
         return $this->render('game/index.html.twig', [

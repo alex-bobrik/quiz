@@ -79,6 +79,11 @@ class User implements UserInterface
      */
     private $violationActs;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nickname;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -350,6 +355,18 @@ class User implements UserInterface
                 $violationAct->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(?string $nickname): self
+    {
+        $this->nickname = $nickname;
 
         return $this;
     }

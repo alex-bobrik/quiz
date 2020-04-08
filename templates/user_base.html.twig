@@ -11,11 +11,10 @@
         <link rel="stylesheet" href={{ asset('js/embeddedFormHelper.js') }}>
     {% endblock %}
 </head>
-<body>
-
+<body style="padding-top: 70px">
 {% block navbar %}
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+{#    <div class="container-xl">#}
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{ path('games_show') }}">{{ 'Games'|trans }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,8 +29,20 @@
                 </div>
             </div>
         </nav>
-    </div>
+{#    </div>#}
 {% endblock %}
+
+<div>
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-info alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+</div>
+
 
 
 {% block body %}{% endblock %}

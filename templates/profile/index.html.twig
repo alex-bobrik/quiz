@@ -1,24 +1,98 @@
-{% extends 'base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
 
-    <div class="container">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-        {% if user.roles[0] == 'ROLE_ADMIN' %}
-            admin
-        {% elseif user.roles[0] == 'ROLE_MODER' %}
-            moder
+    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
+
+
+    <div class="container">
+        {% if isYou %}
+            {% if user.roles[0] == 'ROLE_ADMIN' %}
+                <a href="#" class="btn btn-primary">Admin</a>
+            {% elseif user.roles[0] == 'ROLE_MODER' %}
+                <a href="#" class="btn btn-primary">Moder</a>
+            {% endif %}
         {% endif %}
 
-        <p>Name: {{ user.username }}</p>
+        <p>Name: {{ user.nickname }}
+            {% if isYou %}
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Изменить
+                </button>
+            {% endif %}
+        </p>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Изменить ник</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {{ form_start(formNickname) }}
+                    <div class="modal-body">
+                        {{ form_row(formNickname.nickname) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
+                        {{ form_widget(formNickname.submit) }}
+                    </div>
+                    {{ form_end(formNickname) }}
+                </div>
+            </div>
+        </div>
+
+        {% if isYou %}
+            <p>Email: {{ user.username }}</p>
+        {% endif %}
         <p>Amount of violations: {{ user.violationActs.count }} *emoji*</p>
+
+        <p>Rating:</p>
+        <div class="my-rating-4" data-rating="{{ userRating }}"></div>
+
         <p>User's games:</p>
         {% for quiz in user.quizzes %}
             {% if quiz.isActive %}
                 <p>{{ quiz.name }}</p>
+                <p>{{ quiz.averageRating }}</p>
             {% endif %}
         {% endfor %}
     </div>
+
+    <div>
+        <p>CANT END GAMES:</p>
+        {% for game in user.games %}
+            {% if not game.gameIsOver %}
+                <p>{{ game.quiz.name }}</p>
+                <p>Вопрос №:{{ game.questionNumber }}</p>
+                <p>Автор:{{ game.quiz.user.nickname }}</p>
+                <p>
+                    <a href="{{ path('games_details', {'quizId': game.quiz.id}) }}">Продолжить</a>
+                </p>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+    <script>
+        $(".my-rating-4").starRating({
+            totalStars: 5,
+            starShape: 'rounded',
+            starSize: 40,
+            emptyColor: 'lightgray',
+            hoverColor: 'gold',
+            activeColor: 'gold',
+            useGradient: false,
+            useFullStars: true,
+            readOnly: true
+        });
+    </script>
 {% endblock %}

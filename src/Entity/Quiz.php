@@ -247,4 +247,19 @@ class Quiz
 
         return $this;
     }
+
+    public function getAverageRating(): float
+    {
+        $stars = array();
+
+        foreach ($this->ratings as $rating) {
+            $stars[] = $rating->getStars();
+        }
+
+        if (!count($this->ratings)) {
+            return 0;
+        }
+
+        return array_sum($stars) / count($this->ratings);
+    }
 }
