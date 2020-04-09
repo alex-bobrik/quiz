@@ -25,7 +25,7 @@
                     {% for leader in leaders|slice(0, 3) %}
                         <tr class="place-{{ loop.index }}">
                             <td>{{ loop.index }}</td>
-                            <td >{{ leader.email ?? '-' }}</td>
+                            <td >{{ leader.nickname ?? '-' }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
