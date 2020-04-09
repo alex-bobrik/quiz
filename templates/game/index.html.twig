@@ -14,6 +14,7 @@
         <div class="all-quizes">
             {% for quiz in quizes %}
                 <div class="quiz">
+                    <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="image" width="100px" height="50px">
                     <div class="quiz-header">
                         <p class="font-weight-light">{{ quiz.name }}</p>
                     </div>

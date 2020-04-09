@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Entity\Quiz;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -34,6 +35,19 @@ class FileUploader
     public function getQuizesDirectory()
     {
         return $this->quizesDirectory;
+    }
+
+    public function uploadQuizImage(UploadedFile $file, Quiz $quiz): string
+    {
+        $fileName = $this->generateFilename($file);
+
+        try {
+            $file->move($this->getQuizesDirectory(), $fileName);
+        } catch (FileException $e) {
+            throw new FileException('Quiz image upload fail ' . $e->getMessage());
+        }
+
+        return $fileName;
     }
 
     public function uploadAvatar(UploadedFile $file, User $user)

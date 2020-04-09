@@ -9,10 +9,12 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class QuizType extends AbstractType
 {
@@ -20,6 +22,26 @@ class QuizType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('image', FileType::class, [
+                'help' => 'Выберите изображение для викторины',
+                'label' => false,
+                'attr' => [
+                    'accept' => "image/jpeg, image/png",
+//                    'class' => 'form-control',
+                ],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1M',
+                        'maxSizeMessage' => 'Макимальный размер изображения 1Мб',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Загрузите изображение формата JPEG или PNG.',
+                    ])
+                ]
+            ])
             ->add('quizCategory', EntityType::class, [
                 'class' => QuizCategory::class,
                 'choice_label' => 'name',

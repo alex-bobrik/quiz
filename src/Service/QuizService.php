@@ -6,6 +6,7 @@ use App\Entity\Quiz;
 use App\Entity\QuizCategory;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Security;
 
 class QuizService
@@ -16,11 +17,14 @@ class QuizService
 
     private $gameService;
 
-    public function __construct(EntityManagerInterface $em, Security $security, GameService $gameService)
+    private $fileUploader;
+
+    public function __construct(EntityManagerInterface $em, Security $security, GameService $gameService, FileUploader $fileUploader)
     {
         $this->em = $em;
         $this->security = $security;
         $this->gameService = $gameService;
+        $this->fileUploader = $fileUploader;
     }
 
     public function findById(int $id): ?Quiz
@@ -30,6 +34,9 @@ class QuizService
 
     public function saveQuiz(Quiz $quiz): void
     {
+        $file = new UploadedFile($quiz->getImage(), 'fileName');
+
+        $quiz->setImage($this->fileUploader->uploadQuizImage($file, $quiz));
         $currentUser = $this->security->getUser();
 
         $user = $this->em->getRepository(User::class)->find($currentUser);
