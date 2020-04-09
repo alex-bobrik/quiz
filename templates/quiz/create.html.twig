@@ -27,12 +27,15 @@
         <div class="question-block">
             <div>
                 <div>
-                    {{ form_row(form.name, {
-                            'label': false,
-                            'attr': {'class': 'form-control',
-                            'placeholder': 'Quiz',
-                        }
-                    }) }}
+                    {{ form_row(form.name) }}
+                </div>
+
+                <div>
+                    {{ form_row(form.description) }}
+                </div>
+
+                <div>
+                    {{ form_row(form.quizCategory) }}
                 </div>
 
                 <div class="custom-file">
@@ -71,13 +74,7 @@
                     });
                 </script>
 
-                <div>
-                    {{ form_row(form.quizCategory, {
-                        'label': false,
-                        'attr': {'class': 'form-control',
-                        }
-                    }) }}
-                </div>
+
 
                 <div class="answers-block">
                     <ul class="list-group">

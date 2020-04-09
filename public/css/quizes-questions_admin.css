@@ -1,6 +1,7 @@
 .buttons-header {
     float: right;
-    margin: 10px 0 10px 0;
+    /*margin: 10px 0 10px 0;*/
+    margin-bottom: 10px;
 }
 
 .question-info {

@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +22,18 @@ class QuizType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Название викторины',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Описание',
+                'attr' => [
+                    'class' => 'form-control',
+                ]
+            ])
             ->add('image', FileType::class, [
                 'label' => false,
                 'attr' => [
@@ -42,6 +54,7 @@ class QuizType extends AbstractType
                 ]
             ])
             ->add('quizCategory', EntityType::class, [
+                'label' => 'Область викторины',
                 'class' => QuizCategory::class,
                 'choice_label' => 'name',
                 'mapped' => true,
