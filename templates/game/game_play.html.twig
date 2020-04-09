@@ -30,7 +30,11 @@
 
 {% endblock %}
 
+
+
 {% block body %}
+    <link rel="stylesheet" href="{{ asset('css/question-answers.css') }}">
+
     <div class="container">
         {{ form_start(form, {
             'action': path('game_play',{'gameId': game.id}),
@@ -55,7 +59,7 @@
                         </div>
                         <div class="answer-text">
                             {{ form_row(answer.text, {
-                                    'attr': {'class': 'form-control shadow-none',
+                                    'attr': {'class': 'form-control shadow-none answer-input',
                                     'readonly': true,
                                 }
                             }) }}

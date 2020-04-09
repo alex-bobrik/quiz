@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/game/game_details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Question/AnswerType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Question/AnswerType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/game/game_play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_play.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/question/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/create.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +38,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -173,6 +179,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -277,10 +284,10 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1582485704378" />
-    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup" timestamp="1586349038568">
+    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup" timestamp="1586442904142">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582492141908" />
-    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1586349038568" />
+    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1586442904142" />
   </component>
 </project>

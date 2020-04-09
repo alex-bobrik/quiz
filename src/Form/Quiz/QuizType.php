@@ -23,11 +23,10 @@ class QuizType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('image', FileType::class, [
-                'help' => 'Выберите изображение для викторины',
                 'label' => false,
                 'attr' => [
                     'accept' => "image/jpeg, image/png",
-//                    'class' => 'form-control',
+                    'class' => 'custom-file-input',
                 ],
                 'constraints' => [
                     new File([
