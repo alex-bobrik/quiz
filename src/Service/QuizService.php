@@ -14,10 +14,13 @@ class QuizService
 
     private $security;
 
-    public function __construct(EntityManagerInterface $em, Security $security)
+    private $gameService;
+
+    public function __construct(EntityManagerInterface $em, Security $security, GameService $gameService)
     {
         $this->em = $em;
         $this->security = $security;
+        $this->gameService = $gameService;
     }
 
     public function findById(int $id): ?Quiz
@@ -45,16 +48,24 @@ class QuizService
     {
         $quiz = $this->em->getRepository(Quiz::class)->findOneBy(['id' => $id]);
 
-        if ($quiz->getIsActive())
-        {
+        if ($quiz->getIsActive()) {
+            $this->endAllGames($quiz);
             $quiz->setIsActive(false);
-        }else
-        {
+        } else {
             $quiz->setIsActive(true);
         }
 
         $this->em->persist($quiz);
         $this->em->flush();
+    }
+
+    private function endAllGames(Quiz $quiz)
+    {
+        $games = $quiz->getGames();
+
+        foreach ($games as $game) {
+            $this->gameService->endGame($game);
+        }
     }
 
     public function saveQuizCategory(QuizCategory $quizCategory)
