@@ -11,6 +11,55 @@
 
 
     <div class="container">
+
+        <style>
+            .myimage img {
+                border-radius: 10px;
+                width: 200px;
+                height: 200px;
+                border: 1px #000000 solid;
+            }
+        </style>
+
+        {# Profile image #}
+            <div class="myimage">
+                {% if user.image %}
+                    <img src="{{ asset('images/uploads/avatars/' ~ user.image) }}" alt="" width="200px" height="200px">
+                {% endif %}
+            </div>
+
+
+        {# Edit image button #}
+        {% if isYou %}
+            <a class="btn btn-primary" data-toggle="modal" data-target="#modalImage">Изменить фото</a>
+        {% endif %}
+
+        {# Modal for image edit #}
+        <div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Изменить изображение</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {{ form_start(formImage) }}
+                    <div class="modal-body">
+                        <img id="blah" src="#" alt="your image" width="200px" height="200px"/>
+                        {{ form_row(formImage.image) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        {{ form_widget(formImage.submit) }}
+                    </div>
+                    {{ form_end(formImage) }}
+                </div>
+            </div>
+        </div>
+        {# End of modal for image edit #}
+
+
         {% if isYou %}
             {% if user.roles[0] == 'ROLE_ADMIN' %}
                 <a href="#" class="btn btn-primary">Admin</a>
@@ -19,15 +68,20 @@
             {% endif %}
         {% endif %}
 
+        {% if is_granted('ROLE_ADMIN') and not isYou%}
+            <h1>BAN EGO</h1>
+        {% endif %}
+
         <p>Name: {{ user.nickname }}
             {% if isYou %}
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalNickname">
                     Изменить
                 </button>
             {% endif %}
         </p>
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        {# Modal for nickname edit #}
+        <div class="modal fade" id="modalNickname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -42,13 +96,14 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        {#                    <button type="button" class="btn btn-primary">Save changes</button>#}
                         {{ form_widget(formNickname.submit) }}
                     </div>
                     {{ form_end(formNickname) }}
                 </div>
             </div>
         </div>
+        {# End of modal for nickname edit #}
+
 
         {% if isYou %}
             <p>Email: {{ user.username }}</p>
@@ -67,21 +122,29 @@
         {% endfor %}
     </div>
 
-    <div>
-        <p>CANT END GAMES:</p>
-        {% for game in user.games %}
-            {% if not game.gameIsOver %}
-                <p>{{ game.quiz.name }}</p>
-                <p>Вопрос №:{{ game.questionNumber }}</p>
-                <p>Автор:{{ game.quiz.user.nickname }}</p>
-                <p>
-                    <a href="{{ path('games_details', {'quizId': game.quiz.id}) }}">Продолжить</a>
-                </p>
+    {# Not ended quizes #}
+    {% if isYou %}
+        <div>
+            {% if user.games.count %}
+                <p>CANT END GAMES:</p>
+                {% for game in user.games %}
+                    {% if not game.gameIsOver %}
+                        <p>{{ game.quiz.name }}</p>
+                        <p>Вопрос №:{{ game.questionNumber }}</p>
+                        <p>Автор:{{ game.quiz.user.nickname }}</p>
+                        <p>
+                            <a href="{{ path('games_details', {'quizId': game.quiz.id}) }}">Продолжить</a>
+                        </p>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
-        {% endfor %}
 
-    </div>
 
+        </div>
+    {% endif %}
+
+
+    {# Script for rating stars #}
     <script>
         $(".my-rating-4").starRating({
             totalStars: 5,
@@ -93,6 +156,26 @@
             useGradient: false,
             useFullStars: true,
             readOnly: true
+        });
+    </script>
+
+    {# Script for display image #}
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#user_avatar_image").change(function() {
+
+            readURL(this);
         });
     </script>
 {% endblock %}

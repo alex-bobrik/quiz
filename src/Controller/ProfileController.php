@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserAvatarType;
 use App\Form\UserType;
+use App\Service\FileUploader;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,6 +22,9 @@ class ProfileController extends AbstractController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
 
+//        $directory = $this->getParameter('avatars_directory');
+//        unlink($directory . $user->getImage());
+
         return $this->redirectToRoute('app.profile.info', ['nickname' => $user->getNickname()]);
     }
 
@@ -28,7 +34,7 @@ class ProfileController extends AbstractController
      * @param UserService $userService
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function profileInfo(string $nickname, UserService $userService, EntityManagerInterface $em, Request $request)
+    public function profileInfo(string $nickname, UserService $userService, EntityManagerInterface $em, Request $request, FileUploader $fileUploader)
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['nickname' => $nickname]);
 
@@ -59,12 +65,28 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app.profile');
         }
 
+        $formImage = $this->createForm(UserAvatarType::class);
+        $formImage->handleRequest($request);
+        if ($formImage->isSubmitted() && !$formImage->isValid()) {
+            // TODO: file upload error
+            throw $this->createAccessDeniedException('invalid');
+        } else if ($formImage->isSubmitted() && $formImage->isValid()) {
+
+            $image = $formImage->get('image')->getData();
+            $file = new UploadedFile($image, 'fileName');
+
+            $fileUploader->uploadAvatar($file, $user);
+
+            return $this->redirectToRoute('app.profile');
+        }
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $user,
             'isYou' => $isYou,
             'userRating' => $userRating,
             'formNickname' => $formNickname->createView(),
+            'formImage' => $formImage->createView(),
         ]);
     }
 }

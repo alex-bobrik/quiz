@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quiz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_base.html.twig" afterDir="false" />
     </list>
@@ -56,7 +59,6 @@
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/ocramius/proxy-manager" />
       <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
-      <path value="$PROJECT_DIR$/vendor/easycorp/easy-log-handler" />
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
@@ -169,6 +171,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1XL5ZPjgp5t8SFMRqCCWd2gfnel" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -226,7 +231,7 @@
       <workItem from="1583338470399" duration="20000" />
       <workItem from="1583427043068" duration="29922000" />
       <workItem from="1585142702691" duration="4050000" />
-      <workItem from="1586088633633" duration="14508000" />
+      <workItem from="1586088633633" duration="29988000" />
     </task>
     <servers />
   </component>
@@ -264,11 +269,11 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586075901642" />
-    <state x="733" y="338" width="386" height="373" key="NewPhpClassDialog" timestamp="1585915639809">
+    <state x="733" y="338" width="386" height="373" key="NewPhpClassDialog" timestamp="1586424082682">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="640" y="266" key="NewPhpClassDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387483413" />
-    <state x="733" y="338" width="386" height="373" key="NewPhpClassDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1585915639809" />
+    <state x="733" y="338" width="386" height="373" key="NewPhpClassDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586424082682" />
     <state x="674" y="375" key="NewPhpFileDialog" timestamp="1582387472597">
       <screen x="0" y="0" width="1676" height="902" />
     </state>
@@ -282,10 +287,10 @@
       <screen x="0" y="0" width="1676" height="902" />
     </state>
     <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1582485704378" />
-    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup" timestamp="1586333849594">
+    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup" timestamp="1586349038568">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582492141908" />
-    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1586333849594" />
+    <state x="1017" y="417" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1586349038568" />
   </component>
 </project>

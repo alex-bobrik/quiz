@@ -33,7 +33,8 @@
         "symfony/web-link": "5.0.*",
         "symfony/web-server-bundle": "^4.4",
         "symfony/yaml": "5.0.*",
-        "twbs/bootstrap": "^4.4"
+        "twbs/bootstrap": "^4.4",
+        "ext-gd": "*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

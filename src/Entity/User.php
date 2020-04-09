@@ -84,6 +84,12 @@ class User implements UserInterface
      */
     private $nickname;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File()
+     */
+    private $image;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -367,6 +373,18 @@ class User implements UserInterface
     public function setNickname(?string $nickname): self
     {
         $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
