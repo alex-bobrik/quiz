@@ -47,6 +47,9 @@
                     'readonly': true,
                 }
             }) }}
+            <div>
+                <input type="button" value="Play" onclick="playQuestion()">
+            </div>
         </div>
         <div class="row">
             <div class="answers col-md-12">
@@ -63,9 +66,15 @@
                                     'readonly': true,
                                 }
                             }) }}
+                            <div>
+                                <input type="button" value="Play" onclick="playAnswer({{ loop.index }})">
+                                <input type="button" value="Stop" onclick="synth.cancel()">
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
+                {# For recognition #}
+                <select style="display: none"></select>
             </div>
             <div class="result">
                 <span id="result" class="font-weight-light"></span>
@@ -87,4 +96,20 @@
     </div>
 
     {{ form_end(form) }}
+
+    <script src="{{ asset('js/recognition.js') }}"></script>
+    <script>
+        function playAnswer(index) {
+            index = index - 1;
+            // console.log(index);
+            let text = $('#question_answers_'+index+'_text').val();
+            // console.log(text);
+            speak(text);
+        }
+
+        function playQuestion() {
+            text = $('#question_text').val();
+            speak(text);
+        }
+    </script>
 {% endblock %}

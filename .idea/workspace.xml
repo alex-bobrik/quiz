@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/quizes-questions_admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quizes-questions_admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/30b7e2ea4fb0515f8d104006ed5b4a25.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/30b7e2ea4fb0515f8d104006ed5b4a25.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/61ae2ff1d074aa22e63dc19a847adc06.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/61ae2ff1d074aa22e63dc19a847adc06.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/d19036930f3be414b8d8319edeaa47c1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/d19036930f3be414b8d8319edeaa47c1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20200409145616.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20200409145616.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/game/game_play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_play.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
