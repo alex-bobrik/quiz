@@ -81,6 +81,11 @@ class Quiz
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isTimeLimited;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -293,6 +298,18 @@ class Quiz
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getIsTimeLimited(): ?bool
+    {
+        return $this->isTimeLimited;
+    }
+
+    public function setIsTimeLimited(?bool $isTimeLimited): self
+    {
+        $this->isTimeLimited = $isTimeLimited;
 
         return $this;
     }

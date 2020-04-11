@@ -19,7 +19,22 @@ class QuizService
 
     private $fileUploader;
 
-    public function __construct(EntityManagerInterface $em, Security $security, GameService $gameService, FileUploader $fileUploader)
+    // Milliseconds (1s = 60000ms)
+    const MILLISECONDS = 60000;
+
+    // Average read speed is 1500syms/min
+    const READ_SPEED = 1500;
+
+    // Min time limit is 15000ms (15s)
+    const MIN_TIME_LIMIT = 15000;
+
+    public function __construct
+    (
+        EntityManagerInterface $em,
+        Security $security,
+        GameService $gameService,
+        FileUploader $fileUploader
+    )
     {
         $this->em = $em;
         $this->security = $security;
@@ -79,6 +94,28 @@ class QuizService
     {
         $this->em->persist($quizCategory);
         $this->em->flush();
+    }
+
+    public function getTimeLimit(Quiz $quiz): int
+    {
+        $quizQuestions = $quiz->getQuestions();
+
+        $characters = 0;
+        foreach ($quizQuestions as $quizQuestion) {
+            $characters += strlen($quizQuestion->getQuestion()->getText());
+            $answers = $quizQuestion->getQuestion()->getAnswers();
+            foreach ($answers as $answer) {
+                $characters += strlen($answer->getText());
+            }
+        }
+
+        $timeLimit = ($characters * self::MILLISECONDS) / self::READ_SPEED;
+
+        if ($timeLimit < self::MIN_TIME_LIMIT) {
+            $timeLimit = self::MIN_TIME_LIMIT;
+        }
+
+        return $timeLimit;
     }
 
 }

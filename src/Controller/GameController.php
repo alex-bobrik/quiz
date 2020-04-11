@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Entity\Quiz;
 use App\Entity\Rating;
 use App\Entity\User;
 use App\Form\Question\QuestionType;
 use App\Service\GameService;
+use App\Service\QuestionService;
 use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -87,7 +89,7 @@ class GameController extends AbstractController
      * @param int $gameId
      * @return Response
      */
-    public function playGame(GameService $gameService, Request $request, int $gameId): Response
+    public function playGame(GameService $gameService, Request $request, int $gameId, QuizService $quizService): Response
     {
         $game = $gameService->getGameById($gameId);
 
@@ -107,6 +109,11 @@ class GameController extends AbstractController
         }
 
         $question = $gameService->getCurrentQuestion($game);
+
+        $timeLimit = 0;
+        if ($game->getQuiz()->getIsTimeLimited()) {
+            $timeLimit = $quizService->getTimeLimit($game->getQuiz());
+        }
         $form = $this->createForm(QuestionType::class, $question);
 
         $currentArray = $gameService->getCorrectArray($question);
@@ -139,6 +146,7 @@ class GameController extends AbstractController
             'game' => $game,
             'question' => $question,
             'form' => $form->createView(),
+            'timeLimit' => $timeLimit,
         ]);
     }
 
@@ -222,6 +230,21 @@ class GameController extends AbstractController
 
         $em->persist($rating);
         $em->flush();
+
+        return new JsonResponse();
+    }
+
+    /**
+     * @Route("games/{id}/end", name="games_expire", methods={"POST"})
+     * @param int $id
+     * @param GameService $gameService
+     * @return JsonResponse
+     */
+    public function expireTime(int $id, GameService $gameService)
+    {
+        $game = $this->getDoctrine()->getRepository(Game::class)->find($id);
+
+        $gameService->endGame($game);
 
         return new JsonResponse();
     }

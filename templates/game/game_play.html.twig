@@ -73,7 +73,8 @@
                         </div>
                     </div>
                 {% endfor %}
-                {# For recognition #}
+
+                {# For text recognition #}
                 <select style="display: none"></select>
             </div>
             <div class="result">
@@ -82,7 +83,7 @@
         </div>
     </div>
     <div class="container">
-        <input type="button" id="send" value="Send answer" class="btn btn-primary" >
+        <input type="button" id="send" value="Send answer" class="btn btn-primary" onclick="stopTimer()">
         <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>
     </div>
 
@@ -96,6 +97,50 @@
     </div>
 
     {{ form_end(form) }}
+
+    {# TIMER #}
+
+    {% if timeLimit %}
+        <p id="timer"></p>
+
+        <script>
+            // Set the date we're counting down to
+            var countDownDate =
+                new Date('{{ game.startDate.format('Y-m-d') }}' + 'T'+ '{{ game.startDate.format('H:i:s') }}')
+                .getTime() + {{ timeLimit }}; // ВРЕМЯ МИЛИСЕКУНДАМИ
+
+
+            // Update the count down every 1 second
+            let x = setInterval(function () {
+
+                // Get NOW time
+                var now = new Date().getTime();
+
+                // Find the difference between now and the count down date
+                var difference = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                // Output the result in an element with id="demo"
+                document.getElementById("timer").innerHTML = minutes + "м " + seconds + "с ";
+
+                // If the count down is over, write some text
+                if (difference < 0) {
+                    clearInterval(x);
+                    document.getElementById("timer").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        </script>
+
+
+    {% endif %}
+
+    {# END TIMER #}
+
 
     <script src="{{ asset('js/recognition.js') }}"></script>
     <script>

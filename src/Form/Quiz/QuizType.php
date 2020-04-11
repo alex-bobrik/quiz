@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -26,6 +27,12 @@ class QuizType extends AbstractType
                 'label' => 'Название викторины',
                 'attr' => [
                     'class' => 'form-control',
+                ]
+            ])
+            ->add('isTimeLimited', CheckboxType::class, [
+                'label' => 'Викторина ограничена по времени',
+                'attr' => [
+                    'class' => 'checkbox-sized'
                 ]
             ])
             ->add('description', TextareaType::class, [

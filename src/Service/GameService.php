@@ -140,7 +140,6 @@ class GameService
 
         $date = new \DateTime('now');
         $dateStart = $game->getStartDate();
-//        $dateEnd = $game->getEndDate();
         $dateDiff = $date->getTimestamp() - $dateStart->getTimestamp();
 
         $this->em->getRepository(Game::class)
