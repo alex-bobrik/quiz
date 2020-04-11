@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/GameService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/GameService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/QuizService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/QuizService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/game/game_play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_play.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
