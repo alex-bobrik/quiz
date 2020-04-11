@@ -203,7 +203,7 @@ class GameService
         foreach ($question->getAnswers() as $answer) {
             if ($answer->getIsCorrect())
             {
-                $arr[] = $answer->getText();
+                $arr[] = $answer->getId();
             }
         }
 
