@@ -17,52 +17,72 @@ class FileUploader
 
     private $slugger;
 
+    private $imageResizer;
+
     private $avatarsDirectory;
+
     private $quizesDirectory;
 
-    public function __construct(EntityManagerInterface $em, SluggerInterface $slugger, $avatarsDirectory, $quizesDirectory)
+    public function __construct
+    (
+        EntityManagerInterface $em,
+        SluggerInterface $slugger,
+        $avatarsDirectory,
+        $quizesDirectory,
+        ImageResizer $imageResizer
+    )
     {
         $this->em = $em;
         $this->slugger = $slugger;
         $this->avatarsDirectory = $avatarsDirectory;
         $this->quizesDirectory = $quizesDirectory;
+        $this->imageResizer = $imageResizer;
     }
 
     public function getAvatarsDirectory()
     {
         return $this->avatarsDirectory;
     }
+
     public function getQuizesDirectory()
     {
         return $this->quizesDirectory;
     }
 
+    // Resize and upload image in selected folder w/ selected fileName
+    private function upload
+    (
+        UploadedFile $file,
+        string $fileName,
+        $directory,
+        int $width = 200,
+        int $height = 200
+    )
+    {
+        $this->imageResizer->load($file->getRealPath());
+        $this->imageResizer->resize($width, $height);
+        $this->imageResizer->save($directory . $fileName);
+    }
+
+
     public function uploadQuizImage(UploadedFile $file, Quiz $quiz): string
     {
         $fileName = $this->generateFilename($file);
 
-        try {
-            $file->move($this->getQuizesDirectory(), $fileName);
-        } catch (FileException $e) {
-            throw new FileException('Quiz image upload fail ' . $e->getMessage());
-        }
+        $this->upload($file, $fileName, $this->getQuizesDirectory(), 300, 300);
 
         return $fileName;
     }
 
     public function uploadAvatar(UploadedFile $file, User $user)
     {
-        $fileName = $this->generateFilename($file);
-
         if ($user->getImage()) {
             $this->removeImage($this->getAvatarsDirectory(), $user->getImage());
         }
 
-        try {
-            $file->move($this->getAvatarsDirectory(), $fileName);
-        } catch (FileException $e) {
-            throw new FileException('Avatar upload fail ' . $e->getMessage());
-        }
+        $fileName = $this->generateFilename($file);
+
+        $this->upload($file, $fileName, $this->getAvatarsDirectory());
 
         $user->setImage($fileName);
         $this->em->flush();
@@ -72,14 +92,16 @@ class FileUploader
     {
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
-        $fileName = md5($safeFilename.'-'.uniqid()).'.'.$file->guessExtension();
-
-        return $fileName;
-
+        return md5($safeFilename . '-' . uniqid()) . '.' . $file->guessExtension();
     }
 
+    // Removing image from selected directory
     private function removeImage($directory, $fileName)
     {
-        unlink($directory . $fileName);
+        try {
+            unlink($directory . $fileName);
+        } catch (\Exception $e) {
+            return;
+        }
     }
 }
