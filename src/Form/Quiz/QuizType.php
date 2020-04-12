@@ -31,6 +31,7 @@ class QuizType extends AbstractType
             ])
             ->add('isTimeLimited', CheckboxType::class, [
                 'label' => 'Викторина ограничена по времени',
+                'required' => false,
                 'attr' => [
                     'class' => 'checkbox-sized'
                 ]
