@@ -109,7 +109,37 @@
             <p>Email: {{ user.username }}</p>
         {% endif %}
         <p>Amount of violations: {{ user.violationActs.count }} *emoji*</p>
+        <p>Очков за все игры: {{ user.sumOfPoints }}</p>
 
+{#        var days = Math.floor(distance / (1000 * 60 * 60 * 24));#}
+{#        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));#}
+{#        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));#}
+{#        var seconds = Math.floor((distance % (1000 * 60)) / 1000);#}
+
+        {# Среднее время прохождения викторины #}
+
+        {% set days = (user.avgGameTime / (1000 * 60 * 60 * 24))|round %}
+        {% set hours = ((user.avgGameTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))|round %}
+        {% set minutes = ((user.avgGameTime % (1000 * 60 * 60)) / (1000 * 60))|round %}
+        {% set seconds = ((user.avgGameTime % (1000 * 60)) / 1000)|round %}
+
+        <p>Среднее время прохождения викторины:</p>
+        {% if days %}
+            {{ days }} д
+        {% endif %}
+
+        {% if hours %}
+            {{ hours }} ч
+        {% endif %}
+
+        {% if minutes %}
+            {{ minutes }} м
+        {% endif %}
+
+        {% if seconds %}
+            {{ seconds }} с
+        {% endif %}
+        
         <p>Rating:</p>
         <div class="my-rating-4" data-rating="{{ userRating }}"></div>
 

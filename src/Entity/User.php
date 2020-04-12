@@ -388,4 +388,28 @@ class User implements UserInterface
 
         return $this;
     }
+
+    // Sum points of all games by user
+    public function getSumOfPoints(): int
+    {
+        $points = 0;
+        foreach ($this->games as $game) {
+            $points += $game->getResultScore();
+        }
+
+        return $points;
+    }
+
+    // Average value of game.result_time by user in milliseconds
+    public function getAvgGameTime(): float
+    {
+        $amountOfGames = $this->games->count();
+
+        $totalTime = 0;
+        foreach ($this->games as $game) {
+            $totalTime += $game->getResultTime();
+        }
+
+        return ($totalTime / $amountOfGames) * 1000;
+    }
 }
