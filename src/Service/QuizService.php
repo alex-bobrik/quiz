@@ -64,8 +64,16 @@ class QuizService
 
         $date = new \DateTime('now');
         $quiz->setCreated($date);
-        $quiz->setIsActive(false);
-        $quiz->setIsChecked(false);
+
+        // If admin or moder creating quiz, quiz activating instantly
+        if ($user->getRoles()[0] == 'ROLE_USER') {
+            $quiz->setIsActive(false);
+            $quiz->setIsChecked(false);
+        } else {
+            $quiz->setIsActive(true);
+            $quiz->setIsChecked(true);
+        }
+
         $quiz->setUser($user);
 
         $this->em->persist($quiz);
