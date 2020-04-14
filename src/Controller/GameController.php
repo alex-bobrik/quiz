@@ -258,7 +258,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("games/{id}/end", name="games_expire", methods={"POST"})
+     * @Route("games/{id}/end", name="games_end", methods={"POST"})
      * @param int $id
      * @param GameService $gameService
      * @return JsonResponse

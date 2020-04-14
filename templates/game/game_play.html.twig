@@ -83,7 +83,7 @@
         </div>
     </div>
     <div class="container">
-        <input type="button" id="send" value="Send answer" class="btn btn-primary" onclick="stopTimer()">
+        <input type="button" id="send" value="Send answer" class="btn btn-primary">
         <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>
     </div>
 
@@ -131,7 +131,19 @@
                 // If the count down is over, write some text
                 if (difference < 0) {
                     clearInterval(x);
-                    document.getElementById("timer").innerHTML = "EXPIRED";
+                    $("#send").prop('disabled', true);
+                    $.ajax({
+                        url: '{{ path('games_end', {'id': game.id}) }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        success:function(){
+                            $('#next').removeClass('disabled');
+                            document.getElementById("next").innerText = 'End';
+                            // alert('game is end')
+                        }
+                    });
+                    document.getElementById("result").innerHTML = "EXPIRED";
+                    document.getElementById("timer").innerHTML = null;
                 }
             }, 1000);
         </script>
