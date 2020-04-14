@@ -38,12 +38,12 @@ class ProfileController extends AbstractController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['nickname' => $nickname]);
 
-        if (!$user || !$user->getIsActive()) {
+        if (!$user) {
             throw $this->createNotFoundException();
         }
 
         $isYou = false;
-        if ($user == $this->getUser()) {
+        if ($user == $this->getUser() && $user->getIsActive()) {
             $isYou = true;
         }
 

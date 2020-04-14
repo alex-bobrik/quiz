@@ -67,10 +67,8 @@ class UserService
         $this->em->flush();
     }
 
-    public function getUserRating(User $user): string
+    public function getUserRating(User $user): ?string
     {
-        //        dump($result); die;
-
         $result = $this->em->getRepository(Rating::class)
             ->createQueryBuilder('r')
             ->select('avg(r.stars)')

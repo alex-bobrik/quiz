@@ -405,6 +405,10 @@ class User implements UserInterface
     {
         $amountOfGames = $this->games->count();
 
+        if (!$amountOfGames) {
+            return 0;
+        }
+
         $totalTime = 0;
         foreach ($this->games as $game) {
             $totalTime += $game->getResultTime();
