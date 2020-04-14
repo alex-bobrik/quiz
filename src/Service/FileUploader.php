@@ -96,7 +96,7 @@ class FileUploader
     }
 
     // Removing image from selected directory
-    private function removeImage($directory, $fileName)
+    public function removeImage($directory, $fileName)
     {
         try {
             unlink($directory . $fileName);

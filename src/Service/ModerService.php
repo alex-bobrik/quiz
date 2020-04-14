@@ -16,10 +16,13 @@ class ModerService
 
     private $mailSender;
 
-    public function __construct(EntityManagerInterface $em, MailSender $mailSender)
+    private $fileUploader;
+
+    public function __construct(EntityManagerInterface $em, MailSender $mailSender, FileUploader $fileUploader)
     {
         $this->em = $em;
         $this->mailSender = $mailSender;
+        $this->fileUploader = $fileUploader;
     }
 
     public function confirmQuiz(Quiz $quiz)
@@ -31,8 +34,14 @@ class ModerService
 
     public function denyQuiz(Quiz $quiz, Violation $violation)
     {
-        // TODO: Send email
+        // TODO: Delete quiz image
         $this->em->remove($quiz);
+
+        $this->fileUploader->removeImage(
+            $this->fileUploader->getQuizesDirectory(),
+            $quiz->getImage()
+        );
+
         $user = $quiz->getUser();
 
         $violationAct = new ViolationAct();
@@ -42,14 +51,17 @@ class ModerService
 
         $user->addViolationAct($violationAct);
 
-        if ($user->getViolationActs()->count() > 4) {
-            $user->setIsActive(false);
-        }
-
         $message = 'Обнаржуено нарушение в викторине ' .$quiz->getName() . ' по причине '.$violation->getName() .', 
             викторина будет удалена. Дальнейшие нарушения приведут к блокировке аккаунта.';
 
         $this->mailSender->send('Нарушение', $user->getEmail(), $message);
+
+        if ($user->getViolationActs()->count() > 4) {
+            $user->setIsActive(false);
+
+            $message = 'Вы были заблокированы на сервисе quiz.work за рецидив нарушений.';
+            $this->mailSender->send('Блокировка', $user->getEmail(), $message);
+        }
 
         $this->em->flush();
     }
