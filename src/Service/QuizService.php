@@ -125,14 +125,13 @@ class QuizService
     }
 
     // Return Query object for paginator
-    public function search(string $query = null, array $categories = null): Query
+    public function search(string $query = null, array $categories = null, array $limit = null): Query
     {
         $quizesRepository = $this->em->getRepository(Quiz::class);
 
         // Search all quizes
         if (!$query && !$categories) {
-            $quizesQuery = $quizesRepository->createQueryBuilder('q')
-                ->getQuery();
+            $quizesQuery = $quizesRepository->createQueryBuilder('q');
 
         }
         // Search only by query
@@ -140,8 +139,7 @@ class QuizService
             $quizesQuery = $quizesRepository->createQueryBuilder('q')
                 ->select('q')
                 ->where('q.name like :name')
-                ->setParameter('name', '%'.$query.'%')
-                ->getQuery();
+                ->setParameter('name', '%'.$query.'%');
         }
         // Search by query and categories
         else {
@@ -152,11 +150,19 @@ class QuizService
                 ->where('q.name like :name')
                 ->andWhere('q.quizCategory in (:categories)')
                 ->setParameter('name', '%'.$query.'%')
-                ->setParameter('categories', $categories)
-                ->getQuery();
+                ->setParameter('categories', $categories);
         }
 
-        return $quizesQuery;
+        if (!$limit || count($limit) == 2) {
+            return $quizesQuery->getQuery();
+        } elseif (in_array('limit', $limit)) {
+            return $quizesQuery->andWhere('q.isTimeLimited = :limit')->setParameter('limit', true)->getQuery();
+        } elseif (in_array('no-limit', $limit)) {
+            return $quizesQuery->andWhere('q.isTimeLimited = :limit')->setParameter('limit', false)->getQuery();
+
+        }
+
+        return $quizesQuery->getQuery();
     }
 
 }

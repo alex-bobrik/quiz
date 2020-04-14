@@ -16,6 +16,7 @@
 
         {{ form_widget(searchForm.query) }}
         {{ form_row(searchForm.categories) }}
+        {{ form_row(searchForm.timeLimit) }}
         {{ form_widget(searchForm.submit) }}
 
         {{ form_end(searchForm) }}
@@ -34,6 +35,12 @@
 
                     <div class="quiz-questions">
                         <p class="font-weight-lighter">{{ 'Questions Amount'|trans }}: {{ quiz.questions.count }}</p>
+                    </div>
+                    <div>
+                        <p class="font-weight-lighter">{{ quiz.isTimeLimited ? 'DA' : 'NET' }}</p>
+                    </div>
+                    <div>
+                        <p class="font-weight-lighter">{{ quiz.quizCategory.name }}</p>
                     </div>
                     <div class="quiz-footer">
                         {% if quiz.isActive %}

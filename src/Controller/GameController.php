@@ -35,10 +35,11 @@ class GameController extends AbstractController
     {
         $query = $request->get('q');
         $categories = $request->get('categories');
+        $timeLimit = $request->get('limit');
 
         $categories = $this->getDoctrine()->getRepository(QuizCategory::class)->findBy(['id' => $categories]);
 
-        $quizesQuery = $quizService->search($query, $categories);
+        $quizesQuery = $quizService->search($query, $categories, $timeLimit);
 
         $quizes = $paginator->paginate(
             $quizesQuery,
@@ -47,18 +48,19 @@ class GameController extends AbstractController
         );
 
 
-        $searchForm = $this->createForm(SearchQuizType::class, ['query' => $query, 'categories' => $categories]);
+        $searchForm = $this->createForm(SearchQuizType::class, ['query' => $query, 'categories' => $categories, 'timeLimit' => $timeLimit]);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted()) {
             $query = $searchForm->get('query')->getData();
             $categories = $searchForm->get('categories')->getData();
+            $timeLimit = $searchForm->get('timeLimit')->getData();
 
             $categoriesId = array();
             foreach ($categories as $category) {
                 $categoriesId[] = $category->getId();
             }
 
-            return new RedirectResponse($router->generate('games_show', ['q' => $query, 'categories' => $categoriesId]));
+            return new RedirectResponse($router->generate('games_show', ['q' => $query, 'categories' => $categoriesId, 'limit' => $timeLimit]));
         }
 
         return $this->render('game/index.html.twig', [

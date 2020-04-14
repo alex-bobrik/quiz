@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\QuizCategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +33,14 @@ class SearchQuizType extends AbstractType
                 'attr' => [
 //                    'class' => 'form-control',
                 ]
+            ])
+            ->add('timeLimit', ChoiceType::class, [
+                'choices' => [
+                    'Limited' => 'limit',
+                    'No Limited' => 'no-limit',
+                ],
+                'expanded' => true,
+                'multiple' => true,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Search',
