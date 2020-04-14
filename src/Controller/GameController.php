@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\Quiz;
+use App\Entity\QuizCategory;
 use App\Entity\Rating;
 use App\Entity\User;
 use App\Form\Question\QuestionType;
+use App\Form\SearchQuizType;
 use App\Service\GameService;
 use App\Service\QuestionService;
 use App\Service\QuizService;
@@ -14,10 +16,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 class GameController extends AbstractController
 {
@@ -27,23 +31,40 @@ class GameController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function showGames(PaginatorInterface $paginator, Request $request): Response
+    public function showGames(PaginatorInterface $paginator, Request $request, QuizService $quizService, RouterInterface $router): Response
     {
-        $quizesRepository = $this->getDoctrine()->getRepository(Quiz::class);
+        $query = $request->get('q');
+        $categories = $request->get('categories');
 
-        $quizesQuery = $quizesRepository->createQueryBuilder('q')
-            ->getQuery();
+        $categories = $this->getDoctrine()->getRepository(QuizCategory::class)->findBy(['id' => $categories]);
+
+        $quizesQuery = $quizService->search($query, $categories);
 
         $quizes = $paginator->paginate(
             $quizesQuery,
             $request->query->getInt('page', 1),
             3
-//            ['pageParameterName' => 'otherPage']
         );
+
+
+        $searchForm = $this->createForm(SearchQuizType::class, ['query' => $query, 'categories' => $categories]);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted()) {
+            $query = $searchForm->get('query')->getData();
+            $categories = $searchForm->get('categories')->getData();
+
+            $categoriesId = array();
+            foreach ($categories as $category) {
+                $categoriesId[] = $category->getId();
+            }
+
+            return new RedirectResponse($router->generate('games_show', ['q' => $query, 'categories' => $categoriesId]));
+        }
 
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
             'quizes' => $quizes,
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 

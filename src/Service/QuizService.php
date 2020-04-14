@@ -6,6 +6,8 @@ use App\Entity\Quiz;
 use App\Entity\QuizCategory;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\Security;
 
@@ -18,6 +20,8 @@ class QuizService
     private $gameService;
 
     private $fileUploader;
+
+    private $paginator;
 
     // Milliseconds (1s = 60000ms)
     const MILLISECONDS = 60000;
@@ -33,13 +37,15 @@ class QuizService
         EntityManagerInterface $em,
         Security $security,
         GameService $gameService,
-        FileUploader $fileUploader
+        FileUploader $fileUploader,
+        PaginatorInterface $paginator
     )
     {
         $this->em = $em;
         $this->security = $security;
         $this->gameService = $gameService;
         $this->fileUploader = $fileUploader;
+        $this->paginator = $paginator;
     }
 
     public function findById(int $id): ?Quiz
@@ -116,6 +122,41 @@ class QuizService
         }
 
         return $timeLimit;
+    }
+
+    // Return Query object for paginator
+    public function search(string $query = null, array $categories = null): Query
+    {
+        $quizesRepository = $this->em->getRepository(Quiz::class);
+
+        // Search all quizes
+        if (!$query && !$categories) {
+            $quizesQuery = $quizesRepository->createQueryBuilder('q')
+                ->getQuery();
+
+        }
+        // Search only by query
+        elseif ($query && !$categories) {
+            $quizesQuery = $quizesRepository->createQueryBuilder('q')
+                ->select('q')
+                ->where('q.name like :name')
+                ->setParameter('name', '%'.$query.'%')
+                ->getQuery();
+        }
+        // Search by query and categories
+        else {
+            $categories = $this->em->getRepository(QuizCategory::class)->findBy(['id' => $categories]);
+
+            $quizesQuery = $quizesRepository->createQueryBuilder('q')
+                ->select('q')
+                ->where('q.name like :name')
+                ->andWhere('q.quizCategory in (:categories)')
+                ->setParameter('name', '%'.$query.'%')
+                ->setParameter('categories', $categories)
+                ->getQuery();
+        }
+
+        return $quizesQuery;
     }
 
 }

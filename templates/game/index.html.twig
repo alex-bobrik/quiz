@@ -11,6 +11,15 @@
             <p>{{ knp_pagination_sortable(quizes, 'Is Active', ['q.isActive']) }}</p>
         </div>
 
+
+        {{ form_start(searchForm) }}
+
+        {{ form_widget(searchForm.query) }}
+        {{ form_row(searchForm.categories) }}
+        {{ form_widget(searchForm.submit) }}
+
+        {{ form_end(searchForm) }}
+
         <div class="all-quizes">
             {% for quiz in quizes %}
                 <div class="quiz">
