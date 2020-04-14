@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Service\MailSender;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,14 +20,15 @@ class RegistrationController extends AbstractController
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param UserService $userService
-     * @param \Swift_Mailer $mailer
+     * @param MailSender $mailSender
      * @return RedirectResponse|Response
-     * @throws \Exception
      */
-    public function register(Request $request,
-                             UserPasswordEncoderInterface $passwordEncoder,
-                             UserService $userService,
-                            \Swift_Mailer $mailer
+    public function register
+    (
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder,
+        UserService $userService,
+        MailSender $mailSender
     ) : Response
     {
         $user = new User();
@@ -47,13 +49,11 @@ class RegistrationController extends AbstractController
             $user->setIsActive(false);
             $userService->saveUser($passwordEncoder, $user);
 
-            // send mail for verification
-            $message = (new \Swift_Message('Profile verification'))
-                ->setFrom('example@example.com')
-                ->setTo($user->getEmail())
-                ->setBody('http://quiz.test:90/register/verificate/' . $user->getToken());
-
-            $mailer->send($message);
+            $mailSender->send(
+                'Profile verification',
+                $user->getEmail(),
+                'http://quiz.test:90/register/verificate/' . $user->getToken()
+            );
 
             $this->addFlash('info', 'Email was send');
             return $this->redirectToRoute('app_register');
