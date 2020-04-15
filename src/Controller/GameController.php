@@ -29,6 +29,8 @@ class GameController extends AbstractController
      * @Route("/games", name="games_show")
      * @param PaginatorInterface $paginator
      * @param Request $request
+     * @param QuizService $quizService
+     * @param RouterInterface $router
      * @return Response
      */
     public function showGames(PaginatorInterface $paginator, Request $request, QuizService $quizService, RouterInterface $router): Response
@@ -47,8 +49,12 @@ class GameController extends AbstractController
             3
         );
 
+        $searchForm = $this->createForm(SearchQuizType::class, [
+            'query' => $query,
+            'categories' => $categories,
+            'timeLimit' => $timeLimit
+        ]);
 
-        $searchForm = $this->createForm(SearchQuizType::class, ['query' => $query, 'categories' => $categories, 'timeLimit' => $timeLimit]);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted()) {
             $query = $searchForm->get('query')->getData();
@@ -87,19 +93,16 @@ class GameController extends AbstractController
 
         $game = $gameService->findByQuizUser($quiz, $this->getUser());
 
-        if (!$game)
-        {
+        if (!$game) {
             $game = $gameService->startGame($quiz);
         }
 
-        if (!$game->getGameIsOver())
-        {
+        if (!$game->getGameIsOver()) {
             return $this->redirectToRoute('game_play', [
                 'gameId' => $game->getId(),
             ]);
 
-        }else
-        {
+        } else {
             return $this->redirectToRoute('games_details', ['quizId' => $quiz->getId()]);
         }
 
@@ -116,18 +119,15 @@ class GameController extends AbstractController
     {
         $game = $gameService->getGameById($gameId);
 
-        if (!$gameService->checkUserPermission($game, $this->getUser()))
-        {
+        if (!$gameService->checkUserPermission($game, $this->getUser())) {
             throw $this->createNotFoundException();
         }
 
-        if (!$gameService->checkGameAccess($game))
-        {
+        if (!$gameService->checkGameAccess($game)) {
             throw new NotFoundHttpException('Quiz is inactive');
         }
 
-        if ($game->getGameIsOver())
-        {
+        if ($game->getGameIsOver()) {
             return $this->redirectToRoute('games_details', ['quizId' => $game->getQuiz()->getId()]);
         }
 
@@ -142,17 +142,15 @@ class GameController extends AbstractController
         $currentArray = $gameService->getCorrectArray($question);
 
         $form->handleRequest($request);
-        if($form->isSubmitted()) {
+        if ($form->isSubmitted()) {
 
             $userQuestion = $form->getData();
             $userArray = $gameService->getCorrectArray($userQuestion);
 
-            if ($currentArray === $userArray)
-            {
+            if ($currentArray === $userArray) {
                 $gameService->addPoint($game);
                 $response = 'CORRECT';
-            }else
-            {
+            } else {
                 $response = 'incorrect';
             }
 
@@ -194,13 +192,10 @@ class GameController extends AbstractController
 
         $game = $gameService->findByQuizUser($quiz, $this->getUser());
 
-        if (!$game)
-        {
+        if (!$game) {
             $isPassed = false;
-        }else
-        {
-            if (!$game->getGameIsOver())
-            {
+        } else {
+            if (!$game->getGameIsOver()) {
                 return $this->redirectToRoute('game_play', ['gameId' => $game->getId()]);
             }
 
