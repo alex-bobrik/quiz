@@ -46,11 +46,6 @@
     color: #34ce57;
 }
 
-.quiz-details {
-    display: inline-block;
-    float: right;
-}
-
 .quiz-inactive {
     display: inline-block;
     color: red;

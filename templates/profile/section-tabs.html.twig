@@ -1,0 +1,44 @@
+<section id="tabs" class="project-tab">
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-quizes-tab" data-toggle="tab" href="#nav-quizes" role="tab" aria-controls="nav-quizes" aria-selected="true">
+                        Викторины пользователя
+                    </a>
+                    {% if unfinishedGames %}
+                        <a class="nav-item nav-link" id="nav-unfinished-tab" data-toggle="tab" href="#nav-unfinished" role="tab" aria-controls="nav-unfinished" aria-selected="false">
+                            Незавершенные игры
+                        </a>
+                    {% endif %}
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-quizes" role="tabpanel" aria-labelledby="nav-quizes-tab">
+                    {% if user.quizzes.count %}
+                        <div class="row">
+                            {% for quiz in user.quizzes %}
+                                {% if quiz.isActive %}
+                                    {% include 'quiz.html.twig' %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>Пользователь не создал ни одной викторины</p>
+                    {% endif %}
+                </div>
+                {% if unfinishedGames %}
+                    <div class="tab-pane fade" id="nav-unfinished" role="tabpanel" aria-labelledby="nav-unfinished-tab">
+                        {# Not ended quizes #}
+                        <div class="row">
+                            {% for game in unfinishedGames %}
+                                {% set quiz = game.quiz %}
+                                {% include 'quiz.html.twig' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

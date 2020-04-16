@@ -16,7 +16,6 @@ class UserAvatarType extends AbstractType
     {
         $builder
             ->add('image', FileType::class, [
-                'help' => 'Выберите изображение',
                 'label' => false,
                 'attr' => [
                     'accept' => "image/jpeg, image/png",
@@ -29,7 +28,6 @@ class UserAvatarType extends AbstractType
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
-                            'image/gif',
                         ],
                         'mimeTypesMessage' => 'Загрузите изображение формата JPEG или PNG.',
                     ])

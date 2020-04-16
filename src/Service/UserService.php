@@ -3,6 +3,7 @@
 namespace App\Service;
 
 
+use App\Entity\Game;
 use App\Entity\Rating;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -78,5 +79,12 @@ class UserService
             ->getResult();
 
         return $result[0][1];
+    }
+
+    public function getUnfinishedGames(User $user)
+    {
+        $unfinishedGames = $this->em->getRepository(Game::class)->findBy(['user' => $user, 'gameIsOver' => false]);
+
+        return $unfinishedGames;
     }
 }

@@ -81,6 +81,16 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *     max="25",
+     *     maxMessage="Максимальная длина - 25 символов",
+     *     min="3",
+     *     minMessage="Минимальная длина - 3 символа"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z0-9]+([_-]?[a-zA-Z0-9])*$/",
+     *     message="Никнейм может содержать только символы A-z, 0-9, -, _ (Пр.: alex-bobrik, xxx_CooL-BoY_xxx)"
+     * )
      */
     private $nickname;
 

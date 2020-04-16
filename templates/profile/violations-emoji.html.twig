@@ -1,0 +1,20 @@
+<div class="user-violations-status">
+        {% if user.violationActs.count == 5 %}
+                <p class="user-blocked">Пользователь заблокирован</p>
+        {% else %}
+                 <p>{{ user.violationActs.count }}</p>
+                {% if user.violationActs.count == 0 %}
+                        <img src="{{ asset('images/profile/emoji/very_good.svg') }}" class="emoji" alt="very-good">
+                {% elseif user.violationActs.count == 1 %}
+                        <img src="{{ asset('images/profile/emoji/good.svg') }}" class="emoji" alt="good">
+                {% elseif user.violationActs.count == 2 %}
+                        <img src="{{ asset('images/profile/emoji/neutral.svg') }}" class="emoji" alt="neutral">
+                {% elseif user.violationActs.count == 3 %}
+                        <img src="{{ asset('images/profile/emoji/bad.svg') }}" class="emoji" alt="bad">
+                {% elseif user.violationActs.count == 4 %}
+                        <img src="{{ asset('images/profile/emoji/very_bad.svg') }}" class="emoji" alt="very-bad">
+                {% elseif user.violationActs.count == 5 %}
+                        <p class="user-blocked">Пользователь заблокирован</p>
+                {% endif %}
+        {% endif %}
+</div>

@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+
+<a href="#" class="quiz-wrap">
+    <div class="quiz-data">
+        <div class="quiz-image-wrapper">
+            <div class="quiz-image">
+                <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image">
+            </div>
+            <div class="quiz-questions">
+                <p>{{ quiz.questions.count }}
+                    {% set questions = quiz.questions.count %}
+                    {% set num = questions|abs % 100 %}
+                    {% set num_x = num % 10 %}
+                    {% if num > 10 and num < 20 %}
+                        вопросов
+                    {% elseif  num_x > 1 and num_x < 5%}
+                        вопроса
+                    {% elseif num_x == 1 %}
+                        вопрос
+                    {% else  %}
+                        вопросов
+                    {% endif %}</p>
+            </div>
+        </div>
+        <div class="quiz-details">
+            <div class="quiz-name">
+                <p class="text-center">
+                    {{ quiz.name }}
+                </p>
+            </div>
+            <div class="quiz-rating">
+                <div class="rating">
+                    <div class="my-rating-4" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating|round(2) }}"></div>
+                </div>
+            </div>
+            <div class="quiz-info" >
+                <div class="quiz-time-limit">
+                    <div class="time-limit" title="Ограничение по времени">
+                        {% if quiz.isTimeLimited %}
+                            <img src="{{ asset('images/quiz/clock.svg') }}" class="quiz-icons" alt="limited">
+                            <p>Ограничена по времени</p>
+                        {% else %}
+                            <img src="{{ asset('images/quiz/infinity.svg') }}" class="quiz-icons" alt="unlimited">
+                            <p>Не ограничена по времени</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="quiz-category" title="Категория викторины">
+                    <div class="category">
+                        <img src="{{ asset('images/quiz/earth-globe.svg') }}" class="quiz-icons" alt="earth-globe">
+                        <p>
+                            {{ quiz.quizCategory.name }}
+                        </p>
+                    </div>
+                </div>
+                <div class="quiz-created-played-wrapper">
+                    <img src="{{ asset('images/quiz/magic-wand.svg') }}" class="quiz-icons" alt="magic-wand">
+                    <div class="quiz-created" title="Дата создания">
+                        {{ quiz.created.format('d.m.Y') }}
+                    </div>
+                    <div class="dot-block">
+                        <img src="{{ asset('images/quiz/dot.svg') }}" class="dot" alt="*">
+                    </div>
+                    <div class="quiz-played" title="Сыграно раз">
+                        <p>
+                            {{ quiz.games.count }} раз
+                        </p>
+                    </div>
+                </div>
+                <div class="quiz-author" title="Автор">
+                    <img src="{{ asset('images/quiz/user.svg') }}" class="quiz-icons" alt="author">
+                    <p class="nickname">
+                        {{ quiz.user.nickname }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

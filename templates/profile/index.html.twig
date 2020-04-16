@@ -1,217 +1,114 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Профиль{% endblock %}
+
+{% block head %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
+    <script src="{{ asset('js/imageDisplayHelper.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
 
 {% block body %}
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
-
-
-    <div class="container">
-
-        <style>
-            .myimage img {
-                border-radius: 10px;
-                width: 200px;
-                height: 200px;
-                border: 1px #000000 solid;
-            }
-        </style>
-
-        {# Profile image #}
-            <div class="myimage">
+<div class="container">
+    <div class="user-info">
+        <div class="user-image">
+            <div class="profile-image">
                 {% if user.image %}
-                    <img src="{{ asset('images/uploads/avatars/' ~ user.image) }}" alt="" width="200px" height="200px">
+                    <img src="{{ asset('images/uploads/avatars/' ~ user.image) }}" alt="profile-image">
+                {% else %}
+                    <img src="{{ asset('images/profile/no-profile-image.png') }}" alt="no-image">
                 {% endif %}
             </div>
-
-
-        {# Edit image button #}
-        {% if isYou %}
-            <a class="btn btn-primary" data-toggle="modal" data-target="#modalImage">Изменить фото</a>
-        {% endif %}
-
-        {# Modal for image edit #}
-        <div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Изменить изображение</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <div class="profile-image-edit">
+                {% if isYou %}
+                    <button id="btn-edit-image" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalImage">
+                        Изменить фото
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="user-data">
+            <div class="data">
+                <div class="moder-admin">
+                    {% if isYou %}
+                        {% if user.roles[0] == 'ROLE_ADMIN' %}
+                            <a href="#" class="btn btn-primary">Admin</a>
+                        {% elseif user.roles[0] == 'ROLE_MODER' %}
+                            <a href="#" class="btn btn-primary">Moder</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="user-nickname">
+                    <div class="nickname-text text-wrap">
+                        <p>Имя профиля: {{ user.nickname }}</p>
                     </div>
-                    {{ form_start(formImage) }}
-                    <div class="modal-body">
-                        <img id="blah" src="#" alt="your image" width="200px" height="200px"/>
-                        {{ form_row(formImage.image) }}
+                    {% if isYou %}
+                        <div class="nickname-edit">
+                            <a type="button" class="" data-toggle="modal" data-target="#modalNickname">
+                                <img src="{{ asset('images/profile/edit.png') }}" alt="Изменить">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if isYou %}
+                    <div class="user-email">
+                        <p class="font-weight-lighterr">
+                            Email: {{ user.username }}
+                        </p>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        {{ form_widget(formImage.submit) }}
-                    </div>
-                    {{ form_end(formImage) }}
+                {% endif %}
+                <div class="user-total-points">
+                    <p>Очков за все игры: {{ user.sumOfPoints }}</p>
+                </div>
+
+                {# User avg game time (if != 0) #}
+                {% include 'profile/avg-game-time.html.twig' %}
+
+                {# User violations #}
+                <div class="user-violations">
+                        <p>Нарушений:</p>
+                    {% include 'profile/violations-emoji.html.twig' %}
+                </div>
+
+                <div class="user-rating">
+                    <p>Рейтинг</p>
+                    <div class="my-rating-4" data-rating="{{ userRating }}" title="{{ userRating|round(2) }}"></div>
                 </div>
             </div>
         </div>
-        {# End of modal for image edit #}
-
-
-        {% if isYou %}
-            {% if user.roles[0] == 'ROLE_ADMIN' %}
-                <a href="#" class="btn btn-primary">Admin</a>
-            {% elseif user.roles[0] == 'ROLE_MODER' %}
-                <a href="#" class="btn btn-primary">Moder</a>
-            {% endif %}
-        {% endif %}
-
-        {% if is_granted('ROLE_ADMIN') and not isYou%}
-            <h1>BAN EGO</h1>
-        {% endif %}
-
-        <p>Name: {{ user.nickname }}
-            {% if isYou %}
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalNickname">
-                    Изменить
-                </button>
-            {% endif %}
-        </p>
-
-        {# Modal for nickname edit #}
-        <div class="modal fade" id="modalNickname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Изменить ник</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    {{ form_start(formNickname) }}
-                    <div class="modal-body">
-                        {{ form_row(formNickname.nickname) }}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        {{ form_widget(formNickname.submit) }}
-                    </div>
-                    {{ form_end(formNickname) }}
-                </div>
-            </div>
-        </div>
-        {# End of modal for nickname edit #}
-
-
-        {% if isYou %}
-            <p>Email: {{ user.username }}</p>
-        {% endif %}
-        <p>Amount of violations: {{ user.violationActs.count }} *emoji*</p>
-        <p>Очков за все игры: {{ user.sumOfPoints }}</p>
-
-{#        var days = Math.floor(distance / (1000 * 60 * 60 * 24));#}
-{#        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));#}
-{#        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));#}
-{#        var seconds = Math.floor((distance % (1000 * 60)) / 1000);#}
-
-        {# Среднее время прохождения викторины #}
-
-{#        {% if user.avgGameTime %}#}
-            {% set days = (user.avgGameTime / (1000 * 60 * 60 * 24))|round %}
-            {% set hours = ((user.avgGameTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))|round %}
-            {% set minutes = ((user.avgGameTime % (1000 * 60 * 60)) / (1000 * 60))|round %}
-            {% set seconds = ((user.avgGameTime % (1000 * 60)) / 1000)|round %}
-{#        {% endif %}#}
-
-
-        {% if user.avgGameTime %}
-            <p>Среднее время прохождения викторины:</p>
-            {% if days %}
-                {{ days }} д
-            {% endif %}
-
-            {% if hours %}
-                {{ hours }} ч
-            {% endif %}
-
-            {% if minutes %}
-                {{ minutes }} м
-            {% endif %}
-
-            {% if seconds %}
-                {{ seconds }} с
-            {% endif %}
-        {% endif %}
-
-        
-        <p>Rating:</p>
-        <div class="my-rating-4" data-rating="{{ userRating }}"></div>
-
-        <p>User's games:</p>
-        {% for quiz in user.quizzes %}
-            {% if quiz.isActive %}
-                <p>{{ quiz.name }}</p>
-                <p>{{ quiz.averageRating }}</p>
-            {% endif %}
-        {% endfor %}
     </div>
 
-    {# Not ended quizes #}
-    {% if isYou %}
-        <div>
-            {% if user.games.count %}
-                <p>CANT END GAMES:</p>
-                {% for game in user.games %}
-                    {% if not game.gameIsOver %}
-                        <p>{{ game.quiz.name }}</p>
-                        <p>Вопрос №:{{ game.questionNumber }}</p>
-                        <p>Автор:{{ game.quiz.user.nickname }}</p>
-                        <p>
-                            <a href="{{ path('games_details', {'quizId': game.quiz.id}) }}">Продолжить</a>
-                        </p>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+    {# Modal for image edit #}
+    {% include 'profile/modal-image.html.twig' %}
 
+    {# Modal for nickname edit #}
+    {% include 'profile/modal-nickname.html.twig' %}
 
-        </div>
-    {% endif %}
+    {# Tabs section #}
+    <div class="tabs">
+        {% include 'profile/section-tabs.html.twig' %}
+    </div>
+</div>
 
-
+<script>
     {# Script for rating stars #}
-    <script>
-        $(".my-rating-4").starRating({
-            totalStars: 5,
-            starShape: 'rounded',
-            starSize: 40,
-            emptyColor: 'lightgray',
-            hoverColor: 'gold',
-            activeColor: 'gold',
-            useGradient: false,
-            useFullStars: true,
-            readOnly: true
-        });
-    </script>
+    $(".my-rating-4").starRating({
+        totalStars: 5,
+        starShape: 'rounded',
+        starSize: 25,
+        emptyColor: 'lightgray',
+        hoverColor: 'gold',
+        activeColor: 'gold',
+        useGradient: false,
+        useFullStars: true,
+        readOnly: true
+    });
 
     {# Script for display image #}
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#blah').attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#user_avatar_image").change(function() {
-
-            readURL(this);
-        });
-    </script>
+    $("#user_avatar_image").change(function() {
+        readURL(this, '#selectedImage');
+    });
+</script>
 {% endblock %}

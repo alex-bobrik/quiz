@@ -15,7 +15,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('nickname', TextType::class, [
-                'label' => 'Введите Ваш новый никнейм',
+                'label' => 'Введите новое имя профиля',
                 'attr' => [
                     'class' => 'form-control',
                     'maxlength' => '25',

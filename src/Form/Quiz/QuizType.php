@@ -55,7 +55,6 @@ class QuizType extends AbstractType
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
-                            'image/gif',
                         ],
                         'mimeTypesMessage' => 'Загрузите изображение формата JPEG или PNG.',
                     ])

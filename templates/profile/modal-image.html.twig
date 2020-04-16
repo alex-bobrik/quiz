@@ -1,0 +1,29 @@
+{# Modal for image edit #}
+<div class="modal fade" id="modalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Изменить изображение</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{ form_start(formImage) }}
+            <div class="modal-body">
+                <div id="modal-body-image">
+                    <img id="selectedImage" src="{{ asset('images/profile/no-profile-image.png') }}" alt="Selected image"/>
+                </div>
+                {{ form_row(formImage.image) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                {{ form_widget(formImage.submit, {
+                    'attr': {
+                        'class': 'btn btn-primary'
+                    }
+                }) }}
+            </div>
+            {{ form_end(formImage) }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{# Modal for nickname edit #}
+<div class="modal fade" id="modalNickname" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Изменить имя профиля</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{ form_start(formNickname) }}
+            <div class="modal-body">
+                {{ form_row(formNickname.nickname) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                {{ form_widget(formNickname.submit, {
+                    'label': 'Сохранить',
+                    'attr': {
+                        'class': 'btn btn-primary'
+                    }
+                }) }}
+            </div>
+            {{ form_end(formNickname) }}
+        </div>
+    </div>
+</div>
