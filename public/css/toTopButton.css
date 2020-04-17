@@ -1,0 +1,9 @@
+#toTop {
+    width:100px;
+    text-align:center;
+    position:fixed;
+    bottom:50px; /* distance from bottom of page */
+    right:30px; /* distance from right side of page */
+    cursor:pointer;
+    display:none;
+}

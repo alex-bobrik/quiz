@@ -1,69 +1,116 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Games{% endblock %}
+{% block title %}Викторины{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toTopButton.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/quiz-search.css') }}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
+    <script src="{{ asset('js/toTopButton.js') }}"></script>
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="quiz-sort">
-            <p>{{ 'Sort By'|trans }}</p>
-            <p>{{ knp_pagination_sortable(quizes, 'Quiz name', ['q.name']) }}</p>
-            <p>{{ knp_pagination_sortable(quizes, 'Date created', ['q.created']) }}</p>
-            <p>{{ knp_pagination_sortable(quizes, 'Is Active', ['q.isActive']) }}</p>
-        </div>
-
-
-        {{ form_start(searchForm) }}
-
-        {{ form_widget(searchForm.query) }}
-        {{ form_row(searchForm.categories) }}
-        {{ form_row(searchForm.timeLimit) }}
-        {{ form_widget(searchForm.submit) }}
-
-        {{ form_end(searchForm) }}
-
-        <div class="all-quizes">
-            {% for quiz in quizes %}
-                <div class="quiz">
-                    <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="image" width="100px" height="50px">
-                    <div class="quiz-header">
-                        <p class="font-weight-light">{{ quiz.name }}</p>
+    {{ form_start(searchForm) }}
+        <div class="content">
+            <div class="row-1">
+                <div id="b1"></div>
+                <div id="b2">
+                    <div class="quiz-search">
+                        <div class="search-query">
+                            {{ form_widget(searchForm.query, {
+                                'attr': {
+                                    'class': 'form-control'
+                                }
+                            }) }}
+                        </div>
+                        <div class="search-submit">
+                            {{ form_widget(searchForm.submit, {
+                                'label': 'Поиск',
+                                'attr': {
+                                    'class': 'btn btn-success'
+                                }
+                            }) }}
+                        </div>
                     </div>
-                    <hr>
-                    <div class="quiz-created">
-                        <p class="font-weight-lighter">{{ 'Created'|trans }}: {{ quiz.created.format('d/m/Y H:i:s') }}</p>
+                    <div class="quiz-sort">
+                        <p>Сортировка:</p>
+                        <p>{{ knp_pagination_sortable(quizes, 'Название', ['q.name']) }}</p>
+                        <p>{{ knp_pagination_sortable(quizes, 'Дата создания', ['q.created']) }}</p>
+                        <p>{{ knp_pagination_sortable(quizes, 'Ограничение времени', ['q.isTimeLimited']) }}</p>
                     </div>
-
-                    <div class="quiz-questions">
-                        <p class="font-weight-lighter">{{ 'Questions Amount'|trans }}: {{ quiz.questions.count }}</p>
+                </div>
+            </div>
+            <div class="row-2">
+                <div id="b3">
+                    <div class="categories-help-block"></div>
+                    <div class="categories">
+                        <div class="search-time-limit">
+                            <p class="filter-text-header">Ограничение по времени</p>
+                            {{ form_widget(searchForm.timeLimit) }}
+                        </div>
+                        <hr>
+                        <p class="filter-text-header">Категории</p>
+                        <div class="search-categories">
+                            {% for cat in searchForm.categories %}
+                                <div class="categories-list">
+                                    {{ form_widget(cat) }}
+                                    {{ form_label(cat) }}
+                                </div>
+                            {% endfor %}
+                            <div class="clear"></div>
+                        </div>
+                        <hr>
+                        <div class="search-submit-categories">
+                            <button type="submit" class="btn btn-success">
+                                <img src="{{ asset('images/search.png') }}" alt="Search">
+                            </button>
+                        </div>
+                        <div class="clear-search">
+                            <a href="{{ path('games_show') }}" class="btn btn-light">Очистить поиск</a>
+                        </div>
                     </div>
-                    <div>
-                        <p class="font-weight-lighter">{{ quiz.isTimeLimited ? 'DA' : 'NET' }}</p>
-                    </div>
-                    <div>
-                        <p class="font-weight-lighter">{{ quiz.quizCategory.name }}</p>
-                    </div>
-                    <div class="quiz-footer">
-                        {% if quiz.isActive %}
-                            <div class="quiz-active">
-                                <p>{{ 'Active'|trans }}</p>
-                            </div>
-                            <div class="quiz-detailss">
-                                <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="btn btn-primary">{{ 'Details'|trans }}</a>
-                            </div>
+                </div>
+                <div id="b4">
+                    <div class="row">
+                        {% if quizes.count %}
+                            {% for quiz in quizes %}
+                                 {% include 'quiz.html.twig' %}
+                            {% endfor %}
                         {% else %}
-                            <div class="quiz-inactive">
-                                <p>{{ 'Inactive'|trans }}</p>
-                            </div>
-                            <div class="quiz-details-disable">
-                                <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="btn btn-primary disabled">{{ 'Details'|trans }}</a>
+                            <div class="quizes-not-found">
+                                <p>Не найдено ни одной викторины :(</p>
                             </div>
                         {% endif %}
                     </div>
                 </div>
-            {% endfor %}
+                <div id="b5">
+                    <div id="toTop">
+                        <img src="{{ asset('images/up-arrow.svg') }}" alt="toTop">
+                    </div>
+                </div>
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(quizes) }}
+            </div>
         </div>
-        <div class="navigation">
-            {{ knp_pagination_render(quizes) }}
-        </div>
-    </div>
+    {{ form_end(searchForm) }}
+
+
+    {# Script for quiz star rating #}
+    <script>
+        $(".quiz-stars-rating").starRating({
+            totalStars: 5,
+            starShape: 'rounded',
+            starSize: 25,
+            emptyColor: 'lightgray',
+            hoverColor: 'gold',
+            activeColor: 'gold',
+            useGradient: false,
+            useFullStars: true,
+            readOnly: true
+        });
+    </script>
 {% endblock %}

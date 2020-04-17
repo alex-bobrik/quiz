@@ -3,10 +3,12 @@
 {% block title %}Профиль{% endblock %}
 
 {% block head %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
     <script src="{{ asset('js/imageDisplayHelper.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
@@ -23,7 +25,7 @@
             </div>
             <div class="profile-image-edit">
                 {% if isYou %}
-                    <button id="btn-edit-image" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalImage">
+                    <button id="btn-edit-image" class="btn btn-outline-success" data-toggle="modal" data-target="#modalImage">
                         Изменить фото
                     </button>
                 {% endif %}
@@ -74,7 +76,7 @@
 
                 <div class="user-rating">
                     <p>Рейтинг</p>
-                    <div class="my-rating-4" data-rating="{{ userRating }}" title="{{ userRating|round(2) }}"></div>
+                    <div class="user-stars-rating" data-rating="{{ userRating }}" title="{{ userRating|round(2) }}"></div>
                 </div>
             </div>
         </div>
@@ -94,7 +96,19 @@
 
 <script>
     {# Script for rating stars #}
-    $(".my-rating-4").starRating({
+    $(".user-stars-rating").starRating({
+        totalStars: 5,
+        starShape: 'rounded',
+        starSize: 25,
+        emptyColor: 'lightgray',
+        hoverColor: 'gold',
+        activeColor: 'gold',
+        useGradient: false,
+        useFullStars: true,
+        readOnly: true
+    });
+
+    $(".quiz-stars-rating").starRating({
         totalStars: 5,
         starShape: 'rounded',
         starSize: 25,

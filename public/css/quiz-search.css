@@ -1,0 +1,126 @@
+body {
+    background-color: #e9ecf3;
+}
+#b1 {
+    width: 350px;
+}
+#b2 {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+    position: fixed;
+    width: 60%;
+    z-index: 999;
+    left: 25%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+}
+#b3 {
+    width: 350px;
+}
+#b4 {
+    width: 100%;
+}
+.categories {
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    position: fixed;
+    top: 200px;
+}
+#search_quiz_query {
+    width: 100%;
+    border-radius: 10px 0 0 10px;
+}
+.content {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+.row-1 {
+    display: flex;
+}
+.row-2 {
+    display: flex;
+    padding-top: 6%;
+}
+.categories-help-block {
+    width: 350px;
+}
+#search_quiz_categories {
+    width: 300px;
+}
+.clear {
+    clear: both;
+}
+.quiz-search {
+    display: flex;
+}
+.filter-text-header {
+    font-size: 18px;
+    font-weight: 600;
+    font-variant: all-petite-caps;
+}
+.quizes-not-found {
+    margin-top: 25%;
+    margin-left: 25%;
+}
+.quizes-not-found > p {
+    font-size: 30px;
+}
+.categories-list {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+.search-categories {
+    width: 300px;
+}
+.search-query {
+    width: 100%;
+}
+input[type='checkbox'] {
+    margin: 5px;
+    transform:scale(1.5);
+    opacity:0.8;
+    cursor:pointer;
+}
+.search-submit-categories {
+    width: 100%;
+}
+.search-submit-categories > button{
+    /*float: right;*/
+    width: 100%;
+}
+.search-submit-categories img{
+    width: 30px;
+    height: 30px;
+}
+.clear-search {
+    margin-top: 5px;
+}
+.clear-search > a{
+    width: 100%;
+}
+.search-submit > button {
+    border-radius: 0 10px 10px 0;
+}
+#toTop img {
+    width: 70px;
+    height: 70px;
+}
+
+@media (max-width: 1200px) {
+    #b2 {
+        left: 3%;
+        width: 340px;
+        box-shadow: none;
+    }
+    .row-2 {
+        padding-top: 0;
+    }
+    .quiz-wrap {
+        margin-top: 5px;
+    }
+    .categories {
+        top: 230px;
+    }
+}

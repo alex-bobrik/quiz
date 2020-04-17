@@ -20,7 +20,6 @@ class SearchQuizType extends AbstractType
                 'label' => '',
                 'required' => false,
                 'attr' => [
-//                    'class' => 'form-control',
                 ]
             ])
             ->add('categories', EntityType::class, [
@@ -36,8 +35,8 @@ class SearchQuizType extends AbstractType
             ])
             ->add('timeLimit', ChoiceType::class, [
                 'choices' => [
-                    'Limited' => 'limit',
-                    'No Limited' => 'no-limit',
+                    'Ограничена' => 'limit',
+                    'Не ограничена' => 'no-limit',
                 ],
                 'expanded' => true,
                 'multiple' => true,

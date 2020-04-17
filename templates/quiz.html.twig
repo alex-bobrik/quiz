@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
-
 <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="quiz-wrap">
     <div class="quiz-data">
         <div class="quiz-image-wrapper">
@@ -30,7 +28,7 @@
             </div>
             <div class="quiz-rating">
                 <div class="rating">
-                    <div class="my-rating-4" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating|round(2) }}"></div>
+                    <div class="quiz-stars-rating" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating|round(2) }}"></div>
                 </div>
             </div>
             {% if game is defined %}

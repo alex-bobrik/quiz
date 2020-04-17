@@ -46,7 +46,7 @@ class GameController extends AbstractController
         $quizes = $paginator->paginate(
             $quizesQuery,
             $request->query->getInt('page', 1),
-            3
+            32
         );
 
         $searchForm = $this->createForm(SearchQuizType::class, [

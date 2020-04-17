@@ -3,18 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/game.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/avatars/ce20261995a0034539d437231a8270d7.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserAvatarType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserAvatarType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/quiz.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quiz.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/uploads/avatars/85ca540308f16ad1f3583aa03151acbe.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SearchQuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchQuizType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/game/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -224,7 +219,8 @@
       <workItem from="1585142702691" duration="4050000" />
       <workItem from="1586088633633" duration="32374000" />
       <workItem from="1586885102353" duration="8691000" />
-      <workItem from="1586940633847" duration="52901000" />
+      <workItem from="1586940633847" duration="76053000" />
+      <workItem from="1587130802666" duration="3731000" />
     </task>
     <servers />
   </component>
@@ -289,10 +285,10 @@
     </state>
     <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1582485704378" />
     <state x="566" y="267" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1587039376331" />
-    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup" timestamp="1587039903026">
+    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup" timestamp="1587113645123">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582492141908" />
-    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1587039903026" />
+    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1587113645123" />
   </component>
 </project>
