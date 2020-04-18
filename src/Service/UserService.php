@@ -52,10 +52,8 @@ class UserService
         return 'user' . $numbers;
     }
 
-    public function changeStatus(int $id): void
+    public function changeStatus(User $user): void
     {
-        $user = $this->em->getRepository(User::class)->findOneBy(['id' => $id]);
-
         if ($user->getIsActive())
         {
             $user->setIsActive(false);

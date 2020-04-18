@@ -5,14 +5,17 @@ namespace App\Controller;
 use App\Entity\Quiz;
 use App\Entity\User;
 use App\Form\Quiz\QuizType;
+use App\Form\SearchAdminType;
 use App\Service\ModerService;
 use App\Service\QuizService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 class QuizController extends AbstractController
 {
@@ -22,22 +25,41 @@ class QuizController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request): Response
+    public function index(PaginatorInterface $paginator, Request $request, RouterInterface $router): Response
     {
         $quizesRepository = $this->getDoctrine()->getRepository(Quiz::class);
-
         $quizesQuery = $quizesRepository->createQueryBuilder('q')
             ->getQuery();
+
+        $q = $request->get('q');
+        if ($q) {
+            $quizesQuery = $quizesRepository->createQueryBuilder('q')
+                ->select('q')
+                ->where('q.name like :name')
+                ->setParameter('name', '%'.$q.'%')
+                ->getQuery();
+        } else {
+            $quizesQuery = $quizesRepository->createQueryBuilder('q')
+                ->getQuery();
+        }
+
+        $searchForm = $this->createForm(SearchAdminType::class, ['query' => $q]);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted()) {
+            $query = $searchForm->get('query')->getData();
+            return new RedirectResponse($router->generate('admin_quizes_show', ['q' => $query]));
+        }
 
         $quizes = $paginator->paginate(
             $quizesQuery,
             $request->query->getInt('page', 1),
-            7
+            5
         );
 
         return $this->render('quiz/index.html.twig', [
             'controller_name' => 'QuizController',
             'quizes' => $quizes,
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 
@@ -53,6 +75,7 @@ class QuizController extends AbstractController
 
         return $this->render('quiz/quiz_info.html.twig', [
             'questions' => $quiz->getQuestions(),
+            'quiz' => $quiz,
         ]);
     }
 
@@ -128,7 +151,15 @@ class QuizController extends AbstractController
      */
     public function changeQuizStatus(QuizService $quizService, int $quizId): Response
     {
-        $quizService->changeStatus($quizId);
+        $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($quizId);
+
+        $quizService->changeStatus($quiz);
+        if ($quiz->getIsActive()) {
+            $this->addFlash('success', 'Изменен статус викторины \'' . $quiz->getName() . '\' на \'Активна\'');
+        } else {
+            $this->addFlash('success', 'Изменен статус викторины \'' . $quiz->getName() . '\' на \'Не активна\' ');
+        }
+
         return $this->redirectToRoute('admin_quizes_show');
     }
 

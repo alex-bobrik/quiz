@@ -6,19 +6,16 @@
     <div class="container">
         <div>
             <div class="question-info">
-                <h4>QUESTION:</h4>
-                <span>{{ question.text }}</span>
+                <h4>Вопрос: {{ question.text }}</h4>
+                <h4>Создал вопрос: <a href="{{ path('app.profile.info', {'nickname': question.user.nickname}) }}">{{ question.user.nickname }}</a></h4>
             </div>
-        </div>
-        <div class="question-buttons">
-            <a href="{{ path('admin_questions_update', {'id': question.id}) }}" class="btn btn-primary">Edit</a>
         </div>
 
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Answer</th>
-                <th scope="col">Is correct</th>
+                <th scope="col">Ответ</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -34,9 +31,5 @@
                 {% endfor %}
             </tbody>
         </table>
-
-        <div class="buttons-footer">
-            <a href="{{ path('admin_questions_show') }}" class="btn btn-outline-dark">All questions</a>
-        </div>
     </div>
 {% endblock %}

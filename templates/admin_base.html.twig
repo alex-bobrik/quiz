@@ -14,26 +14,39 @@
     <body>
 
     {% block navbar %}
-        <div class="container">
+{#        <div class="container">#}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{ path('admin_index') }}">Admin Panel</a>
+                <a class="navbar-brand" href="{{ path('admin_index') }}">Администратор</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{{ path('admin_users_show') }}">{{ 'Users'|trans }}</a>
-                        <a class="nav-item nav-link" href="{{ path('admin_quizes_show') }}">{{ 'Quizes'|trans }}</a>
-                        <a class="nav-item nav-link" href="{{ path('admin_questions_show') }}">{{ 'Questions'|trans }}</a>
+                        <a class="nav-item nav-link" href="{{ path('games_show') }}">Игры</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_users_show') }}">Пользователи</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_quizes_show') }}">Викторины</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_quiz-categories') }}">Категории</a>
+                        <a class="nav-item nav-link" href="{{ path('admin_violations') }}">Нарушения</a>
                     </div>
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="{{ path('app_logout') }}">Logout</a>
                     </div>
                 </div>
             </nav>
-        </div>
+{#        </div>#}
     {% endblock %}
-
+    <div>
+        {% block flash_messages %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        {{ message | raw }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endblock %}
+    </div>
 
     {% block body %}{% endblock %}
 

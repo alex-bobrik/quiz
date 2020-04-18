@@ -1,9 +1,8 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}Hello QuizCategoryController!{% endblock %}
+{% block title %}Hello ViolationController!{% endblock %}
 
 {% block body %}
-
     <style>
         .search {
             display: flex;
@@ -18,10 +17,9 @@
 
     <div class="container">
 
-
         {{ form_start(searchForm) }}
         <div class="buttons-header">
-            <a href="{{ path('admin_quiz-categories_create') }}" class="btn btn-primary">Новая категория</a>
+            <a href="{{ path('admin_violations_create') }}" class="btn btn-primary">Новый пункт нарушений</a>
         </div>
         <div class="search">
             <div class="search-input">
@@ -37,25 +35,28 @@
 
             </div>
         </div>
-
         {{ form_end(searchForm) }}
 
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">{{ knp_pagination_sortable(categories, 'Категория', ['c.name']) }}</th>
-                <th></th>
+                <th scope="col">{{ knp_pagination_sortable(violations, 'Нарушение', ['v.name']) }}</th>
+                <th scope="col">Описание</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            {% for category in categories %}
+            {% for violation in violations %}
                 <tr>
                     <td>
-                        {{ category.name }}
+                        {{ violation.name }}
                     </td>
                     <td>
-                        <a href="{{ path('admin_quiz-categories_edit', {'id': category.id}) }}" class="btn btn-primary">Изменить</a>
-                        <a href="{{ path('admin_quiz-categories_delete', {'id': category.id}) }}" class="btn btn-danger">Удалить</a>
+                        {{ violation.description }}
+                    </td>
+                    <td>
+                        <a href="{{ path('admin_violations_edit', {'id': violation.id}) }}" class="btn btn-primary">Изменить</a>
+                        <a href="{{ path('admin_violations_delete', {'id': violation.id}) }}" class="btn btn-danger">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -63,8 +64,7 @@
         </table>
 
         <div class="navigation">
-            {{ knp_pagination_render(categories) }}
+            {{ knp_pagination_render(violations) }}
         </div>
     </div>
-
 {% endblock %}

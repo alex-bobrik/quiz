@@ -4,11 +4,13 @@
 
 {% block body %}
     <div class="container">
+        <h4>Викторина: {{ quiz.name }}</h4>
+        <h4>Автор: <a href="{{ path('app.profile.info', {'nickname': quiz.user.nickname}) }}">{{ quiz.user.nickname }}</a></h4>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Question</th>
-                    <th scope="col">Answers amount</th>
+                    <th scope="col">Вопрос</th>
+                    <th scope="col">Количество ответов</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +28,7 @@
         </table>
 
         <div class="buttons-footer">
-            <a href="{{ path('admin_quizes_show') }}" class="btn btn-outline-dark">All quizes</a>
+            <a href="{{ path('admin_quizes_show') }}" class="btn btn-outline-dark">Все викторины</a>
         </div>
     </div>
 {% endblock %}

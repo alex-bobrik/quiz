@@ -4,37 +4,63 @@
 
 {% block body %}
 
+    <style>
+        .search {
+            display: flex;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .search-input {
+            width: 100%;
+        }
+    </style>
+
     <div class="container">
-        <div class="buttons-header">
-            <a href="{{ path('admin_quizes_create') }}" class="btn btn-primary">New quiz</a>
-        </div>
+
+        {{ form_start(searchForm) }}
+            <div class="search">
+                <div class="search-input">
+                    {{ form_widget(searchForm.query, {
+                        'required': false,
+                        'attr': {
+                            'placeholder': 'Поиск по названию',
+                        }
+                    }) }}
+                </div>
+                <div class="search-submit">
+                    {{ form_widget(searchForm.submit) }}
+
+                </div>
+            </div>
+        {{ form_end(searchForm) }}
 
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">{{ knp_pagination_sortable(quizes, 'Quiz', ['q.name']) }}</th>
-                <th scope="col">Questions amount</th>
-                <th>{{ knp_pagination_sortable(quizes, 'Created', ['q.created']) }}</th>
-                <th scope="col">Action</th>
-                <th>{{ knp_pagination_sortable(quizes, 'Is Active', ['q.isActive']) }}</th>
+                <th scope="col">{{ knp_pagination_sortable(quizes, 'Викторина', ['q.name']) }}</th>
+                <th scope="col"></th>
+                <th scope="col">Количество вопросов</th>
+                <th>{{ knp_pagination_sortable(quizes, 'Дата создания', ['q.created']) }}</th>
+                <th>{{ knp_pagination_sortable(quizes, 'Статус', ['q.isActive']) }}</th>
             </tr>
             </thead>
-
             <tbody>
             {% for quiz in quizes %}
                 <tr>
                     <td>
                         <a href="{{ path('admin_quizes_info', {'quizId': quiz.id}) }}" class="text-decoration-none">{{ quiz.name }}</a>
                     </td>
+                    <td>
+                        <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image" width="100px" height="100px">
+                    </td>
                     <td>{{ quiz.questions.count }}</td>
                     <td>{{ quiz.created.format('d/m/Y H:i:s') }}</td>
-                    <td><a href="{{ path('admin_quizes_update', {'id': quiz.id}) }}" class="text-decoration-none">Edit</a></td>
-
                     <td>
                         {% if quiz.isActive %}
-                            <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-success">Active</a>
+                            <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-success">Активна</a>
                         {% else %}
-                            <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-danger">Inactive</a>
+                            <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-danger">Не активна</a>
                         {% endif %}
                     </td>
                 </tr>

@@ -3,14 +3,45 @@
 {% block title %}Users{% endblock %}
 
 {% block body %}
+
+    <style>
+        .search {
+        display: flex;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        }
+
+        .search-input {
+        width: 100%;
+        }
+    </style>
+
     <div class="container">
+
+        {{ form_start(searchForm) }}
+        <div class="search">
+            <div class="search-input">
+                {{ form_widget(searchForm.query, {
+                    'required': false,
+                    'attr': {
+                        'placeholder': 'Поиск по имени профиля и email',
+                    }
+                }) }}
+            </div>
+            <div class="search-submit">
+                {{ form_widget(searchForm.submit) }}
+
+            </div>
+        </div>
+        {{ form_end(searchForm) }}
+
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Email</th>
-                <th scope="col">moder</th>
-                <th scope="col">{{ knp_pagination_sortable(users, 'IsActive'|trans, ['u.isActive']) }}</th>
+                <th scope="col">{{ knp_pagination_sortable(users, 'Имя профиля', ['u.nickname']) }}</th>
+                <th scope="col"></th>
+                <th scope="col">{{ knp_pagination_sortable(users, 'Статус', ['u.isActive']) }}</th>
             </tr>
             </thead>
             <tbody>
@@ -18,23 +49,27 @@
                 {% if user.roles[0] != 'ROLE_ADMIN' %}
                     <tr>
                         <td>
-                            {{ user.id }}
-                        </td>
-                        <td>
                             {{ user.email }}
                         </td>
                         <td>
+                            <a href="{{ path('app.profile.info', {'nickname': user.nickname}) }}">{{ user.nickname }}</a>
+                        </td>
+                        <td>
                             {% if user.roles[0] != 'ROLE_MODER' %}
-                                <a href="{{ path('admin_user_appoint-as-moder', {'userId': user.id}) }}">set moder</a>
+                                <a href="{{ path('admin_user_appoint-as-moder', {'userId': user.id}) }}" class="btn btn-primary">
+                                    Назначить модератором
+                                </a>
                             {% else %}
-                                <a href="{{ path('admin_user_reject-moder', {'userId': user.id}) }}">reject moder</a>
+                                <a href="{{ path('admin_user_reject-moder', {'userId': user.id}) }}" class="btn btn-danger">
+                                    Убрать с должности модератора
+                                </a>
                             {% endif %}
                         </td>
                         <td>
                             {% if user.isActive %}
-                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-success">{{ 'Active'|trans }}</a>
+                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-success">Активен</a>
                             {% else %}
-                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-danger">{{ 'Inactive'|trans }}</a>
+                                <a href="{{ path('admin_user_change-status', {'userId': user.id}) }}" class="btn btn-danger">Не активен</a>
                             {% endif %}
                         </td>
                     </tr>

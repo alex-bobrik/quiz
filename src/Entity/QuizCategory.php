@@ -28,6 +28,7 @@ class QuizCategory
      */
     private $quizes;
 
+
     public function __construct()
     {
         $this->quizes = new ArrayCollection();

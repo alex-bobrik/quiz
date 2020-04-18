@@ -80,10 +80,8 @@ class QuizService
         $this->em->flush();
     }
 
-    public function changeStatus(int $id): void
+    public function changeStatus(Quiz $quiz): void
     {
-        $quiz = $this->em->getRepository(Quiz::class)->findOneBy(['id' => $id]);
-
         if ($quiz->getIsActive()) {
             $this->endAllGames($quiz);
             $quiz->setIsActive(false);

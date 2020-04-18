@@ -1,19 +1,16 @@
 {% extends 'admin_base.html.twig' %}
 
-{% block title %}Hello QuizCategoryController!{% endblock %}
+{% block title %}Hello ViolationController!{% endblock %}
 
 {% block body %}
-
     <style>
-        #quiz_category_name {
+        #violation_description {
             margin-bottom: 10px;
         }
     </style>
 
     <div class="container">
-        <h3>Изменение названия категории {{ category.name }}</h3>
+        <h3>Изменение пункта нарушений '{{ violation.name }}'</h3>
         {{ form(form) }}
     </div>
-
-
 {% endblock %}
