@@ -8,30 +8,35 @@
         <link rel="stylesheet" href={{ asset('css/bootstrap-grid.css') }}>
         <link rel="stylesheet" href={{ asset('css/game.css') }}>
         <link rel="stylesheet" href={{ asset('css/global.css') }}>
+        <link rel="stylesheet" href="{{ asset('css/logo-rotate.css') }}">
         <link rel="stylesheet" href={{ asset('js/embeddedFormHelper.js') }}>
     {% endblock %}
     {% block head %}{% endblock %}
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 90px">
 {% block navbar %}
-{#    <div class="container-xl">#}
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('games_show') }}">{{ 'Games'|trans }}</a>
+            <a class="navbar-brand" href="{{ path('games_show') }}">
+                <img src="{{ asset('images/logo.svg') }}" id="logo" alt="logo" width="50px" height="50px">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{{ path('home') }}">{{ 'Home Page'|trans }}</a>
-                    <a class="nav-item nav-link" href="{{ path('games_show') }}">{{ 'All Games'|trans }}</a>
-                    <a class="nav-item nav-link" href="{{ path('app.profile') }}">Profile</a>
+                    <a class="nav-item nav-link" href="{{ path('games_show') }}">Викторины</a>
+                    <a class="nav-item nav-link" href="{{ path('games_show') }}">О нас</a>
                 </div>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{{ path('app_logout') }}">Logout</a>
+                    <a href="{{ path('app.profile') }}" class="navbar-brand">
+                        <img src="{{ asset('images/profile.svg') }}" alt="profile" width="30px" height="30px">
+                    </a>
+                    <a href="{{ path('app_logout') }}" class="navbar-brand">
+                        <img src="{{ asset('images/logout.svg') }}" alt="logout" width="30px" height="30px">
+                    </a>
                 </div>
             </div>
         </nav>
-{#    </div>#}
 {% endblock %}
 
 <div>
@@ -52,7 +57,6 @@
 {% block body %}{% endblock %}
 
 {% block javascripts %}
-{#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
     <script
             src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="

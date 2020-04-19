@@ -22,14 +22,19 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{{ path('games_show') }}">Игры</a>
+                        <a class="nav-item nav-link" href="{{ path('games_show') }}">Главная</a>
                         <a class="nav-item nav-link" href="{{ path('admin_users_show') }}">Пользователи</a>
                         <a class="nav-item nav-link" href="{{ path('admin_quizes_show') }}">Викторины</a>
                         <a class="nav-item nav-link" href="{{ path('admin_quiz-categories') }}">Категории</a>
                         <a class="nav-item nav-link" href="{{ path('admin_violations') }}">Нарушения</a>
                     </div>
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        <a href="{{ path('app.profile') }}" class="navbar-brand">
+                            <img src="{{ asset('images/profile.svg') }}" alt="profile" width="30px" height="30px">
+                        </a>
+                        <a href="{{ path('app_logout') }}" class="navbar-brand">
+                            <img src="{{ asset('images/logout.svg') }}" alt="logout" width="30px" height="30px">
+                        </a>
                     </div>
                 </div>
             </nav>
