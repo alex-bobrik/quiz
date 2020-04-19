@@ -1,0 +1,45 @@
+{% extends 'user_base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        body::after {
+            content: "";
+            background: url("{{ asset('images/logo.svg') }}") no-repeat center;
+            opacity: 0.3;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .about {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .text {
+            text-align: center;
+        }
+    </style>
+
+        <div class="about">
+            <div class="text">
+                <h1>Система для проведения викторин</h1>
+                <h2>Разработчик Бобрик А.В.</h2>
+                <h3>МГКЭ 2020</h3>
+            </div>
+        </div>
+
+{% endblock %}
