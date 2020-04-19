@@ -1,24 +1,74 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Details{% endblock %}
+{% block title %}Викторина {{ quiz.name }}{% endblock %}
 
 {% block body %}
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
+    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+    <script src="https://yastatic.net/share2/share.js"></script>
     <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/star-rating-svg.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/quiz-details.css') }}">
 
     <div class="container">
-    {% block leaders %}
-        <div class="leaderboard row">
-            <div class="total-leaderboard col-md-6">
-                <table class="table">
+        <div class="row">
+            <div class="quiz-info col-md-7">
+                <div class="quiz-data">
+                    <div class="quiz-image">
+                        <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image" width="200px" height="200px">
+                        <div class="quiz-secondary-info">
+                            <div class="questions-amount">
+                                <p>Вопросов: {{ quiz.questions.count }}</p>
+                            </div>
+                            <div class="quiz-category" title="Категория викторины">
+                                <img src="{{ asset('images/quiz/earth-globe.svg') }}" alt="category" class="quiz-icons">
+                                <p>{{ quiz.quizCategory.name }}</p>
+                            </div>
+                            <div class="quiz-time-limit" title="Ограничение по времени">
+                                {% if quiz.isTimeLimited %}
+                                    <img src="{{ asset('images/quiz/clock.svg') }}" class="quiz-icons" alt="limited">
+                                    <p>Ограничена по времени</p>
+                                {% else %}
+                                    <img src="{{ asset('images/quiz/infinity.svg') }}" class="quiz-icons" alt="unlimited">
+                                    <p>Не ограничена по времени</p>
+                                {% endif %}
+                            </div>
+                            <div class="quiz-author" title="Автор">
+                                <img src="{{ asset('images/quiz/user.svg') }}" class="quiz-icons" alt="author">
+                                <p class="nickname">
+                                    <a href="{{ path('app.profile.info', {'nickname': quiz.user.nickname}) }}">
+                                        {{ quiz.user.nickname }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quiz-details">
+                        <div class="quiz-name">
+                            <p class="text-center">
+                                {{ quiz.name }}
+                            </p>
+                        </div>
+                        <div class="quiz-description">
+                            <p class="text-justify">
+                                {{ quiz.description }}
+                            </p>
+                        </div>
+                        <div class="quiz-share">
+                            Поделиться:
+                            <div class="ya-share2" data-services="vkontakte,facebook,twitter,viber,telegram" data-limit="3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-leaderboard col-md-4">
+                <h3 class="text-center">Лидеры</h3>
+                <table class="table leaders">
                     <thead>
                     <tr>
-                        <th scope="col">Place</th>
-                        <th scope="col">{{ 'Users'|trans }}</th>
+                        <th scope="col">Место</th>
+                        <th scope="col">Пользователи</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -30,44 +80,39 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
-
-            <div class="user-leaderboard col-md-6">
-                {% if isPassed %}
-                    <div class="quiz-result">
-                        <p class="font-weight-light quiz-passed-text">{{ 'Quiz Is Passed'|trans }}</p>
-                        <p class="font-weight-light">{{ 'Points'|trans }}: {{ game.resultScore }}</p>
-                        <div class="user-position">
-                            <p class="font-weight-light">{{ 'Your Place'|trans }}: {{ userPos }}</p>
+                <div class="result">
+                    {% if isPassed %}
+                        <div class="quiz-result">
+                            <p class="font-weight-light quiz-passed-text">Викторина пройдена</p>
+                            <p class="font-weight-light">Набрано очков: {{ game.resultScore }}</p>
+                            <div class="user-position">
+                                <p class="font-weight-light">Ваше место: {{ userPos }}</p>
+                            </div>
                         </div>
-                    </div>
-                {% else %}
-                    <div class="game-start">
-                        <p class="font-weight-light quiz-not-passed-text">{{ 'Quiz Not Passed'|trans }}</p>
-                        <a href="{{ path('games_start_play', {'quizId': quizId  }) }}" class="btn btn-primary btn-block">Start</a>
-                    </div>
-                {% endif %}
+                        {% if rating.stars %}
+                            Вы оценили
+                            <div class="stars-rating" data-rating="{{ rating.stars }}"></div>
+                        {% else %}
+                            Оцените
+                            <div class="stars-rating" data-rating="{{ rating.stars }}"></div>
+                        {% endif %}
+                    {% else %}
+                        <div class="game-start">
+                            <p class="font-weight-light quiz-not-passed-text">Викторина не пройдена</p>
+                            <a href="{{ path('games_start_play', {'quizId': quiz.id  }) }}" class="btn btn-primary btn-block">
+                                Старт
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    {% endblock %}
     </div>
 
-    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
-    <script src="https://yastatic.net/share2/share.js"></script>
-    <div class="ya-share2" data-services="vkontakte,facebook,twitter,viber,telegram" data-limit="3"></div>
-
-    {% if isPassed %}
-        <div class="my-rating-4" data-rating="{{ rating.stars }}"></div>
-
-
-    {% endif %}
-    <script>
-
-    </script>
 
     {# For star rating #}
     <script>
-        $(".my-rating-4").starRating({
+        $(".stars-rating").starRating({
             totalStars: 5,
             starShape: 'rounded',
             starSize: 40,
@@ -80,8 +125,12 @@
                 readOnly: true,
             {% endif %}
             callback: function (currentRating, $el) {
+
+                var url = '{{ path('games_rate', {'quizId': quiz.id, 'stars': 'starsRating'}) }}';
+                url = url.replace('starsRating', currentRating)
+
                 $.ajax({
-                    url: '/games/'+ {{ quizId }} +'/rating/' + currentRating,
+                    url: url,
                     type: 'POST',
                     dataType: 'json',
                     data: currentRating

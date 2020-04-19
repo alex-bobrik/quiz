@@ -218,7 +218,7 @@ class GameController extends AbstractController
         }
 
         return $this->render('game/game_details.html.twig', [
-            'quizId' => $quiz->getId(),
+            'quiz' => $quiz,
             'isPassed' => $isPassed,
             'leaders' => $leaders,
             'userPos' => $userPosition,
