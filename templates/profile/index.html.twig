@@ -36,9 +36,9 @@
                 <div class="moder-admin">
                     {% if isYou %}
                         {% if user.roles[0] == 'ROLE_ADMIN' %}
-                            <a href="#" class="btn btn-primary">Admin</a>
+                            <a href="{{ path('admin_users_show') }}" class="btn btn-primary">Панель управления</a>
                         {% elseif user.roles[0] == 'ROLE_MODER' %}
-                            <a href="#" class="btn btn-primary">Moder</a>
+                            <a href="{{ path('moder_quizes') }}" class="btn btn-primary">Панель управления</a>
                         {% endif %}
                     {% endif %}
                 </div>

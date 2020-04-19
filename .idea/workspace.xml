@@ -3,67 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/quiz-search.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quiz-search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/quiz.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quiz.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/toTopButton.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/toTopButton.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/edit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/emoji/bad.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/emoji/bad.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/emoji/good.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/emoji/good.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/emoji/neutral.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/emoji/neutral.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/emoji/very_bad.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/emoji/very_bad.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/emoji/very_good.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/emoji/very_good.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/profile/no-profile-image.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/profile/no-profile-image.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/clock.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/clock.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/dot.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/dot.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/earth-globe.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/earth-globe.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/infinity.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/infinity.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/magic-wand.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/magic-wand.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/question-mark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/question-mark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/quiz/user.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/quiz/user.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/search.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/search.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/up-arrow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/up-arrow.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/up.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/up.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/avatars/053701650bf83a1e9ca3a126c953d9d4.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/avatars/053701650bf83a1e9ca3a126c953d9d4.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/0234adb8ffc2aa194bed26d0447e41ad.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/0234adb8ffc2aa194bed26d0447e41ad.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/1b92d032ddc7ab9115d857f2417f93bc.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/1b92d032ddc7ab9115d857f2417f93bc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/286a6799408843882c0b9c13fc53539a.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/286a6799408843882c0b9c13fc53539a.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/48d9efdccc6da0556e5327131ced8e71.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/48d9efdccc6da0556e5327131ced8e71.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/69541a9255d9f01dc96bb5ab8bfe4cef.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/69541a9255d9f01dc96bb5ab8bfe4cef.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/94cd052683baecc66e6828c028f04be9.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/94cd052683baecc66e6828c028f04be9.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/a5aca7ee8e0a6f35e10d5698ab053952.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/a5aca7ee8e0a6f35e10d5698ab053952.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/b9ce5946446dae3133f2264c244341d8.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/b9ce5946446dae3133f2264c244341d8.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/c3b459a6053c39bdcc18a8b2a283552b.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/c819460046c639b5f73367ee0b578c2c.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/c819460046c639b5f73367ee0b578c2c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/d37fd8b7c32d7a949d0d129426088777.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/d37fd8b7c32d7a949d0d129426088777.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/ea6b8a739e3fd84af411247c354ceb03.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/ea6b8a739e3fd84af411247c354ceb03.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/f39ee6a17eb8860ee540b189acd9807d.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/f39ee6a17eb8860ee540b189acd9807d.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/uploads/quizes/fdc9b933534a9e97c9d25350a3ce2824.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/uploads/quizes/fdc9b933534a9e97c9d25350a3ce2824.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/embeddedFormHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/embeddedFormHelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/imageDisplayHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/imageDisplayHelper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/toTopButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/toTopButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Moder/ModerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Moder/ModerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuizCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizCategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ViolationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ViolationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/DenyQuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/DenyQuizType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SearchAdminType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SimpleSearchType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ViolationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ViolationType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20200418142017.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20200418142017.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20200418145057.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20200418145057.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/MailSender.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MailSender.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ModerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ModerService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/moder/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moder/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/moder/quiz_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moder/quiz_info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/violation/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/violation/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/violation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +215,7 @@
       <workItem from="1586885102353" duration="8691000" />
       <workItem from="1586940633847" duration="76053000" />
       <workItem from="1587130802666" duration="15223000" />
-      <workItem from="1587210222825" duration="21546000" />
+      <workItem from="1587210222825" duration="22400000" />
     </task>
     <servers />
   </component>
