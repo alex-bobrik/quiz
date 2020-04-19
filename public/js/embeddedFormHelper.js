@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    const MAX_ELEMENTS = 10;
+    const MAX_ELEMENTS = 30;
 
     function addTagFormDeleteLink(tagFormLi) {
         let removeFormButton = $('<button type="button" class="btn btn-danger">X</button>');

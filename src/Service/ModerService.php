@@ -5,6 +5,7 @@ namespace App\Service;
 
 
 use App\Entity\Quiz;
+use App\Entity\User;
 use App\Entity\Violation;
 use App\Entity\ViolationAct;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,16 +26,16 @@ class ModerService
         $this->fileUploader = $fileUploader;
     }
 
-    public function confirmQuiz(Quiz $quiz)
+    public function confirmQuiz(Quiz $quiz, User $whoConfirm)
     {
         $quiz->setIsChecked(true);
         $quiz->setIsActive(true);
+        $quiz->setCheckedBy($whoConfirm);
         $this->em->flush();
     }
 
     public function denyQuiz(Quiz $quiz, Violation $violation)
     {
-        // TODO: Delete quiz image
         $this->em->remove($quiz);
 
         $this->fileUploader->removeImage(
@@ -43,6 +44,8 @@ class ModerService
         );
 
         $user = $quiz->getUser();
+
+        $this->removeUnckeckedQuizes($user);
 
         $violationAct = new ViolationAct();
         $violationAct->setViolation($violation);
@@ -64,5 +67,15 @@ class ModerService
         }
 
         $this->em->flush();
+    }
+
+    private function removeUnckeckedQuizes(User $user)
+    {
+        $uncheckedQuizes = $this->em->getRepository(Quiz::class)
+            ->findBy(['user' => $user, 'isChecked' => false]);
+
+        foreach ($uncheckedQuizes as $quiz) {
+            $this->em->remove($quiz);
+        }
     }
 }

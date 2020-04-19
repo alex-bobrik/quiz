@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\SearchAdminType;
+use App\Form\SimpleSearchType;
 use App\Service\AdminService;
 use App\Service\UserService;
 use Knp\Component\Pager\PaginatorInterface;
@@ -42,7 +42,7 @@ class UserController extends AbstractController
                 ->getQuery();
         }
 
-        $searchForm = $this->createForm(SearchAdminType::class, ['query' => $q]);
+        $searchForm = $this->createForm(SimpleSearchType::class, ['query' => $q]);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted()) {
             $query = $searchForm->get('query')->getData();

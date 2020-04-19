@@ -100,6 +100,11 @@ class User implements UserInterface
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Quiz", mappedBy="checkedBy")
+     */
+    private $checkedQuizzes;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -108,6 +113,7 @@ class User implements UserInterface
         $this->quizzes = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->violationActs = new ArrayCollection();
+        $this->checkedQuizzes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -425,5 +431,36 @@ class User implements UserInterface
         }
 
         return ($totalTime / $amountOfGames) * 1000;
+    }
+
+    /**
+     * @return Collection|Quiz[]
+     */
+    public function getCheckedQuizzes(): Collection
+    {
+        return $this->checkedQuizzes;
+    }
+
+    public function addCheckedQuiz(Quiz $checkedQuiz): self
+    {
+        if (!$this->checkedQuizzes->contains($checkedQuiz)) {
+            $this->checkedQuizzes[] = $checkedQuiz;
+            $checkedQuiz->setCheckedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCheckedQuiz(Quiz $checkedQuiz): self
+    {
+        if ($this->checkedQuizzes->contains($checkedQuiz)) {
+            $this->checkedQuizzes->removeElement($checkedQuiz);
+            // set the owning side to null (unless already changed)
+            if ($checkedQuiz->getCheckedBy() === $this) {
+                $checkedQuiz->setCheckedBy(null);
+            }
+        }
+
+        return $this;
     }
 }

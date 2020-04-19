@@ -1,18 +1,87 @@
-{% extends 'base.html.twig' %}
+{% extends 'moder_base.html.twig' %}
 
-{% block title %}Hello ModerController!{% endblock %}
+{% block title %}Викторины{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+
+{% endblock %}
 
 {% block body %}
 
+    <style>
+        .search {
+            display: flex;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .search-input {
+            width: 100%;
+        }
+    </style>
+
     <div class="container">
-        {% for quiz in quizes %}
-            <div>
-                {{ quiz.name }}
+        {{ form_start(searchForm) }}
+        <div class="search">
+            <div class="search-input">
+                {{ form_widget(searchForm.query, {
+                    'required': false,
+                    'attr': {
+                        'placeholder': 'Поиск по названию',
+                    }
+                }) }}
             </div>
-            <div>
-                <a href="{{ path('moder_quizes_info', {'id': quiz.id}) }}">check</a>
+            <div class="search-submit">
+                {{ form_widget(searchForm.submit) }}
+
             </div>
-        {% endfor %}
+        </div>
+
+        {{ form_end(searchForm) }}
+
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">{{ knp_pagination_sortable(quizes, 'Викторина', ['q.name']) }}</th>
+                <th scope="col"></th>
+                <th scope="col">Автор</th>
+                <th scope="col">{{ knp_pagination_sortable(quizes, 'Дата создания', ['q.created']) }}</th>
+                <th scope="col">Количество вопросов</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for quiz in quizes %}
+                <tr>
+                    <td>
+                        {{ quiz.name }}
+                    </td>
+                    <td>
+                        <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image" width="100px" height="100px">
+                    </td>
+                    <td>
+                        <a href="{{ path('app.profile.info', {'nickname': quiz.user.nickname}) }}">
+                            {{ quiz.user.nickname }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ quiz.created.format('d/m/Y H:i:s') }}
+                    </td>
+                    <td>
+                        {{ quiz.questions.count }}
+                    </td>
+                    <td>
+                        <a href="{{ path('moder_quizes_info', {'id': quiz.id})}}" class="btn btn-primary">Проверить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(quizes) }}
+        </div>
     </div>
 
 {% endblock %}

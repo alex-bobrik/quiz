@@ -20,7 +20,7 @@ class DenyQuizType extends AbstractType
                 'choice_label' => 'name',
                 'mapped' => true,
                 'multiple' => false,
-                'attr' => ['class'=> 'form-control']
+                'attr' => ['class'=> 'selectpicker form-control', 'data-live-search'=>'true']
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Submit',

@@ -1,54 +1,115 @@
-{% extends 'base.html.twig' %}
+{% extends 'moder_base.html.twig' %}
 
-{% block title %}Hello ModerController!{% endblock %}
+{% block title %}Проверка викторины{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="{{ asset('css/moder-quiz-check.css') }}">
+{% endblock %}
 
 {% block body %}
 
-    <div class="container">
-{#        <a href="{{ path('moder_quiz_deny', {'id': quiz.id}) }}" class="btn btn-danger">Deny</a>#}
-        <a href="{{ path('moder_quiz_confirm', {'id': quiz.id}) }}" class="btn btn-success">Confirm</a>
-        <p>Quiz: {{ quiz.name }}, author {{ quiz.user.username }}</p>
-        <p>Question:</p>
-        {% for question in questions %}
-            <h5>{{ question.question.text }}</h5>
-                {% for answer in question.question.answers %}
-                    <p>{{ answer.text }}</p>
-                {% endfor %}
-        {% endfor %}
-    </div>
+<div class="container">
+    <div class="content">
+        <div class="quiz-info">
+            <div class="quiz-name-image-center">
+                <div class="quiz-image">
+                    <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image" width="200px" height="200px">
+                </div>
 
-    <div class="navigation">
-        {{ knp_pagination_render(questions) }}
-    </div>
-
-    <!-- Кнопка запуска модального окна -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Deny
-    </button>
-
-    <!-- Модальное окно -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Violation select</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                <div class="quiz-name">
+                    <p>
+                        {{ quiz.name }}
+                    </p>
+                </div>
+            </div>
+            <div class="quiz-author">
+                <b>Автор:</b> <a href="{{ path('app.profile.info', {'nickname': quiz.user.nickname}) }}">{{ quiz.user.nickname }}</a>
+            </div>
+            <div class="quiz-time-limit">
+                {% if quiz.isTimeLimited %}
+                    <b>Ограничена по времени</b>
+                {% else %}
+                    <b>Не ограничена по времени</b>
+                {% endif %}
+            </div>
+            <div class="questions-amount">
+                <b>Количество вопросов: </b>{{ quiz.questions.count }}
+            </div>
+            <div class="quiz-category">
+                <b>Категория:</b> {{ quiz.quizCategory.name }}
+            </div>
+            <div class="quiz-description">
+                <p>
+                    <b>Описание: </b> {{ quiz.description }}
+                </p>
+            </div>
+        </div>
+        <div class="quiz-questions">
+            <div class="check-buttons">
+                <div class="button-confirm">
+                    <a href="{{ path('moder_quiz_confirm', {'id': quiz.id}) }}" class="btn btn-success " id="button-confirm">
+                        Подтвердить
+                    </a>
+                </div>
+                <div class="button-deny">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                        Отклонить
                     </button>
-{#                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>#}
                 </div>
-                {{ form_start(form) }}
-                <div class="modal-body">
-                {{ form_widget(form.violation) }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-{#                    <button type="button" class="btn btn-primary">Save changes</button>#}
-                    {{ form_widget(form.submit) }}
-                </div>
-                {{ form_end(form) }}
+
+            </div>
+            <div class="question">
+                {% for quizQuestion in questions %}
+                    <p class="question-name text-center">Вопрос: {{ quizQuestion.question.text }}</p>
+                    {% for answer in quizQuestion.question.answers %}
+                        <div class="answer">
+                            <div class="answer-isCorrect">
+                                {% if answer.isCorrect %}
+                                    <p class="correct-answer">✓</p>
+                                {% else %}
+                                    <p> </p>
+                                {% endif %}
+                            </div>
+                            <div class="answer-text">
+                                {{ answer.text }}
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>
+    <div class="navigation">
+        {{ knp_pagination_render(questions) }}
+    </div>
+</div>
+
+
+{# Modal for quiz deny #}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Регистрация нарушения</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{ form_start(form) }}
+            <div class="modal-body">
+            {{ form_widget(form.violation) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                {{ form_widget(form.submit, {
+                    'label': 'Сохранить',
+                }) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

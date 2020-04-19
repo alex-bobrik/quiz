@@ -39,6 +39,12 @@ class GameController extends AbstractController
         $categories = $request->get('categories');
         $timeLimit = $request->get('limit');
 
+        /** @var User $user */
+        $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
+        if (!$user->getIsActive()) {
+            return $this->redirectToRoute('app_logout');
+        }
+
         $categories = $this->getDoctrine()->getRepository(QuizCategory::class)->findBy(['id' => $categories]);
 
         $quizesQuery = $quizService->search($query, $categories, $timeLimit);

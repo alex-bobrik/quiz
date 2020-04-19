@@ -1,0 +1,28 @@
+{% extends 'moder_base.html.twig' %}
+
+{% block title %}Правила проверки викторин{% endblock %}
+
+{% block body %}
+
+    <style>
+        .rule {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <div class="container">
+        {% for rule in violations %}
+            <div class="rule">
+                <div class="rule-name">
+                    <h3>{{ rule.name }}</h3>
+                </div>
+                <div class="rule-description">
+                    <p class="text-justify">
+                        {{ rule.description }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -86,6 +86,11 @@ class Quiz
      */
     private $isTimeLimited;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="checkedQuizzes")
+     */
+    private $checkedBy;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -310,6 +315,18 @@ class Quiz
     public function setIsTimeLimited(?bool $isTimeLimited): self
     {
         $this->isTimeLimited = $isTimeLimited;
+
+        return $this;
+    }
+
+    public function getCheckedBy(): ?User
+    {
+        return $this->checkedBy;
+    }
+
+    public function setCheckedBy(?User $checkedBy): self
+    {
+        $this->checkedBy = $checkedBy;
 
         return $this;
     }

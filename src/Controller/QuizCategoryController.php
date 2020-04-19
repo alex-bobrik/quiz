@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Quiz;
 use App\Entity\QuizCategory;
 use App\Form\QuizCategoryType;
-use App\Form\SearchAdminType;
+use App\Form\SimpleSearchType;
 use App\Service\QuizService;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,7 +40,7 @@ class QuizCategoryController extends AbstractController
                 ->getQuery();
         }
 
-        $searchForm = $this->createForm(SearchAdminType::class, ['query' => $q]);
+        $searchForm = $this->createForm(SimpleSearchType::class, ['query' => $q]);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted()) {
             $query = $searchForm->get('query')->getData();

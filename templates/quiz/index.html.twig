@@ -40,8 +40,10 @@
             <tr>
                 <th scope="col">{{ knp_pagination_sortable(quizes, 'Викторина', ['q.name']) }}</th>
                 <th scope="col"></th>
+                <th scope="col">Автор</th>
                 <th scope="col">Количество вопросов</th>
                 <th>{{ knp_pagination_sortable(quizes, 'Дата создания', ['q.created']) }}</th>
+                <th scope="col">Кем проверена</th>
                 <th>{{ knp_pagination_sortable(quizes, 'Статус', ['q.isActive']) }}</th>
             </tr>
             </thead>
@@ -54,8 +56,18 @@
                     <td>
                         <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image" width="100px" height="100px">
                     </td>
+                    <td>
+                        <a href="{{ path('app.profile.info', {'nickname': quiz.user.nickname}) }}" class="text-decoration-none">
+                            {{ quiz.user.nickname }}
+                        </a>
+                    </td>
                     <td>{{ quiz.questions.count }}</td>
                     <td>{{ quiz.created.format('d/m/Y H:i:s') }}</td>
+                    <td>
+                        <a href="{{ path('admin_users_show') }}?q={{ quiz.checkedBy.nickname }}" class="text-decoration-none">
+                            {{ quiz.checkedBy.nickname }}
+                        </a>
+                    </td>
                     <td>
                         {% if quiz.isActive %}
                             <a href="{{ path('admin_quiz_change-status', {'quizId': quiz.id}) }}" class="btn btn-success">Активна</a>
