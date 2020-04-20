@@ -16,23 +16,23 @@ $(document).ready(function () {
         return o;
     };
 
-    function checkValidation(){
-        let checkboxesAmount = $("[type='checkbox']:checked").length;
-        if (checkboxesAmount > 1) {
-            alert('There can only be one correct answer');
-            return false;
-        } else if (checkboxesAmount === 0) {
-            alert('Choose the correct answer');
-            return false;
-        }
-
-        return true;
-    }
+    // function checkValidation(){
+    //     let checkboxesAmount = $("[type='checkbox']:checked").length;
+    //     if (checkboxesAmount > 1) {
+    //         alert('There can only be one correct answer');
+    //         return false;
+    //     } else if (checkboxesAmount === 0) {
+    //         alert('Choose the correct answer');
+    //         return false;
+    //     }
+    //
+    //     return true;
+    // }
 
     $("#send").click(function () {
 
-        if(!checkValidation())
-            return false;
+        // if(!checkValidation())
+        //     return false;
 
         let form = $("#question_form");
         let data = form.serializeObject();

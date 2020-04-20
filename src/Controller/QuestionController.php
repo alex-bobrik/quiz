@@ -14,31 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-//    /**
-//     * @Route("/admin/questions", name="admin_questions_show")
-//     * @param PaginatorInterface $paginator
-//     * @param Request $request
-//     * @return Response
-//     */
-//    public function showAllQuestions(PaginatorInterface $paginator, Request $request): Response
-//    {
-//        $questionsRepository = $this->getDoctrine()->getRepository(Question::class);
-//
-//        $questionsQuery = $questionsRepository->createQueryBuilder('q')
-//            ->getQuery();
-//
-//        $questions = $paginator->paginate(
-//            $questionsQuery,
-//            $request->query->getInt('page', 1),
-//            7
-//        );
-//
-//        return $this->render('question/index.html.twig', [
-//            'controller_name' => 'QuestionController',
-//            'questions' => $questions,
-//        ]);
-//    }
-
     /**
      * @Route("/admin/questions/{id}", name="admin_question_info", requirements={"id"="\d+"})
      * @param EntityManagerInterface $em

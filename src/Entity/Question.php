@@ -21,12 +21,11 @@ class Question
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Can't be blank.")
      * @Assert\Length(
      *     min="5",
      *     max="50",
-     *     minMessage="Min {{ limit }} characters.",
-     *     maxMessage="Max {{ limit }} characters."
+     *     minMessage="Минимум {{ limit }} символов",
+     *     maxMessage="Максимум {{ limit }} символов"
      * )
      */
     private $text;

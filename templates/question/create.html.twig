@@ -2,19 +2,24 @@
 
 {% block title %}Create Question{% endblock %}
 
+
 {% block body %}
 
     <link rel="stylesheet" href="{{ asset('css/question-answers.css') }}">
 
-    {{ form_start(form) }}
 
+    {{ form_start(form) }}
     <div class="container">
         <div class="question-block">
             <div>
                 <div>
-                    {{ form_row(form.text) }}
+                    {{ form_row(form.text, {
+                        'label': 'Вопрос',
+                        'attr': {
+                            'placeholder': false,
+                        }
+                    }) }}
                 </div>
-
                 <div class="answers-block">
                     <ul class="list-group">
                         <ul id="type-fields-list" class="list-group"
@@ -23,7 +28,6 @@
                             data-widget-counter="{{ form.answers|length }}">
                             {% for answer in form.answers %}
                                 <li class="list-group-item">
-                                    {{ form_errors(answer) }}
                                     {{ form_widget(answer) }}
                                 </li>
                             {% endfor %}
@@ -32,19 +36,18 @@
                         <div class="add-answer-block">
                             <button type="button"
                                     class="add-another-collection-widget btn btn-info"
-                                    data-list-selector="#type-fields-list">Add answer
+                                    data-list-selector="#type-fields-list">Добавить ответ
                             </button>
                         </div>
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="submit-block">
-            {{ form_widget(form.submit, {
-                'attr': {'class': 'btn btn-success'},
-            }) }}
-{#            <a href="{{ path('admin_questions_show') }}" class="btn btn-outline-dark">Back</a>#}
+            <div class="submit-block">
+                {{ form_widget(form.submit, {
+                    'label': 'Сохранить вопрос',
+                    'attr': {'class': 'btn btn-success'},
+                }) }}
+            </div>
         </div>
     </div>
 

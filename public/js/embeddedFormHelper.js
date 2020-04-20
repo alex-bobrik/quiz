@@ -45,11 +45,8 @@ $(document).ready(function () {
             return false;
         } else {
             let checkboxesAmount = $("[type='checkbox']:checked").length;
-            if (checkboxesAmount > 1) {
-                alert('There can only be 1 correct answer');
-                return false;
-            } else if (checkboxesAmount === 0) {
-                alert('Choose correct answer');
+            if (checkboxesAmount < 1) {
+                alert('Хотя бы один ответ должен быть правильным');
                 return false;
             } else {
                 return true;

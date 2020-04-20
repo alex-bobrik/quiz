@@ -16,7 +16,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('text', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control',

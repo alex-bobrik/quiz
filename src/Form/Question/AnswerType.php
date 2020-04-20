@@ -17,11 +17,11 @@ class AnswerType extends AbstractType
         $builder
             ->add('text', TextareaType::class, [
                 'required' => true,
+                'label' => false,
                 'attr' => ['class' => 'form-control answer-input',
                     'maxLength' => 250,
-                    'placeholder' => 'Answer',
+                    'placeholder' => 'Ответ (max 250)',
                     ],
-                'label' => false,
             ])
             ->add('isCorrect', CheckboxType::class, [
                 'attr' => ['class' => 'checkbox-sized',
