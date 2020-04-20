@@ -16,6 +16,7 @@ class QuizQuestionType extends AbstractType
     {
         $builder
             ->add('question', EntityType::class, [
+                'label' => 'Вопрос',
                 'class' => Question::class,
                 'query_builder' => function (EntityRepository $er) use ($options) {
                         return $er->createQueryBuilder('q')

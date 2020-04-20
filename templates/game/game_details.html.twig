@@ -52,7 +52,11 @@
                         </div>
                         <div class="quiz-description">
                             <p class="text-justify">
-                                {{ quiz.description }}
+                                {% if quiz.description %}
+                                    {{ quiz.description }}
+                                {% else %}
+                                    <i>Описание отсутствует</i>
+                                {% endif %}
                             </p>
                         </div>
                         <div class="quiz-share">

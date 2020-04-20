@@ -27,6 +27,7 @@ class QuizType extends AbstractType
                 'label' => 'Название викторины',
                 'attr' => [
                     'class' => 'form-control',
+                    'maxlength' => 50,
                 ]
             ])
             ->add('isTimeLimited', CheckboxType::class, [
@@ -40,6 +41,8 @@ class QuizType extends AbstractType
                 'label' => 'Описание',
                 'attr' => [
                     'class' => 'form-control',
+                    'maxlength' => 500,
+                    'placeholder' => 'Max 500'
                 ]
             ])
             ->add('image', FileType::class, [
@@ -66,7 +69,7 @@ class QuizType extends AbstractType
                 'choice_label' => 'name',
                 'mapped' => true,
                 'multiple' => false,
-                'attr' => ['class'=> 'form-control']
+                'attr' => ['class'=> 'selectpicker form-control', 'data-live-search'=>'true']
             ])
             ->add('questions', CollectionType::class, [
                 'entry_type' => QuizQuestionType::class,

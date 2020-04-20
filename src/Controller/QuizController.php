@@ -88,7 +88,15 @@ class QuizController extends AbstractController
     public function createQuiz(QuizService $quizService, Request $request): Response
     {
         $quiz = new Quiz();
+
+        /** @var User $user */
         $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
+
+        // Redirect to question creating if user dont have at least 1 question
+        if (!$user->getQuestions()->count()) {
+            $this->addFlash('info', 'Чтобы создать викторину, добавьте хотя бы один вопрос');
+            return $this->redirectToRoute('admin_questions_create');
+        }
 
         $quiz->setUser($user);
 

@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#question_form').submit(function () {
         let anwsersAmount = $("#type-fields-list").children().length;
         if (anwsersAmount < 1) {
-            alert('Add at least 1 answer');
+            alert('Добавьте хотя бы 1 ответ');
             return false;
         } else {
             let checkboxesAmount = $("[type='checkbox']:checked").length;
@@ -61,7 +61,7 @@ $(document).ready(function () {
     $('#quiz_form').submit(function () {
         let questionsAmount = $("#type-fields-list").children().length;
         if (questionsAmount === 0) {
-            alert('Add at least 1 question for quiz');
+            alert('Добавьте хотя бы 1 вопрос');
             return false;
         } else {
             return true;

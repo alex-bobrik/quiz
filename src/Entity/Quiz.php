@@ -25,8 +25,8 @@ class Quiz
      * @Assert\Length(
      *     min="5",
      *     max="50",
-     *     minMessage="Min {{ limit }} characters.",
-     *     maxMessage="Max {{ limit }} characters"
+     *     minMessage="Минимум {{ limit }} символов",
+     *     maxMessage="Максимум {{ limit }} символов"
      * )
      */
     private $name;
@@ -77,7 +77,7 @@ class Quiz
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $description;
 
