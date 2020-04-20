@@ -103,6 +103,8 @@ class QuizController extends AbstractController
         $form = $this->createForm(QuizType::class, $quiz, ['user' => $user]);
 
         $form->handleRequest($request);
+        if ($form->isSubmitted() && !$form->get('image')->isValid()) {
+            $this->addFlash('danger', 'Ошибка загрузки файла');}
         if ($form->isSubmitted() && $form->isValid()) {
             $quiz = $form->getData();
             $quizService->saveQuiz($quiz);

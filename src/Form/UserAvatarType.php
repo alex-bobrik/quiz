@@ -19,7 +19,6 @@ class UserAvatarType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'accept' => "image/jpeg, image/png",
-//                    'class' => 'form-control',
                 ],
                 'constraints' => [
                     new File([
