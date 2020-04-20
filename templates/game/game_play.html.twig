@@ -1,6 +1,6 @@
 {% extends 'user_base.html.twig' %}
 
-{% block title %}Game Play{% endblock %}
+{% block title %}Игра{% endblock %}
 
 {% block javascripts %}
 
@@ -28,28 +28,40 @@
         });
     </script>
 
+    <link rel="stylesheet" href="{{ asset('css/game-play.css') }}">
+
 {% endblock %}
 
-
-
 {% block body %}
+
     <link rel="stylesheet" href="{{ asset('css/question-answers.css') }}">
 
-    <div class="container">
+    <div class="container question">
+        {% if timeLimit %}
+            <div class="time-limit">
+                <div class="limit-value">
+                    <p id="timer"></p>
+                </div>
+            </div>
+        {% endif %}
+
         {{ form_start(form, {
             'action': path('game_play',{'gameId': game.id}),
             'attr':{novalidate:'novalidate'},
         }) }}
         <div class="container question-text">
-            {{ form_widget(form.text, {
+            <p class="text-center">Вопрос №{{ currentQuestionNumber }} (из {{ game.quiz.questions.count }})</p>
+            <div class="text-center">
+                <a type="button" onclick="playQuestion()">
+                    <img src="{{ asset('images/speaker.svg') }}" alt="speak" width="30px" height="30px">
+                </a>
+            </div>
+            {{ form_row(form.text, {
                     'attr': {'class': 'form-control-plaintext text-center shadow-none',
                     'autocomplete': 'off',
                     'readonly': true,
                 }
             }) }}
-            <div>
-                <input type="button" value="Play" onclick="playQuestion()">
-            </div>
         </div>
         <div class="row">
             <div class="answers col-md-12">
@@ -66,10 +78,12 @@
                                     'readonly': true,
                                 }
                             }) }}
-                            <div>
-                                <input type="button" value="Play" onclick="playAnswer({{ loop.index }})">
-                                <input type="button" value="Stop" onclick="synth.cancel()">
-                            </div>
+
+                        </div>
+                        <div class="answer-speak">
+                            <a type="button" onclick="playAnswer({{ loop.index }})">
+                                <img src="{{ asset('images/speaker.svg') }}" alt="speak" width="45px" height="45px">
+                            </a>
                         </div>
                     </div>
                 {% endfor %}
@@ -81,16 +95,14 @@
                 <span id="result" class="font-weight-light"></span>
             </div>
         </div>
+        <div class="container-submit">
+            <input type="button" id="send" value="Ответить" class="btn btn-primary">
+            <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-success disabled">Следующий >></a>
+        </div>
     </div>
-    <div class="container">
-        <input type="button" id="send" value="Send answer" class="btn btn-primary">
-        <a href="{{ path('game_play', {'gameId': game.id}) }}" id="next" class="btn btn-primary disabled">Next >></a>
-    </div>
-
     {{ form_widget(form.submit, {
         'attr': {'disabled': true, 'hidden': true},
     }) }}
-
     <div class="container">
         <input type="hidden" id="game_id" value="{{ game.id }}">
         <input type="hidden" id="question_id" value="{{ question.id }}">
@@ -98,11 +110,8 @@
 
     {{ form_end(form) }}
 
-    {# TIMER #}
-
+    {# Timer script #}
     {% if timeLimit %}
-        <p id="timer"></p>
-
         <script>
             // Set the date we're counting down to
             var countDownDate =
@@ -138,29 +147,23 @@
                         dataType: 'json',
                         success:function(){
                             $('#next').removeClass('disabled');
-                            document.getElementById("next").innerText = 'End';
-                            // alert('game is end')
+                            document.getElementById("next").innerText = 'Закончить игру';
                         }
                     });
-                    document.getElementById("result").innerHTML = "EXPIRED";
+                    $(".result").addClass("wrong-answer");
+                    document.getElementById("result").innerHTML = "ВРЕМЯ ИСТЕКЛО";
                     document.getElementById("timer").innerHTML = null;
                 }
             }, 1000);
         </script>
-
-
     {% endif %}
-
-    {# END TIMER #}
 
 
     <script src="{{ asset('js/recognition.js') }}"></script>
     <script>
         function playAnswer(index) {
             index = index - 1;
-            // console.log(index);
             let text = $('#question_answers_'+index+'_text').val();
-            // console.log(text);
             speak(text);
         }
 

@@ -25,9 +25,9 @@ function populateVoiceList() {
         const option = document.createElement('option');
         option.textContent = voices[15].name + ' (' + voices[15].lang + ')';
 
-        if (voices[15].default) {
-            option.textContent += ' -- DEFAULT';
-        }
+        // if (voices[15].default) {
+        //     option.textContent += ' -- DEFAULT';
+        // }
 
         option.setAttribute('data-lang', voices[15].lang);
         option.setAttribute('data-name', voices[15].name);

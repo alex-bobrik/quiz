@@ -174,6 +174,7 @@ class GameController extends AbstractController
             'question' => $question,
             'form' => $form->createView(),
             'timeLimit' => $timeLimit,
+            'currentQuestionNumber' => $game->getQuestionNumber(),
         ]);
     }
 

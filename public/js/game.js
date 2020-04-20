@@ -16,23 +16,20 @@ $(document).ready(function () {
         return o;
     };
 
-    // function checkValidation(){
-    //     let checkboxesAmount = $("[type='checkbox']:checked").length;
-    //     if (checkboxesAmount > 1) {
-    //         alert('There can only be one correct answer');
-    //         return false;
-    //     } else if (checkboxesAmount === 0) {
-    //         alert('Choose the correct answer');
-    //         return false;
-    //     }
-    //
-    //     return true;
-    // }
+    function checkValidation(){
+        let checkboxesAmount = $("[type='checkbox']:checked").length;
+        if (checkboxesAmount === 0) {
+            alert('Выберите хотя бы 1 правильный ответ');
+            return false;
+        }
+
+        return true;
+    }
 
     $("#send").click(function () {
 
-        // if(!checkValidation())
-        //     return false;
+        if(!checkValidation())
+            return false;
 
         let form = $("#question_form");
         let data = form.serializeObject();
@@ -40,7 +37,7 @@ $(document).ready(function () {
         let btnNext = $("#next");
 
         $(this).prop("disabled", true);
-        $(this).val("Wait...");
+        $(this).val("Подождите...");
 
         $.ajax({
             url: '/games/play/' + gameId,
@@ -52,15 +49,15 @@ $(document).ready(function () {
                 if (data === "CORRECT")
                 {
                     $(".result").addClass("correct-answer");
-                    $("#result").text("CORRECT");
+                    $("#result").text("ВЕРНО");
                 }else
                 {
                     $(".result").addClass("wrong-answer");
-                    $("#result").text("INCORRECT");
+                    $("#result").text("НЕВЕРНО");
                 }
 
                 btnNext.removeClass("disabled");
-                $("#send").val('Send answer');
+                $("#send").val('Ответить');
             }
         });
     });

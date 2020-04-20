@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/question-answers.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/question-answers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/quizes-questions_admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quizes-questions_admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/embeddedFormHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/embeddedFormHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/game.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Question/AnswerType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Question/AnswerType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Question/QuestionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Question/QuestionType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/recognition.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/recognition.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/game/game_play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_play.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +219,7 @@
       <workItem from="1586885102353" duration="8691000" />
       <workItem from="1586940633847" duration="76053000" />
       <workItem from="1587130802666" duration="15223000" />
-      <workItem from="1587210222825" duration="36463000" />
+      <workItem from="1587210222825" duration="41091000" />
     </task>
     <servers />
   </component>
