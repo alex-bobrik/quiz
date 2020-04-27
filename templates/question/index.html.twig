@@ -1,25 +1,32 @@
-{% extends 'admin_base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Questions{% endblock %}
 
 {% block body %}
+
+    <style>
+        .question-buttons {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
     <div class="container">
         <div class="question-buttons">
-            <a href="{{ path('admin_questions_create') }}" class="btn btn-primary">New question</a>
+            <a href="{{ path('questions_create') }}" class="btn btn-primary">Новый вопрос</a>
+            <a href="{{ path('quizes_create') }}" class="btn btn-info">Новая викторина</a>
         </div>
 
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">{{ knp_pagination_sortable(questions, 'Question', ['q.text']) }}</th>
-                <th scope="col">Action</th>
+                <th scope="col">{{ knp_pagination_sortable(questions, 'Вопрос', ['q.text']) }}</th>
             </tr>
             </thead>
             <tbody>
             {% for question in questions %}
                 <tr>
-                    <td><a href="{{ path('admin_question_info', {'id': question.id}) }}" class="text-decoration-none">{{ question.text }}</a></td>
-                    <td><a href="{{ path('admin_questions_update', {'id': question.id}) }}" class="text-decoration-none">Edit</a></td>
+                    <td><a href="{{ path('question_info', {'id': question.id}) }}" class="text-decoration-none">{{ question.text }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>

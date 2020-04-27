@@ -80,7 +80,7 @@ class QuizController extends AbstractController
     }
 
     /**
-     * @Route("/admin/quizes/create", name="admin_quizes_create")
+     * @Route("/quizes/create", name="quizes_create")
      * @param QuizService $quizService
      * @param Request $request
      * @return Response
@@ -95,7 +95,7 @@ class QuizController extends AbstractController
         // Redirect to question creating if user dont have at least 1 question
         if (!$user->getQuestions()->count()) {
             $this->addFlash('info', 'Чтобы создать викторину, добавьте хотя бы один вопрос');
-            return $this->redirectToRoute('admin_questions_create');
+            return $this->redirectToRoute('questions_create');
         }
 
         $quiz->setUser($user);
@@ -108,7 +108,7 @@ class QuizController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $quiz = $form->getData();
             $quizService->saveQuiz($quiz);
-            return $this->redirectToRoute('admin_quizes_show');
+            return $this->redirectToRoute('games_show');
         }
 
         return $this->render('quiz/create.html.twig', [

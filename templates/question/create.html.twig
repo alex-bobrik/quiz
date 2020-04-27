@@ -1,11 +1,19 @@
-{% extends 'admin_base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Create Question{% endblock %}
 
 
 {% block body %}
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/embeddedFormHelper.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/js/bootstrap-select.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/question-answers.css') }}">
+    <link rel="stylesheet" href={{ asset('css/global.css') }}>
+    <link rel="stylesheet" href={{ asset('css/quizes-questions_admin.css') }}>
+    <link rel="stylesheet" href={{ asset('js/embeddedFormHelper.js') }}>
 
 
     {{ form_start(form) }}
@@ -36,7 +44,7 @@
                         <div class="add-answer-block">
                             <button type="button"
                                     class="add-another-collection-widget btn btn-info"
-                                    data-list-selector="#type-fields-list">Добавить ответ
+                                    data-list-selector="#type-fields-list">Добавить ответ (max 30)
                             </button>
                         </div>
                     </ul>

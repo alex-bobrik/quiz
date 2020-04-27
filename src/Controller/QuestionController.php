@@ -6,6 +6,7 @@ use App\Entity\Question;
 use App\Form\Question\QuestionType;
 use App\Service\QuestionService;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/admin/questions/{id}", name="admin_question_info", requirements={"id"="\d+"})
+     * @Route("/questions", name="questions")
+     * @return Response
+     */
+    public function userQuestions(PaginatorInterface $paginator, Request $request): Response
+    {
+        $questionsRepository = $this->getDoctrine()->getRepository(Question::class);
+
+        $questionsQuery = $questionsRepository->createQueryBuilder('q')
+            ->select('q')
+            ->where('q.user = :user')
+            ->setParameter('user', $this->getUser())
+            ->getQuery();
+
+        $questions = $paginator->paginate(
+            $questionsQuery,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('question/index.html.twig', [
+            'controller_name' => 'QuestionController',
+            'questions' => $questions,
+        ]);
+    }
+
+    /**
+     * @Route("/questions/{id}", name="question_info", requirements={"id"="\d+"})
      * @param EntityManagerInterface $em
      * @param int $id
      * @return Response
@@ -23,6 +50,11 @@ class QuestionController extends AbstractController
     public function showQuestionInfo(EntityManagerInterface $em, int $id): Response
     {
         $question = $em->getRepository(Question::class)->find($id);
+
+        if ($question->getUser() != $this->getUser()) {
+            throw $this->createNotFoundException();
+        }
+
         $answers = $question->getAnswers();
 
         return $this->render('question/question_info.html.twig', [
@@ -33,7 +65,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/admin/questions/create", name="admin_questions_create")
+     * @Route("/questions/create", name="questions_create")
      *
      * @param QuestionService $questionService
      * @param Request $request
@@ -48,41 +80,10 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $question = $form->getData();
             $questionService->saveQuestion($question);
-            return $this->redirectToRoute('admin_question_info', array('id' => $question->getId()));
+            return $this->redirectToRoute('question_info', array('id' => $question->getId()));
         }
 
         return $this->render('question/create.html.twig', [
-            'controller_name' => 'QuestionController',
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/admin/questions/update/{id}", name="admin_questions_update", requirements={"id"="\d+"})
-     *
-     * @param QuestionService $questionService
-     * @param EntityManagerInterface $em
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function updateQuestion(QuestionService $questionService,
-                                   EntityManagerInterface $em,
-                                   Request $request,
-                                   int $id
-    ): Response
-    {
-        $question = $em->getRepository(Question::class)->find($id);
-        $form = $this->createForm(QuestionType::class, $question);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $question = $form->getData();
-            $questionService->saveQuestion($question);
-            return $this->redirectToRoute('admin_question_info', ['id' => $question->getId()]);
-        }
-
-        return $this->render('question/update.html.twig', [
             'controller_name' => 'QuestionController',
             'form' => $form->createView(),
         ]);

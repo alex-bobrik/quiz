@@ -1,13 +1,16 @@
-{% extends 'admin_base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Question Info{% endblock %}
 
 {% block body %}
     <div class="container">
         <div>
+            <div class="question-buttons">
+                <a href="{{ path('questions_create') }}" class="btn btn-primary">Новый вопрос</a>
+                <a href="{{ path('questions') }}" class="btn btn-info">Все вопросы</a>
+            </div>
             <div class="question-info">
                 <h4>Вопрос: {{ question.text }}</h4>
-                <h4>Создал вопрос: <a href="{{ path('app.profile.info', {'nickname': question.user.nickname}) }}">{{ question.user.nickname }}</a></h4>
             </div>
         </div>
 

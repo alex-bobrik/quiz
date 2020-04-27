@@ -15,6 +15,13 @@
 </head>
 <body style="padding-top: 90px">
 {% block navbar %}
+
+    <style>
+        .create-quiz {
+            margin-right: 30px;
+        }
+    </style>
+
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{ path('games_show') }}">
                 <img src="{{ asset('images/logo.svg') }}" id="logo" alt="logo" width="50px" height="50px">
@@ -28,6 +35,9 @@
                     <a class="nav-item nav-link" href="{{ path('about') }}">О нас</a>
                 </div>
                 <div class="navbar-nav">
+                    <a href="{{ path('quizes_create') }}" class="btn btn-primary create-quiz">
+                        Создать
+                    </a>
                     <a href="{{ path('app.profile') }}" class="navbar-brand">
                         <img src="{{ asset('images/profile.svg') }}" alt="profile" width="30px" height="30px">
                     </a>
