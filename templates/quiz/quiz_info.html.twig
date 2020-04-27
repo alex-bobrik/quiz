@@ -17,7 +17,7 @@
             {% for question in questions %}
                 <tr>
                     <td>
-                        <a href="{{ path('admin_question_info', {'id': question.question.id}) }}" class="text-decoration-none">{{ question.question.text }}</a>
+                        {{ question.question.text }}
                     </td>
                     <td>
                         {{ question.question.answers.count }}

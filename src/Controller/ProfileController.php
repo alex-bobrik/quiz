@@ -26,12 +26,9 @@ class ProfileController extends AbstractController
      */
     public function index()
     {
-        if ($this->isGranted('ROLE_USER')) {
-            $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
-            return $this->redirectToRoute('app.profile.info', ['nickname' => $user->getNickname()]);
-        }
+        $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app.profile.info', ['nickname' => $user->getNickname()]);
     }
 
     /**

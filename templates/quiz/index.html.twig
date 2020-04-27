@@ -64,9 +64,14 @@
                     <td>{{ quiz.questions.count }}</td>
                     <td>{{ quiz.created.format('d/m/Y H:i:s') }}</td>
                     <td>
-                        <a href="{{ path('admin_users_show') }}?q={{ quiz.checkedBy.nickname }}" class="text-decoration-none">
-                            {{ quiz.checkedBy.nickname }}
-                        </a>
+                        {% if quiz.checkedBy %}
+                            <a href="{{ path('admin_users_show') }}?q={{ quiz.checkedBy.nickname }}" class="text-decoration-none">
+                                {{ quiz.checkedBy.nickname }}
+                            </a>
+                        {% else %}
+                            -
+                        {% endif %}
+
                     </td>
                     <td>
                         {% if quiz.isActive %}
