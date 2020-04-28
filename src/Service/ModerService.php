@@ -45,8 +45,6 @@ class ModerService
 
         $user = $quiz->getUser();
 
-        $this->removeUnckeckedQuizes($user);
-
         $violationAct = new ViolationAct();
         $violationAct->setViolation($violation);
         $violationAct->setUser($user);
@@ -61,6 +59,7 @@ class ModerService
 
         if ($user->getViolationActs()->count() > 4) {
             $user->setIsActive(false);
+            $this->removeUnckeckedQuizes($user);
 
             $message = 'Вы были заблокированы на сервисе quiz.work за рецидив нарушений.';
             $this->mailSender->send('Блокировка', $user->getEmail(), $message);
