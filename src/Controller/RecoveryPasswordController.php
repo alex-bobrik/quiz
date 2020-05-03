@@ -8,6 +8,7 @@ use App\Form\RecoveryPasswordType;
 use App\Service\TokenGenerator;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +29,7 @@ class RecoveryPasswordController extends AbstractController
     ): Response
     {
        if ($this->getUser()){
-           throw $this->createNotFoundException('Access denied');
+           return $this->redirectToRoute('games_show');
        }
 
         $form = $this->createForm(RecoveryPasswordEmailType::class);
@@ -41,7 +42,7 @@ class RecoveryPasswordController extends AbstractController
                 ->findOneBy(['email' => $form->get('email')->getData()]);
 
             if (!$user) {
-                $this->addFlash('info', 'No user found with this email');
+                $this->addFlash('info', 'Не найдено пользователя с заданным email');
 
                 return $this->redirectToRoute('recovery_password');
             }
@@ -53,14 +54,14 @@ class RecoveryPasswordController extends AbstractController
             $em->flush();
 
             //generate and send messages to the mail
-            $message = (new \Swift_Message('Password recovery'))
+            $message = (new \Swift_Message('Восстановление пароля'))
                 ->setFrom('example@example.com')
                 ->setTo($user->getEmail())
-                ->setBody('http://quiz.test:90/recovery/' . $user->getToken());
+                ->setBody('http://quiz.work/recovery/' . $user->getToken());
 
             $mailer->send($message);
 
-            $this->addFlash('info', 'Email was send');
+            $this->addFlash('info', 'Сообщение отправлено');
 
             return $this->render('recovery_password/index.html.twig', [
                 'form' => $form->createView(),
@@ -89,6 +90,10 @@ class RecoveryPasswordController extends AbstractController
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->findOneBy(['token' => $token]);
+
+        if (!$user) {
+            throw $this->createNotFoundException();
+        }
 
         $form = $this->createForm(RecoveryPasswordType::class, $user);
 

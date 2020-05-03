@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
@@ -41,7 +42,7 @@ class RegistrationController extends AbstractController
                 ->findOneBy(['email' => $form->get('email')->getData()]);
 
             if ($user) {
-                $this->addFlash('info', 'User already exists');
+                $this->addFlash('info', 'Такой пользователь уже существует');
                 return $this->redirectToRoute('app_register');
             }
 
@@ -50,12 +51,12 @@ class RegistrationController extends AbstractController
             $userService->saveUser($passwordEncoder, $user);
 
             $mailSender->send(
-                'Profile verification',
+                'Подтверждение регистрации',
                 $user->getEmail(),
-                'http://quiz.test:90/register/verificate/' . $user->getToken()
+                'http://quiz.work/register/verificate/' . $user->getToken()
             );
 
-            $this->addFlash('info', 'Email was send');
+            $this->addFlash('info', 'Сообщение отправлено');
             return $this->redirectToRoute('app_register');
         }
 

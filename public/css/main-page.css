@@ -1,7 +1,7 @@
 .container-fluid {
     position: relative;
-    top: 30vh;
-    width: 100%;
+    top: 10vh;
+    width: 50%;
 }
 
 .info {
@@ -9,5 +9,5 @@
 }
 
 hr {
-    width: 15%;
+    width: 25%;
 }

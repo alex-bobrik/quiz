@@ -1,25 +1,74 @@
-{% extends 'base.html.twig' %}
+{% extends 'user_base.html.twig' %}
 
 {% block title %}Welcome!{% endblock %}
 
 {% block body %}
 
-    <head>
-        <link rel="stylesheet" href={{ asset('css/main-page.css') }}>
-    </head>
+    <link rel="stylesheet" href={{ asset('css/main-page.css') }}>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <style>
+        body {
+            background: url("{{ asset('images/background.jpg') }}");
+            background-size: cover;
+        }
+
+        .info {
+            border-radius: 15px;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+            padding: 20px;
+            left: 50%;
+            background-color: #FFFFFF;
+            opacity: 0.8;
+        }
+
+        .btn-play {
+            font-size: +30px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .no-account {
+            font-size: +40px;
+        }
+
+        .description {
+            font-size: 20px;
+        }
+
+        .about-time-system {
+            border-bottom: 1px dotted black;
+        }
+    </style>
+
 
     <div class="container-fluid">
         <div class="info">
-            <div class="description">
-                <p class="display-4">Welcome!</p>
+            <div>
+                <p class="description">
+                    Множество увлекательных <a href="{{ path('games_show') }}">викторин</a>, которые будут по душе любому игроку.
+                    У Вас есть возможность <a href="{{ path('quizes_create') }}">создать свою викторину</a> с блэк джеком и куртизанками, компоновать вопросы в викторине желаемым образом,
+                    а <span class="about-time-system" data-toggle="tooltip" data-placement="top" title="Система определения времени игры в викторину базируется на алгоритме подсчета количества символов во всей викторине, а также на средней скорости чтения человека.">
+                        система определения времени игры
+                    </span>
+                    в викторину избавит Вас от муторного выбора временного ограничения.
+                </p>
+                <a href="{{ path('games_show') }}" class="btn btn-success btn-play">Начните играть прямо сейчас!</a>
                 <hr>
-                <p class="font-weight-lighter">Prosto привет</p>
-                <p class="font-weight-lighter">Welcome to the my quiz.</p>
-                <p class="font-weight-lighter"><a href="{{ path('app_login') }}">{{ 'Login'|trans }}</a> to play games.</p>
-                <p class="font-weight-lighter">If you don't have an account, <a href="{{ path('app_register') }}">{{ 'Register'|trans }}</a>.</p>
-                <p class="font-weight-lighter">Go to games <a href="{{ path('games_show') }}">{{ 'Games'|trans }}</a>.</p>
-                <p class="font-weight-lighter">Are you admin? <a href="{{ path('admin_index') }}">Admin Panel</a>.</p>
+                <p class="no-account">Нет аккаунта?</p>
+                <a href="{{ path('app_register') }}" class="btn btn-primary">Зарегистрироваться</a>
             </div>
         </div>
     </div>
+
+
 {% endblock %}
