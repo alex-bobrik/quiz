@@ -7,9 +7,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+{#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"#}
+{#            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"#}
+{#            crossorigin="anonymous"></script>#}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -20,7 +20,6 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-    <script src="{{ asset('js/game.js') }}"></script>
 
     <script>
         $('input[type=checkbox]').each(function() {
@@ -171,5 +170,47 @@
             text = $('#question_text').val();
             speak(text);
         }
+    </script>
+
+
+    {# Answer sending script (can't create path on host) #}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="{{ asset('js/game.js') }}"></script>
+    <script>
+        $("#send").click(function () {
+
+            if(!checkValidation())
+                return false;
+
+            let form = $("#question_form");
+            let data = form.serializeObject();
+            let gameId = $("#game_id").val();
+            let btnNext = $("#next");
+
+            $(this).prop("disabled", true);
+            $(this).val("Подождите...");
+
+            $.ajax({
+                url: '{{ path('game_play', {'gameId': game.id}) }}',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success:function(data){
+
+                    if (data === "CORRECT")
+                    {
+                        $(".result").addClass("correct-answer");
+                        $("#result").text("ВЕРНО");
+                    }else
+                    {
+                        $(".result").addClass("wrong-answer");
+                        $("#result").text("НЕВЕРНО");
+                    }
+
+                    btnNext.removeClass("disabled");
+                    $("#send").val('Ответить');
+                }
+            });
+        });
     </script>
 {% endblock %}

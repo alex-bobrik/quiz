@@ -15,6 +15,7 @@ $(document).ready(function () {
         });
         return o;
     };
+});
 
     function checkValidation(){
         let checkboxesAmount = $("[type='checkbox']:checked").length;
@@ -25,43 +26,3 @@ $(document).ready(function () {
 
         return true;
     }
-
-    $("#send").click(function () {
-
-        if(!checkValidation())
-            return false;
-
-        let form = $("#question_form");
-        let data = form.serializeObject();
-        let gameId = $("#game_id").val();
-        let btnNext = $("#next");
-
-        $(this).prop("disabled", true);
-        $(this).val("Подождите...");
-
-        $.ajax({
-            url: '/games/play/' + gameId,
-            type: 'POST',
-            dataType: 'json',
-            data: data,
-            success:function(data){
-
-                if (data === "CORRECT")
-                {
-                    $(".result").addClass("correct-answer");
-                    $("#result").text("ВЕРНО");
-                }else
-                {
-                    $(".result").addClass("wrong-answer");
-                    $("#result").text("НЕВЕРНО");
-                }
-
-                btnNext.removeClass("disabled");
-                $("#send").val('Ответить');
-            }
-        });
-    });
-
-
-});
-
