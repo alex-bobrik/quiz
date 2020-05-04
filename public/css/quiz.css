@@ -1,3 +1,7 @@
+.navigation {
+    position: absolute;
+    left: 50%;
+}
 .quiz-wrap {
     background-color: #fff;
     border-radius: 10px;

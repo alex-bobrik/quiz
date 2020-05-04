@@ -1,23 +1,9 @@
-.navigation {
-    text-align: center;
-}
-
-.pagination {
-    display: inline-block;
-}
-
-.pagination > span {
-    margin-right: 10px;
-    font-size: large;
-}
-
 .font-weight-light {
     font-size: x-large;
 }
 
 .checkbox-sized {
-    margin: 20px;
-    margin-bottom: 50px;
+    margin: 20px 20px 50px;
     transform:scale(2.5);
     opacity:0.8;
     cursor:pointer;
