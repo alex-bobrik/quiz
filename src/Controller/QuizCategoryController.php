@@ -76,6 +76,12 @@ class QuizCategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
 
+            if ($quizService->isCategoryExists($category->getName())) {
+                $this->addFlash('danger', 'Такая категория уже существует');
+
+                return $this->redirectToRoute('admin_quiz-categories_create');
+            }
+
             $quizService->saveQuizCategory($category);
             $this->addFlash('success', 'Добавлена новая категория');
 

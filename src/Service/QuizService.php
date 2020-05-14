@@ -179,4 +179,17 @@ class QuizService
         return $quizesQuery->getQuery();
     }
 
+    public function isCategoryExists(string $category): bool
+    {
+        $quizCategory = $this->em
+            ->getRepository(QuizCategory::class)
+            ->findOneBy(['name' => $category]);
+
+        if ($quizCategory) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
