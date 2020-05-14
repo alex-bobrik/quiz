@@ -1,0 +1,51 @@
+{% extends 'user_base.html.twig' %}
+
+{% block title %}Ошибка{% endblock %}
+
+{% block body %}
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        body::after {
+            content: "";
+            background: url("{{ asset('images/logo.svg') }}") no-repeat center;
+            opacity: 0.3;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .error403 {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .text {
+            text-align: center;
+        }
+
+        .error-header {
+            color: red;
+        }
+    </style>
+
+    <div class="error403">
+        <div class="text">
+            <h1 class="error-header">403</h1>
+            <p>
+                Ошибка доступа. Попробуйте изменить текст запроса
+                или <a href="{{ path('home') }}">вернитесь на главную</a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
