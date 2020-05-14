@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +220,8 @@
       <workItem from="1588149335922" duration="666000" />
       <workItem from="1588499698207" duration="8725000" />
       <workItem from="1588603918442" duration="2213000" />
-      <workItem from="1589298273642" duration="1808000" />
+      <workItem from="1589298273642" duration="2450000" />
+      <workItem from="1589444090461" duration="114000" />
     </task>
     <servers />
   </component>
@@ -254,11 +255,11 @@
     </state>
     <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1676.902@0.0.1676.902" timestamp="1582409429889" />
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1587234727629" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1588756020283">
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1589303203570">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="617" y="206" key="FileChooserDialogImpl/0.0.1676.902@0.0.1676.902" timestamp="1582067878671" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1588756020283" />
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1589303203570" />
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog" timestamp="1586075901642">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

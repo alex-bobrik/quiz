@@ -26,11 +26,12 @@
                     {{ quiz.name }}
                 </p>
             </div>
-            <div class="quiz-rating">
-                <div class="rating">
-                    <div class="quiz-stars-rating" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating|round(2) }}"></div>
-                </div>
-            </div>
+            <hr width="25%">
+{#            <div class="quiz-rating">#}
+{#                <div class="rating">#}
+{#                    <div class="quiz-stars-rating" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating|round(2) }}"></div>#}
+{#                </div>#}
+{#            </div>#}
             {% if game is defined %}
                 <div class="game-question" title="Текущий вопрос викторины">
                     <div class="current-question">
