@@ -1,4 +1,14 @@
-<a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="quiz-wrap">
+{% if userCompleteQuizes is defined %}
+    {% if quiz in userCompleteQuizes %}
+<a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="quiz-wrap passed">
+    {% else %}
+    <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="quiz-wrap">
+        {% endif %}
+{% else %}
+    <a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="quiz-wrap">
+{% endif %}
+
+{#<a href="{{ path('games_details', {'quizId': quiz.id}) }}" class="quiz-wrap">#}
     <div class="quiz-data">
         <div class="quiz-image-wrapper">
             <div class="quiz-image">

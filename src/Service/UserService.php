@@ -85,4 +85,19 @@ class UserService
 
         return $unfinishedGames;
     }
+
+    public function getFinishedGames(User $user): ?array
+    {
+        $userGames = $user->getGames();
+
+        $userCompleteQuizes = array();
+
+        foreach ($userGames as $userGame) {
+            if ($userGame->getGameIsOver()) {
+                $userCompleteQuizes[] = $userGame->getQuiz();
+            }
+        }
+
+        return $userCompleteQuizes;
+    }
 }

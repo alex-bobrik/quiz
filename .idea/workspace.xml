@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/quiz.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quiz.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/game/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/quiz.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +226,7 @@
       <workItem from="1588499698207" duration="8725000" />
       <workItem from="1588603918442" duration="2213000" />
       <workItem from="1589298273642" duration="2450000" />
-      <workItem from="1589444090461" duration="114000" />
+      <workItem from="1589444090461" duration="2199000" />
     </task>
     <servers />
   </component>

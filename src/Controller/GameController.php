@@ -12,6 +12,7 @@ use App\Form\SearchQuizType;
 use App\Service\GameService;
 use App\Service\QuestionService;
 use App\Service\QuizService;
+use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +34,7 @@ class GameController extends AbstractController
      * @param RouterInterface $router
      * @return Response
      */
-    public function showGames(PaginatorInterface $paginator, Request $request, QuizService $quizService, RouterInterface $router): Response
+    public function showGames(UserService $userService, PaginatorInterface $paginator, Request $request, QuizService $quizService, RouterInterface $router): Response
     {
         $query = $request->get('q');
         $categories = $request->get('categories');
@@ -55,6 +56,7 @@ class GameController extends AbstractController
             32
         );
 
+        // Search form with input filed and categories
         $searchForm = $this->createForm(SearchQuizType::class, [
             'query' => $query,
             'categories' => $categories,
@@ -75,9 +77,13 @@ class GameController extends AbstractController
             return new RedirectResponse($router->generate('games_show', ['q' => $query, 'categories' => $categoriesId, 'limit' => $timeLimit]));
         }
 
+        // For edit quiz class on twig template (passed/not passed quiz)
+        $userCompleteQuizes = $userService->getFinishedGames($user);
+
         return $this->render('game/index.html.twig', [
             'controller_name' => 'GameController',
             'quizes' => $quizes,
+            'userCompleteQuizes' => $userCompleteQuizes,
             'searchForm' => $searchForm->createView(),
         ]);
     }
