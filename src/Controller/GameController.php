@@ -200,6 +200,10 @@ class GameController extends AbstractController
             throw $this->createNotFoundException('Quiz is not found');
         }
 
+        if (!$quiz->getIsActive()) {
+            throw $this->createNotFoundException();
+        }
+
         $leaders = $gameService->getLeaders($quiz);
         $userPosition = $gameService->getUserLeaderboardPosition($leaders);
 
