@@ -16,6 +16,7 @@
       <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/QuizCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizCategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/QuizService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/QuizService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/game/game_details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_details.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/question/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -19,7 +19,7 @@
                         <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image" width="200px" height="200px">
                         <div class="quiz-secondary-info">
                             <div class="quiz-rating">
-                                <div class="stars-rating-quiz" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating }}"></div>
+                                <div class="stars-rating-quiz" data-rating="{{ quiz.averageRating }}" title="Рейтинг: {{ quiz.averageRating|round(2) }}"></div>
                             </div>
                             <div class="questions-amount">
                                 <p>Вопросов: {{ quiz.questions.count }}</p>
