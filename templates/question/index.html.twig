@@ -9,6 +9,16 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
+        .search {
+            display: flex;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .search-input {
+            width: 100%;
+        }
     </style>
 
     <div class="container">
@@ -16,6 +26,23 @@
             <a href="{{ path('questions_create') }}" class="btn btn-primary">Новый вопрос</a>
             <a href="{{ path('quizes_create') }}" class="btn btn-info">Новая викторина</a>
         </div>
+
+        {{ form_start(searchForm) }}
+        <div class="search">
+            <div class="search-input">
+                {{ form_widget(searchForm.query, {
+                    'required': false,
+                    'attr': {
+                        'placeholder': 'Поиск по имени профиля и email',
+                    }
+                }) }}
+            </div>
+            <div class="search-submit">
+                {{ form_widget(searchForm.submit) }}
+
+            </div>
+        </div>
+        {{ form_end(searchForm) }}
 
         <table class="table table-hover">
             <thead class="thead-dark">

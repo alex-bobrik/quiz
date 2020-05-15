@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Question;
 use App\Form\Question\QuestionType;
+use App\Form\SimpleSearchType;
 use App\Service\QuestionService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 class QuestionController extends AbstractController
 {
@@ -19,15 +22,35 @@ class QuestionController extends AbstractController
      * @Route("/questions", name="questions")
      * @return Response
      */
-    public function userQuestions(PaginatorInterface $paginator, Request $request): Response
+    public function userQuestions(PaginatorInterface $paginator, Request $request, RouterInterface $router): Response
     {
         $questionsRepository = $this->getDoctrine()->getRepository(Question::class);
 
-        $questionsQuery = $questionsRepository->createQueryBuilder('q')
-            ->select('q')
-            ->where('q.user = :user')
-            ->setParameter('user', $this->getUser())
-            ->getQuery();
+        $q = $request->get('q');
+
+        if (!$q) {
+            $questionsQuery = $questionsRepository->createQueryBuilder('q')
+                ->select('q')
+                ->where('q.user = :user')
+                ->setParameter('user', $this->getUser())
+                ->getQuery();
+        } else {
+            $questionsQuery = $questionsRepository->createQueryBuilder('q')
+                ->select('q')
+                ->where('q.text like :text')
+                ->andWhere('q.user = :user')
+                ->setParameter('user', $this->getUser())
+                ->setParameter('text', '%'.$q.'%')
+                ->getQuery();
+        }
+
+        $searchForm = $this->createForm(SimpleSearchType::class, ['query' => $q]);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted()) {
+            $query = $searchForm->get('query')->getData();
+
+            return new RedirectResponse($router->generate('questions', ['q' => $query]));
+        }
 
         $questions = $paginator->paginate(
             $questionsQuery,
@@ -38,6 +61,7 @@ class QuestionController extends AbstractController
         return $this->render('question/index.html.twig', [
             'controller_name' => 'QuestionController',
             'questions' => $questions,
+            'searchForm' => $searchForm->createView(),
         ]);
     }
 
