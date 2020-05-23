@@ -3,12 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Question/QuestionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Question/QuestionType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/QuizCategoryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/QuizCategoryType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegisterType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegisterType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SearchQuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchQuizType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SimpleSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SimpleSearchType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ViolationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ViolationType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/question/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/question/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/question/question_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/question_info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz/quiz_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/quiz_info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_category/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_category/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/violation/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/violation/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/violation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +238,7 @@
       <workItem from="1589444090461" duration="2941000" />
       <workItem from="1589704836361" duration="126000" />
       <workItem from="1589704987032" duration="820000" />
-      <workItem from="1590218709611" duration="172000" />
+      <workItem from="1590218709611" duration="850000" />
     </task>
     <servers />
   </component>

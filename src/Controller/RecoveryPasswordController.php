@@ -81,10 +81,12 @@ class RecoveryPasswordController extends AbstractController
      * @param string $token
      * @return Response
      */
-    public function recoveryPasswordEnd(UserPasswordEncoderInterface $encoder,
-                                        Request $request,
-                                        UserService $userService,
-                                        string $token
+    public function recoveryPasswordEnd
+    (
+        UserPasswordEncoderInterface $encoder,
+        Request $request,
+        UserService $userService,
+        string $token
     ): Response
     {
         $user = $this->getDoctrine()
