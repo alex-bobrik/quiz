@@ -3,22 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/question_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/question_info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz/quiz_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/quiz_info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_category/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_category/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/violation/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/violation/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/violation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/moder_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moder_base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +226,8 @@
       <workItem from="1589444090461" duration="2941000" />
       <workItem from="1589704836361" duration="126000" />
       <workItem from="1589704987032" duration="820000" />
-      <workItem from="1590218709611" duration="850000" />
+      <workItem from="1590218709611" duration="1026000" />
+      <workItem from="1590224226034" duration="184000" />
     </task>
     <servers />
   </component>
@@ -263,20 +252,16 @@
     </state>
     <state x="534" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1676.902@0.0.1676.902" timestamp="1582389061483" />
     <state x="612" y="27" width="748" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1587284937712" />
-    <state x="567" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581439872725">
-      <screen x="0" y="0" width="1676" height="902" />
-    </state>
-    <state x="567" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1676.902@0.0.1676.902" timestamp="1581439872725" />
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589526776863">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1676.902@0.0.1676.902" timestamp="1582409429889" />
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1589526776863" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1589977643379">
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590219734132">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="617" y="206" key="FileChooserDialogImpl/0.0.1676.902@0.0.1676.902" timestamp="1582067878671" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1589977643379" />
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1590219734132" />
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog" timestamp="1586075901642">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
