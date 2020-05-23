@@ -20,6 +20,7 @@ class SearchQuizType extends AbstractType
                 'label' => '',
                 'required' => false,
                 'attr' => [
+                    'maxLength' => '50',
                 ]
             ])
             ->add('categories', EntityType::class, [

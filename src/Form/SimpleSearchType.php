@@ -17,6 +17,7 @@ class SimpleSearchType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'class' => 'form-control',
+                    'maxLength' => '250',
                 ]
             ])
             ->add('submit', SubmitType::class, [

@@ -20,6 +20,7 @@ class RegisterType extends AbstractType
                 'label' => 'Email',
                 'attr' => [
                     'placeholder' => 'Email',
+                    'maxLength' => '250',
                 ]
             ])
             ->add('plainPassword', RepeatedType::class, array(

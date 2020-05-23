@@ -19,12 +19,14 @@ class ViolationType extends AbstractType
                 'label' => 'Название',
                 'attr' => [
                     'class' => 'form-control',
+                    'maxLength' => '250',
                 ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Описание',
                 'attr' => [
                     'class' => 'form-control',
+                    'maxLength' => '250',
                 ]
             ])
             ->add('submit', SubmitType::class, [

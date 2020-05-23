@@ -21,6 +21,7 @@ class QuestionType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Question',
+                    'maxLength' => '250',
                 ]
             ])
             ->add('answers', CollectionType::class, [
