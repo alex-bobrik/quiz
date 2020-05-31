@@ -41,10 +41,37 @@
             </div>
             <div class="quiz-description">
                 <p>
-                    <b>Описание: </b> {{ quiz.description }}
+                    <b>Описание: </b>
+                    {% if quiz.description %}
+                        {{ quiz.description }}
+                    {% else %}
+                        <i>Описание отсутствует</i>
+                    {% endif %}
                 </p>
             </div>
         </div>
+
+        <style>
+            .check-buttons {
+                margin: 10px;
+                padding: 20px;
+                background-color: #FFFFFF;
+                border-radius: 15px;
+                height: 75px;
+            }
+
+            .question {
+                margin: 10px;
+                padding: 20px;
+                background-color: #FFFFFF;
+                border-radius: 15px;
+            }
+
+            .question-name {
+                word-break: break-word;
+            }
+        </style>
+
         <div class="quiz-questions">
             <div class="check-buttons">
                 <div class="button-confirm">
@@ -57,8 +84,8 @@
                         Отклонить
                     </button>
                 </div>
-
             </div>
+
             <div class="question">
                 {% for quizQuestion in questions %}
                     <p class="question-name text-center">Вопрос: {{ quizQuestion.question.text }}</p>
@@ -78,12 +105,15 @@
                         <hr>
                     {% endfor %}
                 {% endfor %}
+                <div class="navigation" style="text-align: center">
+                    {{ knp_pagination_render(questions) }}
+                </div>
             </div>
         </div>
     </div>
-    <div class="navigation">
-        {{ knp_pagination_render(questions) }}
-    </div>
+{#    <div class="navigation" style="margin-left: 25px">#}
+{#        {{ knp_pagination_render(questions) }}#}
+{#    </div>#}
 </div>
 
 

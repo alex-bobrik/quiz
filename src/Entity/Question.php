@@ -23,9 +23,7 @@ class Question
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *     min="5",
-     *     max="50",
-     *     minMessage="Минимум {{ limit }} символов",
-     *     maxMessage="Максимум {{ limit }} символов"
+     *     minMessage="Минимум {{ limit }} символов"
      * )
      */
     private $text;
