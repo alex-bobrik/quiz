@@ -114,6 +114,9 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('app.profile');
         }
 
+        // For edit quiz class on twig template (passed/not passed quiz)
+        $userCompleteQuizes = $userService->getFinishedGames($user);
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $user,
@@ -121,6 +124,7 @@ class ProfileController extends AbstractController
             'userRating' => $userRating,
             'usersQuizes' => $usersQuizes,
             'unfinishedGames' => $unfinishedGames,
+            'userCompleteQuizes' => $userCompleteQuizes,
             'formNickname' => $formNickname->createView(),
             'formImage' => $formImage->createView(),
         ]);

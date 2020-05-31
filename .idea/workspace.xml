@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/moder_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moder_base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +175,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -227,7 +226,12 @@
       <workItem from="1589704836361" duration="126000" />
       <workItem from="1589704987032" duration="820000" />
       <workItem from="1590218709611" duration="1026000" />
-      <workItem from="1590224226034" duration="184000" />
+      <workItem from="1590224226034" duration="333000" />
+      <workItem from="1590317430186" duration="3712000" />
+      <workItem from="1590551863497" duration="14000" />
+      <workItem from="1590567589012" duration="841000" />
+      <workItem from="1590858856612" duration="98000" />
+      <workItem from="1590859365502" duration="1515000" />
     </task>
     <servers />
   </component>
@@ -235,10 +239,6 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="429" y="110" key="#Inspections" timestamp="1581878754664">
-      <screen x="0" y="0" width="1676" height="902" />
-    </state>
-    <state x="429" y="110" key="#Inspections/0.0.1676.902@0.0.1676.902" timestamp="1581878754664" />
     <state x="555" y="196" width="800" height="712" key="#Plugins" timestamp="1586954154647">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -257,11 +257,10 @@
     </state>
     <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1676.902@0.0.1676.902" timestamp="1582409429889" />
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1589526776863" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590219734132">
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590858954371">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="617" y="206" key="FileChooserDialogImpl/0.0.1676.902@0.0.1676.902" timestamp="1582067878671" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1590219734132" />
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1590858954371" />
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog" timestamp="1586075901642">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -279,10 +278,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="819" y="245" width="272" height="614" key="RollbackChangesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586688023813" />
-    <state x="396" y="137" key="SettingsEditor" timestamp="1589705036324">
+    <state x="396" y="137" key="SettingsEditor" timestamp="1590858942783">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1589705036324" />
+    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1590858942783" />
     <state x="566" y="267" key="run.anything.popup" timestamp="1587039376331">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

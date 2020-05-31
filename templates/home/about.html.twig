@@ -6,7 +6,7 @@
 
     <style>
         body {
-            text-align: center;
+            /*text-align: center;*/
         }
 
         body::after {
@@ -21,25 +21,48 @@
             z-index: -1;
         }
 
-        .about {
-            position: absolute;
-            top: 40%;
-            left: 0;
-            bottom: 0;
-            right: 0;
-        }
+        /*.about {*/
+        /*    position: absolute;*/
+        /*    top: 40%;*/
+        /*    left: 0;*/
+        /*    bottom: 0;*/
+        /*    right: 0;*/
+        /*}*/
 
         .text {
             text-align: center;
         }
     </style>
 
-        <div class="about">
-            <div class="text">
-                <h1>Система для проведения викторин</h1>
-                <h2>Разработчик Бобрик А.В.</h2>
-                <h3>МГКЭ 2020</h3>
-            </div>
+    <div class="about">
+        <div class="text">
+            <h1>Система для проведения викторин</h1>
+            <h2>Разработчик Бобрик А.В.</h2>
+            <h3>МГКЭ 2020</h3>
         </div>
+    </div>
+
+    <style>
+        .help-head {
+            font-size: 30px;
+        }
+
+        .help-body {
+            font-size: 20px;
+            text-align: justify;
+        }
+    </style>
+
+    <div class="help">
+        <div class="help-item">
+            <p class="help-head">
+                lorem
+            </p>
+
+            <p class="help-body">
+
+            </p>
+        </div>
+    </div>
 
 {% endblock %}
