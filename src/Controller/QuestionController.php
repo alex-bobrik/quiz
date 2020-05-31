@@ -6,6 +6,7 @@ use App\Entity\Question;
 use App\Form\Question\QuestionType;
 use App\Form\SimpleSearchType;
 use App\Service\QuestionService;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\PaginatorInterface;
@@ -111,5 +112,39 @@ class QuestionController extends AbstractController
             'controller_name' => 'QuestionController',
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/questions/delete/{id}", name="questions_delete", requirements={"id"="\d+"})
+     *
+     * @param EntityManagerInterface $em
+     * @param int $id
+     * @return Response
+     */
+    public function deleteQuestion(EntityManagerInterface $em, int $id): Response
+    {
+        /** @var Question $question */
+       $question = $this->getDoctrine()->getRepository(Question::class)->find($id);
+
+       if (!$question) {
+           throw $this->createNotFoundException();
+       }
+
+       if ($question->getUser() != $this->getUser()) {
+           throw $this->createNotFoundException();
+       }
+
+        try {
+            $em->remove($question);
+            $em->flush();
+        } catch (ForeignKeyConstraintViolationException $ex) {
+           $this->addFlash('danger', 'Вопрос уже используется в одной из викторин');
+
+           return $this->redirectToRoute('question_info', ['id' => $question->getId()]);
+        }
+
+       $this->addFlash('info', 'Вопрос '. $question->getText() .' успешно удален');
+       return $this->redirectToRoute('questions');
+
     }
 }

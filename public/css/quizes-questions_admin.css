@@ -4,7 +4,9 @@
 }
 
 .question-info {
-    display: inline-block;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .question-buttons {

@@ -3,6 +3,18 @@
 {% block title %}Вопрос {{ question.text }}{% endblock %}
 
 {% block body %}
+
+    <style>
+        .question-info {
+            display: flex;
+            margin: 10px 20px 10px 0;
+        }
+
+        .question-info h4 {
+            margin-right: 10px;
+        }
+    </style>
+
     <div class="container">
         <div>
             <div class="question-buttons">
@@ -11,6 +23,7 @@
             </div>
             <div class="question-info">
                 <h4>Вопрос: {{ question.text }}</h4>
+                <a href="{{ path('questions_delete', {'id': question.id}) }}" class="btn btn-danger">Удалить вопрос</a>
             </div>
         </div>
 
