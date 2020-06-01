@@ -12,7 +12,11 @@
     <div class="quiz-data">
         <div class="quiz-image-wrapper">
             <div class="quiz-image">
-                <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image">
+                {% if quiz.image %}
+                    <img src="{{ asset('images/uploads/quizes/' ~ quiz.image) }}" alt="quiz-image">
+                {% else %}
+                    <img src="{{ asset('images/logo.svg') }}" alt="quiz-image">
+                {% endif %}
             </div>
             <div class="quiz-questions">
                 <p>{{ quiz.questions.count }}

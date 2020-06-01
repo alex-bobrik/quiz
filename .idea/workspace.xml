@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/moder-quiz-check.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/moder-quiz-check.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/moder/quiz_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moder/quiz_info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/question/question_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/question_info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +229,7 @@
       <workItem from="1590551863497" duration="14000" />
       <workItem from="1590567589012" duration="841000" />
       <workItem from="1590858856612" duration="98000" />
-      <workItem from="1590859365502" duration="5525000" />
+      <workItem from="1590859365502" duration="6587000" />
     </task>
     <servers />
   </component>
