@@ -78,11 +78,11 @@ class GameService
             ->createQueryBuilder('u')
             ->join('u.games',  'g')
             ->where('g.quiz = :quiz')
-            ->andWhere('g.end_date != :date')
+            ->andWhere('g.end_date is not null')
             ->orderBy('g.result_score', 'DESC')
             ->addOrderBy('g.result_time', 'ASC')
             ->setParameter('quiz', $quiz)
-            ->setParameter('date', null)
+//            ->setParameter('end', null)
             ->getQuery()
             ->getResult();
     }
