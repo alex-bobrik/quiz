@@ -32,6 +32,7 @@ class GameService
 
     public function findByQuizUser(Quiz $quiz, UserInterface $user): ?Game
     {
+        /** @var Game $game */
         $game = $this->em->getRepository(Game::class)
             ->findOneBy(['user' => $user, 'quiz' => $quiz]);
 
@@ -46,7 +47,7 @@ class GameService
         $user = $this->security->getUser();
         $currentDate = new \DateTime('now');
 
-        $game->setGameIsOver(false);
+//        $game->setGameIsOver(false);
         $game->setQuestionNumber(1);
         $game->setResultScore(0);
         $game->setUser($user);
@@ -77,10 +78,11 @@ class GameService
             ->createQueryBuilder('u')
             ->join('u.games',  'g')
             ->where('g.quiz = :quiz')
-            ->andWhere('g.gameIsOver = 1')
+            ->andWhere('g.end_date != :date')
             ->orderBy('g.result_score', 'DESC')
             ->addOrderBy('g.result_time', 'ASC')
             ->setParameter('quiz', $quiz)
+            ->setParameter('date', null)
             ->getQuery()
             ->getResult();
     }
@@ -147,12 +149,12 @@ class GameService
             ->update()
             ->set('g.end_date', '?1')
             ->set('g.result_time', '?2')
-            ->set('g.gameIsOver', '?3')
+//            ->set('g.gameIsOver', '?3')
             ->where('g.id = :id')
             ->setParameter('id', $game->getId())
             ->setParameter(1, $date)
             ->setParameter(2, $dateDiff)
-            ->setParameter(3, true)
+//            ->setParameter(3, true)
             ->getQuery()
             ->execute();
     }

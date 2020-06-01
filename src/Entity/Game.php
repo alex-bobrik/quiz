@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -48,10 +49,10 @@ class Game
      */
     private $quiz;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $gameIsOver;
+//    /**
+//     * @ORM\Column(type="boolean")
+//     */
+//    private $gameIsOver;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -137,7 +138,12 @@ class Game
 
     public function getGameIsOver(): ?bool
     {
-        return $this->gameIsOver;
+//        return $this->gameIsOver;
+        if ($this->getEndDate()) {
+            return true;
+        }
+
+        return false;
     }
 
     public function setGameIsOver(bool $gameIsOver): self

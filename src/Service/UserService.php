@@ -81,7 +81,7 @@ class UserService
 
     public function getUnfinishedGames(User $user)
     {
-        $unfinishedGames = $this->em->getRepository(Game::class)->findBy(['user' => $user, 'gameIsOver' => false]);
+        $unfinishedGames = $this->em->getRepository(Game::class)->findBy(['user' => $user, 'end_date' => null]);
 
         return $unfinishedGames;
     }
