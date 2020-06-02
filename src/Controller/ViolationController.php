@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\QuizCategory;
 use App\Entity\Violation;
+use App\Entity\ViolationAct;
 use App\Form\QuizCategoryType;
 use App\Form\SimpleSearchType;
 use App\Form\ViolationType;
@@ -128,5 +129,47 @@ class ViolationController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_violations');
+    }
+
+    /**
+     * @Route("/admin/violations/acts", name="admin_violations_acts")
+     */
+    public function violationActs(Request $request, RouterInterface $router, PaginatorInterface $paginator)
+    {
+        $actsRepo = $this->getDoctrine()->getRepository(ViolationAct::class);
+        $actsQuery = $actsRepo->createQueryBuilder('a')
+            ->getQuery();
+
+        $q = $request->get('q');
+        if ($q) {
+            $actsQuery = $actsRepo->createQueryBuilder('a')
+                ->select('a')
+                ->join('a.violation', 'v')
+                ->where('v.name like :name')
+                ->setParameter('name', '%'.$q.'%')
+                ->getQuery();
+        } else {
+            $actsQuery = $actsRepo->createQueryBuilder('v')
+                ->getQuery();
+        }
+
+        $searchForm = $this->createForm(SimpleSearchType::class, ['query' => $q]);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted()) {
+            $query = $searchForm->get('query')->getData();
+            return new RedirectResponse($router->generate('admin_violations_acts', ['q' => $query]));
+        }
+
+        $acts = $paginator->paginate(
+            $actsQuery,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+
+        return $this->render('violation/acts.html.twig', [
+            'acts' => $acts,
+            'searchForm' => $searchForm->createView(),
+        ]);
     }
 }

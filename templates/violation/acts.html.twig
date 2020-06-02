@@ -19,15 +19,14 @@
 
         {{ form_start(searchForm) }}
         <div class="buttons-header">
-            <a href="{{ path('admin_violations_create') }}" class="btn btn-primary">Новый пункт нарушений</a>
-            <a href="{{ path('admin_violations_acts') }}" class="btn btn-info">Акты нарушений</a>
+            <a href="{{ path('admin_violations_acts_report') }}" class="btn btn-info">Отчет по нарушениям</a>
         </div>
         <div class="search">
             <div class="search-input">
                 {{ form_widget(searchForm.query, {
                     'required': false,
                     'attr': {
-                        'placeholder': 'Поиск по названию',
+                        'placeholder': 'Поиск по нарушению',
                     }
                 }) }}
             </div>
@@ -41,23 +40,26 @@
         <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">{{ knp_pagination_sortable(violations, 'Нарушение', ['v.name']) }}</th>
-                <th scope="col">Описание</th>
-                <th scope="col"></th>
+                <th scope="col">Пользователь</th>
+                <th scope="col">Нарушение</th>
+                <th scope="col">Дата нарушения</th>
             </tr>
             </thead>
             <tbody>
-            {% for violation in violations %}
+            {% for act in acts %}
                 <tr>
                     <td>
-                        {{ violation.name }}
+                        <a href="{{ path('app.profile.info', {'nickname': act.user.nickname }) }}">
+                            {{ act.user.nickname }}
+                        </a>
                     </td>
                     <td>
-                        {{ violation.description }}
+                        <a href="{{ path('admin_violations_edit', {'id': act.violation.id}) }}">
+                            {{ act.violation.name }}
+                        </a>
                     </td>
                     <td>
-                        <a href="{{ path('admin_violations_edit', {'id': violation.id}) }}" class="btn btn-primary">Изменить</a>
-                        <a href="{{ path('admin_violations_delete', {'id': violation.id}) }}" class="btn btn-danger">Удалить</a>
+                        {{ act.violationDate.format('d/m/Y H:i:s') }}
                     </td>
                 </tr>
             {% endfor %}
@@ -65,7 +67,7 @@
         </table>
 
         <div class="navigation">
-            {{ knp_pagination_render(violations) }}
+            {{ knp_pagination_render(acts) }}
         </div>
     </div>
 {% endblock %}

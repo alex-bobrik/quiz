@@ -1,0 +1,46 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Отчет по нарушениям{% endblock %}
+
+
+{% block body %}
+
+    <style>
+        body {
+            background-color: #e9ecf3;
+        }
+
+        .picker-form {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .charts {
+            width: 90%;
+            border-radius: 15px;
+            margin: 20px 20px 20px 50px;
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+    </style>
+
+    <div class="charts">
+        <div class="container">
+
+            <h2>Отчет по нарушениям за указанный период</h2>
+            <hr>
+            <div class="picker-form">
+                {{ form(violationPicker) }}
+            </div>
+        </div>
+        <div id="violationChart"></div>
+        <hr>
+    </div>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_language('ru') }}
+        {{ gc_draw(violationsChart, 'violationChart') }}
+    </script>
+{% endblock %}

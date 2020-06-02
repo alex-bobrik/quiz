@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quiz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/StatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StatsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ViolationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ViolationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/StatsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/StatsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/violation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/violation/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,23 +176,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/stats" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/templates/home" />
-      <recent name="$PROJECT_DIR$/templates/moder" />
-      <recent name="$PROJECT_DIR$/templates/violation" />
-      <recent name="$PROJECT_DIR$/templates/profile" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/images/profile" />
       <recent name="$PROJECT_DIR$/src/Controller/Moder" />
       <recent name="C:\nginx\public_html\quiz\src\Form\Question" />
       <recent name="C:\nginx\public_html\quiz\src\Form\Quiz" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/stats" />
+      <recent name="$PROJECT_DIR$/templates/violation" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/templates/home" />
+      <recent name="$PROJECT_DIR$/templates/moder" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -238,7 +234,7 @@
       <workItem from="1590551863497" duration="14000" />
       <workItem from="1590567589012" duration="841000" />
       <workItem from="1590858856612" duration="98000" />
-      <workItem from="1590859365502" duration="26885000" />
+      <workItem from="1590859365502" duration="30352000" />
     </task>
     <servers />
   </component>

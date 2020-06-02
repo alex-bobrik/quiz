@@ -5,6 +5,7 @@ namespace App\Service;
 
 
 use App\Entity\Quiz;
+use App\Entity\ViolationAct;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\ColumnChart;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -109,6 +110,25 @@ class StatsService
         $result['average_questions'] = (int)round($allQuestions / count($quizes)); // average questions amount per quiz
 
         return $result;
+    }
+
+    // Returns stats by all quizes for a selected period
+    public function getViolationsActsStats(\DateTime $begin, \DateTime $end): ?array
+    {
+        $acts = $this->em->getRepository(ViolationAct::class)
+            ->createQueryBuilder('a')
+            ->select('v.name as obj, count(a) as amount')
+            ->join('a.violation', 'v')
+            ->groupBy('v.name')
+            ->where('a.violation_date between :begin and :end')
+            ->setParameter('begin', $begin)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getResult();
+
+//        dump($acts); die;
+
+        return $acts;
     }
 
 }
