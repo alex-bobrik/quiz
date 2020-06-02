@@ -19,6 +19,9 @@
     <div class="container">
 
         {{ form_start(searchForm) }}
+        <div class="buttons-header">
+            <a href="{{ path('admin_quizes_stats') }}" class="btn btn-info">Отчет по викторинам</a>
+        </div>
             <div class="search">
                 <div class="search-input">
                     {{ form_widget(searchForm.query, {

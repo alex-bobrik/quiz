@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/quiz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quiz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/GameService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/GameService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +164,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/vendor/beberlei/doctrineextensions" />
+      <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1XL5ZPjgp5t8SFMRqCCWd2gfnel" />
@@ -229,7 +238,7 @@
       <workItem from="1590551863497" duration="14000" />
       <workItem from="1590567589012" duration="841000" />
       <workItem from="1590858856612" duration="98000" />
-      <workItem from="1590859365502" duration="10096000" />
+      <workItem from="1590859365502" duration="26885000" />
     </task>
     <servers />
   </component>
@@ -263,15 +272,16 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586075901642" />
-    <state x="733" y="338" width="386" height="505" key="NewPhpClassDialog" timestamp="1586885534020">
+    <state x="733" y="338" width="386" height="505" key="NewPhpClassDialog" timestamp="1591089783438">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="640" y="266" key="NewPhpClassDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387483413" />
-    <state x="733" y="338" width="386" height="505" key="NewPhpClassDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586885534020" />
-    <state x="674" y="375" key="NewPhpFileDialog" timestamp="1582387472597">
-      <screen x="0" y="0" width="1676" height="902" />
+    <state x="733" y="338" width="386" height="505" key="NewPhpClassDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1591089783438" />
+    <state x="772" y="465" width="399" height="149" key="NewPhpFileDialog" timestamp="1591089583889">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="674" y="375" key="NewPhpFileDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387472597" />
+    <state x="772" y="465" width="399" height="149" key="NewPhpFileDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1591089583889" />
     <state x="819" y="245" width="272" height="614" key="RollbackChangesDialog" timestamp="1586688023813">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -285,10 +295,10 @@
     </state>
     <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1582485704378" />
     <state x="566" y="267" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1587039376331" />
-    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup" timestamp="1591003062088">
+    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup" timestamp="1591100728901">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582492141908" />
-    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1591003062088" />
+    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1591100728901" />
   </component>
 </project>

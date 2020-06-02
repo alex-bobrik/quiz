@@ -1,4 +1,10 @@
 {
+    "beberlei/doctrineextensions": {
+        "version": "v1.2.6"
+    },
+    "cmen/google-charts-bundle": {
+        "version": "3.2.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

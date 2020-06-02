@@ -6,6 +6,8 @@
         "ext-ctype": "*",
         "ext-gd": "*",
         "ext-iconv": "*",
+        "beberlei/doctrineextensions": "^1.2",
+        "cmen/google-charts-bundle": "^3.2",
         "knplabs/knp-paginator-bundle": "^5.1",
         "sensio/framework-extra-bundle": "^5.1",
         "snapappointments/bootstrap-select": "^1.13",

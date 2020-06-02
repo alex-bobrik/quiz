@@ -1,0 +1,49 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Отчет по викторинам{% endblock %}
+
+
+{% block body %}
+
+    <style>
+        body {
+            background-color: #e9ecf3;
+        }
+
+        .picker-form {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .charts {
+            width: 90%;
+            border-radius: 15px;
+            margin: 20px 20px 20px 50px;
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+    </style>
+
+    <div class="charts">
+        <div class="container">
+
+            <h2>Отчет по викторинам за указанный период</h2>
+            <p>Всего создано викторин: {{ stats['all'] }}</p>
+            <p>Из них:<br> {{ stats['limited'] }} ограничены по времени<br> {{ stats['unlimited'] }} не ограничены по времени</p>
+            <p>Среднее количество вопросов в викторине: {{ stats['average_questions'] }}</p>
+            <hr>
+            <div class="picker-form">
+                {{ form(quizPicker) }}
+            </div>
+        </div>
+        <div id="quizesChart"></div>
+        <hr>
+    </div>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_language('ru') }}
+        {{ gc_draw(quizesChart, 'quizesChart') }}
+    </script>
+{% endblock %}
