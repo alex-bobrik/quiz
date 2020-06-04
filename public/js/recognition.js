@@ -5,11 +5,6 @@ const inputForm = document.querySelector('form');
 const inputTxt = document.querySelector('.text');
 const voicesList = document.querySelector('select');
 
-const pitch = document.querySelector('#pitch');
-const pitchValue = document.querySelector('.value--pitch-value');
-const rate = document.querySelector('#rate');
-const rateValue = document.querySelector('.value--rate-value');
-
 let voices = [];
 
 window.onbeforeunload = function() {
@@ -21,17 +16,17 @@ function populateVoiceList() {
     const selectedIndex =
         voicesList.selectedIndex < 0 ? 0 : voicesList.selectedIndex;
     voicesList.innerHTML = '';
+
+    // Setting Russian language
     for (i = 0; i < voices.length; i++) {
-        const option = document.createElement('option');
-        option.textContent = voices[15].name + ' (' + voices[15].lang + ')';
+        if (voices[i].lang === 'ru-RU') {
+            const option = document.createElement('option');
+            option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
 
-        // if (voices[15].default) {
-        //     option.textContent += ' -- DEFAULT';
-        // }
-
-        option.setAttribute('data-lang', voices[15].lang);
-        option.setAttribute('data-name', voices[15].name);
-        voicesList.appendChild(option);
+            option.setAttribute('data-lang', voices[i].lang);
+            option.setAttribute('data-name', voices[i].name);
+            voicesList.appendChild(option);
+        }
     }
     voicesList.selectedIndex = selectedIndex;
 }
@@ -43,14 +38,14 @@ if (speechSynthesis.onvoiceschanged !== undefined) {
 
 function speak(text) {
     if (synth.speaking) {
-        console.error('speechSynthesis.speaking');
+        console.log('speechSynthesis.speaking');
         synth.cancel();
         setTimeout(speak, 300);
     } else if (text !== '') {
         const utterThis = new SpeechSynthesisUtterance(text);
-        utterThis.onend = function(event) {
-            console.log('SpeechSynthesisUtterance.onend');
-        };
+        // utterThis.onend = function(event) {
+        //     console.log('SpeechSynthesisUtterance.onend');
+        // };
         utterThis.onerror = function(event) {
             console.error('SpeechSynthesisUtterance.onerror');
         };
@@ -78,6 +73,7 @@ function speak(text) {
 
         utterThis.pitch = 1;
         utterThis.rate = 1;
+
         synth.speak(utterThis);
     }
 }
@@ -89,92 +85,3 @@ inputForm.onsubmit = function(event) {
 
     inputTxt.blur();
 };
-// voicesList.onchange = function() {
-//     speak();
-// };
-// end of speech synthesis
-
-// Speech recognition
-const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-const SpeechGrammarList =
-    window.SpeechGrammarList || window.webkitSpeechGrammarList;
-const SpeechRecognitionEvent =
-    window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
-
-const colors = {
-    красный: 'red',
-    оранжевый: 'orange',
-    желтый: 'yellow',
-    зеленый: 'green',
-    голубой: 'blue',
-    синий: 'darkblue',
-    фиолетовый: 'violet'
-};
-
-const colorsList = Object.keys(colors);
-
-const grammar =
-    '#JSGF V1.0; grammar colors; public <color> = ' +
-    colorsList.join(' | ') +
-    ' ;';
-
-const recognition = new SpeechRecognition();
-const speechRecognitionList = new SpeechGrammarList();
-speechRecognitionList.addFromString(grammar, 1);
-recognition.grammars = speechRecognitionList;
-recognition.lang = 'ru-RU';
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
-
-const microphoneIcon = document.querySelector('.microphone__image');
-const microphoneWrapper = document.querySelector('.microphone-wrapper');
-const audioRecordAnimation = document.querySelector('.audio-record-animation');
-const speechRecognitionSection = document.querySelector(
-    '.speech-recognition-section'
-);
-const recognitionTextResult = document.querySelector('.recognition-result');
-
-function getColor(speechResult) {
-    for (let index = 0; index < colorsList.length; index += 1) {
-        if (speechResult.indexOf(colorsList[index]) !== -1) {
-            const colorKey = colorsList[index];
-            return [colorKey, colors[colorKey]];
-        }
-    }
-    return null;
-}
-
-// microphoneIcon.onclick = function() {
-//     recognition.start();
-//     console.log('Ready to receive a color command.');
-// };
-
-recognition.onaudiostart = function() {
-    microphoneWrapper.style.visibility = 'hidden';
-    audioRecordAnimation.style.visibility = 'visible';
-};
-
-recognition.onresult = function(event) {
-    const last = event.results.length - 1;
-    const colors = getColor(event.results[last][0].transcript);
-
-    recognitionTextResult.textContent = 'Результат: ' + colors[0];
-    speechRecognitionSection.style.backgroundColor = colors[1];
-    console.log('Confidence: ' + event.results[0][0].confidence);
-};
-
-recognition.onspeechend = function() {
-    recognition.stop();
-    microphoneWrapper.style.visibility = 'visible';
-    audioRecordAnimation.style.visibility = 'hidden';
-};
-
-recognition.onnomatch = function(event) {
-    alert("I didn't recognise that color.");
-};
-
-recognition.onerror = function(event) {
-    alert(`Error occurred in recognition: ${event.error}`);
-};
-// end of speech recognition
