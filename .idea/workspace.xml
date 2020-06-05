@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/moder-quiz-check.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/moder-quiz-check.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +232,7 @@
       <workItem from="1590567589012" duration="841000" />
       <workItem from="1590858856612" duration="98000" />
       <workItem from="1590859365502" duration="34539000" />
-      <workItem from="1591280367669" duration="5342000" />
+      <workItem from="1591280367669" duration="5615000" />
     </task>
     <servers />
   </component>

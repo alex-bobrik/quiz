@@ -104,4 +104,8 @@ body {
     .button-deny {
         left: 70%;
     }
+
+    .quiz-info {
+        width: 400px;
+    }
 }
