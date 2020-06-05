@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="" />
+    <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,7 +175,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/stats" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -228,7 +232,8 @@
       <workItem from="1590551863497" duration="14000" />
       <workItem from="1590567589012" duration="841000" />
       <workItem from="1590858856612" duration="98000" />
-      <workItem from="1590859365502" duration="33422000" />
+      <workItem from="1590859365502" duration="34539000" />
+      <workItem from="1591280367669" duration="5342000" />
     </task>
     <servers />
   </component>
@@ -247,12 +252,10 @@
     <state x="612" y="27" width="748" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587284937712">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="534" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1676.902@0.0.1676.902" timestamp="1582389061483" />
     <state x="612" y="27" width="748" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1587284937712" />
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589526776863">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="567" y="206" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1676.902@0.0.1676.902" timestamp="1582409429889" />
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1589526776863" />
     <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590858954371">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -265,30 +268,26 @@
     <state x="733" y="338" width="386" height="505" key="NewPhpClassDialog" timestamp="1591089783438">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="640" y="266" key="NewPhpClassDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387483413" />
     <state x="733" y="338" width="386" height="505" key="NewPhpClassDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1591089783438" />
     <state x="772" y="465" width="399" height="149" key="NewPhpFileDialog" timestamp="1591089583889">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="674" y="375" key="NewPhpFileDialog/0.0.1676.902@0.0.1676.902" timestamp="1582387472597" />
     <state x="772" y="465" width="399" height="149" key="NewPhpFileDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1591089583889" />
     <state x="819" y="245" width="272" height="614" key="RollbackChangesDialog" timestamp="1586688023813">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="819" y="245" width="272" height="614" key="RollbackChangesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586688023813" />
-    <state x="396" y="137" key="SettingsEditor" timestamp="1590858942783">
+    <state x="396" y="137" key="SettingsEditor" timestamp="1591347590677">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1590858942783" />
+    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1591347590677" />
     <state x="566" y="267" key="run.anything.popup" timestamp="1587039376331">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="494" y="206" key="run.anything.popup/0.0.1676.902@0.0.1676.902" timestamp="1582485704378" />
     <state x="566" y="267" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1587039376331" />
-    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup" timestamp="1591100728901">
+    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup" timestamp="1591347584634">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="888" y="334" width="672" height="678" key="search.everywhere.popup/0.0.1676.902@0.0.1676.902" timestamp="1582492141908" />
-    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1591100728901" />
+    <state x="877" y="108" width="770" height="792" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1591347584634" />
   </component>
 </project>
