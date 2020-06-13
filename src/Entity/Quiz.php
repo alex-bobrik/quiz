@@ -57,7 +57,7 @@ class Quiz
     private $quizCategory;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="quiz")
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="quiz", orphanRemoval=true)
      */
     private $ratings;
 

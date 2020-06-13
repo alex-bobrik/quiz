@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/MailSender.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MailSender.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,10 +175,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/stats" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -235,7 +235,10 @@
       <workItem from="1590567589012" duration="841000" />
       <workItem from="1590858856612" duration="98000" />
       <workItem from="1590859365502" duration="34539000" />
-      <workItem from="1591280367669" duration="11489000" />
+      <workItem from="1591280367669" duration="12363000" />
+      <workItem from="1591558459296" duration="2278000" />
+      <workItem from="1591784667713" duration="625000" />
+      <workItem from="1592043448381" duration="304000" />
     </task>
     <servers />
   </component>
@@ -259,10 +262,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1589526776863" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590858954371">
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591791451731">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1590858954371" />
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1591791451731" />
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog" timestamp="1586075901642">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -279,10 +282,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="819" y="245" width="272" height="614" key="RollbackChangesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586688023813" />
-    <state x="396" y="137" key="SettingsEditor" timestamp="1591347590677">
+    <state x="396" y="137" key="SettingsEditor" timestamp="1591435883859">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1591347590677" />
+    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1591435883859" />
     <state x="566" y="267" key="run.anything.popup" timestamp="1587039376331">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
