@@ -52,7 +52,7 @@ class ModerService
 
         $user->addViolationAct($violationAct);
 
-        $message = 'Обнаржуено нарушение в викторине ' .$quiz->getName() . ' по причине '.$violation->getName() .', 
+        $message = 'Обнаружено нарушение в викторине ' .$quiz->getName() . ' по причине '.$violation->getName() .', 
             викторина будет удалена. Дальнейшие нарушения приведут к блокировке аккаунта.';
 
         $this->mailSender->send('Нарушение', $user->getEmail(), $message);

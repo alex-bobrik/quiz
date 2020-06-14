@@ -15,16 +15,13 @@ body {
 }
 .user-image {
     margin-right: 10px;
-
     padding: 20px;
-    /*margin: 10px;*/
     background-color: #fff;
     border-radius: 5px;
 }
 .user-data {
     margin-left: 10px;
     padding: 20px;
-    /*margin: 10px;*/
     background-color: #fff;
     border-radius: 5px;
     width: 100%;
@@ -145,8 +142,6 @@ body {
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
     color: #0062cc;
-    /*font-size: 16px;*/
-    /*font-weight: 600;*/
 }
 .project-tab .nav-link:hover {
     border: none;
@@ -157,6 +152,4 @@ body {
 }
 .project-tab a{
     text-decoration: none;
-    /*color: #333;*/
-    /*font-weight: 600;*/
 }

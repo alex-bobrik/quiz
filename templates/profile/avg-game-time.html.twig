@@ -1,6 +1,6 @@
 {% if user.avgGameTime %}
 
-{# Среднее время прохождения викторины #}
+{# Average time of quiz passing #}
 {% set days = (user.avgGameTime / (1000 * 60 * 60 * 24))|round %}
 {% set hours = ((user.avgGameTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))|round %}
 {% set minutes = ((user.avgGameTime % (1000 * 60 * 60)) / (1000 * 60))|round %}

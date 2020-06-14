@@ -49,11 +49,6 @@ class Game
      */
     private $quiz;
 
-//    /**
-//     * @ORM\Column(type="boolean")
-//     */
-//    private $gameIsOver;
-
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -138,7 +133,6 @@ class Game
 
     public function getGameIsOver(): ?bool
     {
-//        return $this->gameIsOver;
         if ($this->getEndDate()) {
             return true;
         }

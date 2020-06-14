@@ -126,8 +126,6 @@ class StatsService
             ->getQuery()
             ->getResult();
 
-//        dump($acts); die;
-
         return $acts;
     }
 

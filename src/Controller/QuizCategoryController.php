@@ -14,6 +14,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -21,6 +22,10 @@ class QuizCategoryController extends AbstractController
 {
     /**
      * @Route("/admin/quiz-categories", name="admin_quiz-categories")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @param RouterInterface $router
+     * @return RedirectResponse|Response
      */
     public function index(PaginatorInterface $paginator, Request $request, RouterInterface $router)
     {
@@ -64,7 +69,7 @@ class QuizCategoryController extends AbstractController
      * @Route("/admin/quiz-categories/create", name="admin_quiz-categories_create")
      * @param QuizService $quizService
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function createQuizCategory(QuizService $quizService, Request $request)
     {
@@ -99,7 +104,7 @@ class QuizCategoryController extends AbstractController
      * @param QuizService $quizService
      * @param Request $request
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function editQuizCategory(QuizService $quizService, Request $request, int $id)
     {
@@ -126,12 +131,11 @@ class QuizCategoryController extends AbstractController
 
     /**
      * @Route("/admin/quiz-categories/delete/{id}", name="admin_quiz-categories_delete", requirements={"id"="\d+"})
-     * @param QuizService $quizService
-     * @param Request $request
+     * @param EntityManagerInterface $em
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function deleteQuizCategory(EntityManagerInterface $em, Request $request, int $id, RouterInterface $router)
+    public function deleteQuizCategory(EntityManagerInterface $em, int $id)
     {
         $category = $this->getDoctrine()->getRepository(QuizCategory::class)->findOneBy(['id' => $id]);
 

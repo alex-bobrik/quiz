@@ -23,8 +23,8 @@ class Answer
      * @Assert\Length(
      *     min="5",
      *     max="50",
-     *     minMessage="Min {{ limit }} characters.",
-     *     maxMessage="Max {{ limit }} characters."
+     *     minMessage="Минимум {{ limit }} символов.",
+     *     maxMessage="Максимум {{ limit }} символов."
      * )
      */
     private $text;

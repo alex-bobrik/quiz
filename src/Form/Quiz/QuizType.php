@@ -49,7 +49,6 @@ class QuizType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'accept' => "image/jpeg, image/png",
-//                    'class' => 'custom-file-input',
                 ],
                 'constraints' => [
                     new File([

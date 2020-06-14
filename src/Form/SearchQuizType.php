@@ -31,7 +31,6 @@ class SearchQuizType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => [
-//                    'class' => 'form-control',
                 ]
             ])
             ->add('timeLimit', ChoiceType::class, [

@@ -2,43 +2,34 @@
     margin-bottom: 10px;
     margin-top: 10px;
 }
-
 .question-info {
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 .question-buttons {
     height: 50px;
     float: right;
     margin-top: 10px;
 }
-
 .question-block {
     margin-top: 20px;
 }
-
 .answer-box {
     display: inline;
 }
-
 .answers-block {
     margin: 10px;
 }
-
 .answer-box > div:first-child {
     width: 80%;
 }
-
 .add-answer-block {
     margin-top: 10px;
 }
-
 .add-answer-block > button {
     float: right;
 }
-
 .submit-block {
     margin-bottom: 10px;
 }

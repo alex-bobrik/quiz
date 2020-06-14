@@ -14,6 +14,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -21,6 +22,10 @@ class ViolationController extends AbstractController
 {
     /**
      * @Route("/admin/violations", name="admin_violations")
+     * @param Request $request
+     * @param RouterInterface $router
+     * @param PaginatorInterface $paginator
+     * @return RedirectResponse|Response
      */
     public function index(Request $request, RouterInterface $router, PaginatorInterface $paginator)
     {
@@ -62,6 +67,9 @@ class ViolationController extends AbstractController
 
     /**
      * @Route("/admin/violations/create", name="admin_violations_create")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
      */
     public function createViolation(Request $request, EntityManagerInterface $em)
     {
@@ -88,8 +96,12 @@ class ViolationController extends AbstractController
 
     /**
      * @Route("/admin/violations/edit/{id}", name="admin_violations_edit", requirements={"id"="\d+"})
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param int $id
+     * @return RedirectResponse|Response
      */
-    public function editViolation(int $id, Request $request, EntityManagerInterface $em)
+    public function editViolation(Request $request, EntityManagerInterface $em, int $id)
     {
         $violation = $this->getDoctrine()->getRepository(Violation::class)->find($id);
 
@@ -116,8 +128,11 @@ class ViolationController extends AbstractController
 
     /**
      * @Route("/admin/violations/delete/{id}", name="admin_violations_delete", requirements={"id"="\d+"})
+     * @param EntityManagerInterface $em
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function deleteViolation(int $id, EntityManagerInterface $em)
+    public function deleteViolation(EntityManagerInterface $em, int $id)
     {
         $violation = $this->getDoctrine()->getRepository(Violation::class)->find($id);
 
@@ -133,6 +148,10 @@ class ViolationController extends AbstractController
 
     /**
      * @Route("/admin/violations/acts", name="admin_violations_acts")
+     * @param Request $request
+     * @param RouterInterface $router
+     * @param PaginatorInterface $paginator
+     * @return RedirectResponse|Response
      */
     public function violationActs(Request $request, RouterInterface $router, PaginatorInterface $paginator)
     {

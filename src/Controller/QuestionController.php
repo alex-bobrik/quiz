@@ -21,6 +21,9 @@ class QuestionController extends AbstractController
 {
     /**
      * @Route("/questions", name="questions")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @param RouterInterface $router
      * @return Response
      */
     public function userQuestions(PaginatorInterface $paginator, Request $request, RouterInterface $router): Response

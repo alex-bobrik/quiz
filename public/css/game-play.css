@@ -1,39 +1,32 @@
 .answer {
     position: relative;
 }
-
 .answer-isCorrect {
     position: absolute;
     top: 20%;
 }
-
 .answer-text {
     margin-left: 50px;
     margin-bottom: 20px;
 }
-
 .question {
     background-color: #FFFFFF;
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 30px;
 }
-
 .container-submit {
     margin-left: 60%;
 }
-
 .answer-speak {
     position: absolute;
     top: 20%;
     margin-left: 10px;
     margin-right: 20px;
 }
-
 .answer {
     width: 95%;
 }
-
 .limit-value {
     float: left;
     font-size: 20px;

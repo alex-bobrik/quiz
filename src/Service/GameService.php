@@ -47,7 +47,6 @@ class GameService
         $user = $this->security->getUser();
         $currentDate = new \DateTime('now');
 
-//        $game->setGameIsOver(false);
         $game->setQuestionNumber(1);
         $game->setResultScore(0);
         $game->setUser($user);
@@ -82,7 +81,6 @@ class GameService
             ->orderBy('g.result_score', 'DESC')
             ->addOrderBy('g.result_time', 'ASC')
             ->setParameter('quiz', $quiz)
-//            ->setParameter('end', null)
             ->getQuery()
             ->getResult();
     }
@@ -110,11 +108,6 @@ class GameService
 
     public function setNextQuestion(Game $game): void
     {
-//        $game->setQuestionNumber($game->getQuestionNumber() + 1);
-
-//        $this->em->persist($game);
-//        $this->em->flush();
-
         $this->em->getRepository(Game::class)
             ->createQueryBuilder('g')
             ->update()
@@ -139,7 +132,6 @@ class GameService
 
     public function endGame(Game $game): void
     {
-
         $date = new \DateTime('now');
         $dateStart = $game->getStartDate();
         $dateDiff = $date->getTimestamp() - $dateStart->getTimestamp();
@@ -149,27 +141,12 @@ class GameService
             ->update()
             ->set('g.end_date', '?1')
             ->set('g.result_time', '?2')
-//            ->set('g.gameIsOver', '?3')
             ->where('g.id = :id')
             ->setParameter('id', $game->getId())
             ->setParameter(1, $date)
             ->setParameter(2, $dateDiff)
-//            ->setParameter(3, true)
             ->getQuery()
             ->execute();
-    }
-
-    public function getCorrectAnswer(Question $question): ?Answer
-    {
-        foreach ($question->getAnswers() as $answer)
-        {
-            if ($answer->getIsCorrect())
-            {
-                return $answer;
-            }
-        }
-
-        return null;
     }
 
     public function checkUserPermission(Game $game, UserInterface $user): bool

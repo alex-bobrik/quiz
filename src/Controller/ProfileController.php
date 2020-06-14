@@ -43,12 +43,11 @@ class ProfileController extends AbstractController
      */
     public function profileInfo
     (
-        string $nickname,
         UserService $userService,
         EntityManagerInterface $em,
         Request $request,
         FileUploader $fileUploader,
-        PaginatorInterface $paginator
+        string $nickname
     )
     {
         /** @var User $user*/
@@ -56,7 +55,6 @@ class ProfileController extends AbstractController
 
         // Checking is user exists
         if (!$user) {
-            // TODO: 404 page
             throw $this->createNotFoundException();
         }
 
@@ -77,9 +75,11 @@ class ProfileController extends AbstractController
         $formNickname = $this->createForm(UserType::class, $user);
         $formNickname->handleRequest($request);
         if ($formNickname->isSubmitted() && !$formNickname->get('nickname')->isValid()) {
-            $this->addFlash('danger' ,'Ошибка изменения имени профиля. Имя профиля не соответствует требованиям');
-        } elseif ($formNickname->isSubmitted() && $formNickname->get('nickname')->isValid())
-        {
+
+            $this->addFlash('danger', 'Ошибка изменения имени профиля. Имя профиля не соответствует требованиям');
+
+        } elseif ($formNickname->isSubmitted() && $formNickname->get('nickname')->isValid()) {
+
             $nickname = $formNickname->get('nickname')->getData();
 
             if ($this->getDoctrine()->getRepository(User::class)->findOneBy(['nickname' => $nickname])) {

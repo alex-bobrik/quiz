@@ -23,6 +23,5 @@ $(document).ready(function () {
             alert('Выберите хотя бы 1 правильный ответ');
             return false;
         }
-
         return true;
     }

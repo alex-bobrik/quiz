@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    const MAX_ELEMENTS = 30;
+    const MAX_ELEMENTS = 30; // Max amount of elements which can be created
 
     function addTagFormDeleteLink(tagFormLi) {
         let removeFormButton = $('<button type="button" class="btn btn-danger">X</button>');
@@ -37,7 +37,7 @@ $(document).ready(function () {
         }
     });
 
-    // validate question_form before submit
+    // Validate question_form before submit
     $('#question_form').submit(function () {
         let anwsersAmount = $("#type-fields-list").children().length;
         if (anwsersAmount < 1) {
@@ -54,7 +54,7 @@ $(document).ready(function () {
         }
     });
 
-    // validate quiz_form before submit
+    // Validate quiz_form before submit
     $('#quiz_form').submit(function () {
         let questionsAmount = $("#type-fields-list").children().length;
         if (questionsAmount === 0) {

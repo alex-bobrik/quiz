@@ -15,16 +15,6 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-
-//        $quizes = $this->getDoctrine()->getRepository(Question::class)->findAll();
-//        foreach ($quizes as $quiz) {
-//            $this->getDoctrine()->getManager()->remove($quiz);
-//        }
-
-        $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('admin_users_show');
-//        return $this->render('admin/index.html.twig', [
-//            'controller_name' => 'AdminController',
-//        ]);
     }
 }

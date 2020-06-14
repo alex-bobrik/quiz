@@ -23,6 +23,7 @@ class QuizController extends AbstractController
      * @Route("/admin/quizes", name="admin_quizes_show")
      * @param PaginatorInterface $paginator
      * @param Request $request
+     * @param RouterInterface $router
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request, RouterInterface $router): Response

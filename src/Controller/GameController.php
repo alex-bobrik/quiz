@@ -28,13 +28,21 @@ class GameController extends AbstractController
 {
     /**
      * @Route("/games", name="games_show")
+     * @param UserService $userService
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @param QuizService $quizService
      * @param RouterInterface $router
      * @return Response
      */
-    public function showGames(UserService $userService, PaginatorInterface $paginator, Request $request, QuizService $quizService, RouterInterface $router): Response
+    public function showGames
+    (
+        UserService $userService,
+        PaginatorInterface $paginator,
+        Request $request,
+        QuizService $quizService,
+        RouterInterface $router
+    ): Response
     {
         $query = $request->get('q');
         $categories = $request->get('categories');
@@ -124,10 +132,17 @@ class GameController extends AbstractController
      * @Route("/games/play/{gameId}", name="game_play", requirements={"quizId"="\d+"})
      * @param GameService $gameService
      * @param Request $request
+     * @param QuizService $quizService
      * @param int $gameId
      * @return Response
      */
-    public function playGame(GameService $gameService, Request $request, int $gameId, QuizService $quizService): Response
+    public function playGame
+    (
+        GameService $gameService,
+        Request $request,
+        QuizService $quizService,
+        int $gameId
+    ): Response
     {
         $game = $gameService->getGameById($gameId);
 
@@ -145,6 +160,7 @@ class GameController extends AbstractController
 
         $question = $gameService->getCurrentQuestion($game);
 
+        // Setting time limit for quiz if enabled
         $timeLimit = 0;
         if ($game->getQuiz()->getIsTimeLimited()) {
             $timeLimit = $quizService->getTimeLimit($game->getQuiz());
@@ -153,6 +169,7 @@ class GameController extends AbstractController
 
         $currentArray = $gameService->getCorrectArray($question);
 
+        // Handling user's answer
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
 
@@ -161,7 +178,7 @@ class GameController extends AbstractController
 
             if ($currentArray === $userArray) {
                 $gameService->addPoint($game);
-                $response = 'CORRECT';
+                $response = 'correct';
             } else {
                 $response = 'incorrect';
             }
@@ -218,9 +235,9 @@ class GameController extends AbstractController
 
             $isPassed = true;
             $user = $this->getDoctrine()->getRepository(User::class)->find($game->getUser());
+
             // Check is user rated this quiz and set stars amount
             $rating = $this->getDoctrine()->getRepository(Rating::class)->findOneBy(['user' => $user, 'quiz' => $quiz]);
-
 
             if (!$rating) {
                 $rating = new Rating();
@@ -246,7 +263,7 @@ class GameController extends AbstractController
      * @param EntityManagerInterface $em
      * @return JsonResponse
      */
-    public function rateGame(int $stars, int $quizId, Request $request, EntityManagerInterface $em)
+    public function rateGame(Request $request, EntityManagerInterface $em, int $stars, int $quizId)
     {
         $rating = new Rating();
 
@@ -275,7 +292,7 @@ class GameController extends AbstractController
      * @param GameService $gameService
      * @return JsonResponse
      */
-    public function expireTime(int $id, GameService $gameService)
+    public function expireTime(GameService $gameService, int $id)
     {
         $game = $this->getDoctrine()->getRepository(Game::class)->find($id);
 

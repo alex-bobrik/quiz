@@ -3,8 +3,41 @@
   <component name="ChangeListManager">
     <list default="true" id="5947cf14-2de8-476f-b3b3-375c6d7f9634" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/game-play.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/game-play.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/game.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main-page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/moder-quiz-check.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/moder-quiz-check.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/quiz-details.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quiz-details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/quizes-questions_admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/quizes-questions_admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/star-rating-svg.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/star-rating-svg.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/embeddedFormHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/embeddedFormHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Moder/ModerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Moder/ModerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/QuizCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizCategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RecoveryPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/StatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StatsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ViolationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ViolationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Answer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Answer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Game.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Quiz/QuizType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SearchQuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SearchQuizType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/GameService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/GameService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ModerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ModerService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/StatsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/StatsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/game/game_play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/game_play.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/moder/quiz_info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moder/quiz_info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/avg-game-time.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/avg-game-time.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_category/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_category/edit.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +208,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gifts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -239,6 +272,7 @@
       <workItem from="1591558459296" duration="2278000" />
       <workItem from="1591784667713" duration="625000" />
       <workItem from="1592043448381" duration="1146000" />
+      <workItem from="1592131092590" duration="3035000" />
     </task>
     <servers />
   </component>
@@ -278,10 +312,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="819" y="245" width="272" height="614" key="RollbackChangesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1586688023813" />
-    <state x="396" y="137" key="SettingsEditor" timestamp="1591435883859">
+    <state x="396" y="137" key="SettingsEditor" timestamp="1592132370895">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1591435883859" />
+    <state x="396" y="137" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1592132370895" />
     <state x="566" y="267" key="run.anything.popup" timestamp="1587039376331">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

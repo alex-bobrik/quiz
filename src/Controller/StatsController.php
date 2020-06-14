@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -16,8 +17,13 @@ class StatsController extends AbstractController
 {
     /**
      * @Route("/admin/quizes/report", name="admin_quizes_stats")
+     * @param StatsService $statsService
+     * @param Request $request
+     * @param RouterInterface $router
+     * @return RedirectResponse|Response
+     * @throws \Exception
      */
-    public function quizesReport(EntityManagerInterface $em, StatsService $statsService, Request $request, RouterInterface $router)
+    public function quizesReport(StatsService $statsService, Request $request, RouterInterface $router)
     {
         // Quizes stats
         $quizesHeader = array();
@@ -66,8 +72,13 @@ class StatsController extends AbstractController
 
     /**
      * @Route("/admin/violations/acts/report", name="admin_violations_acts_report")
+     * @param StatsService $statsService
+     * @param Request $request
+     * @param RouterInterface $router
+     * @return RedirectResponse|Response
+     * @throws \Exception
      */
-    public function actsReport(EntityManagerInterface $em, StatsService $statsService, Request $request, RouterInterface $router)
+    public function actsReport(StatsService $statsService, Request $request, RouterInterface $router)
     {
         // Violations stats
         $violationsHeader = array();

@@ -24,6 +24,10 @@ class ModerController extends AbstractController
 {
     /**
      * @Route("/moder/quizes", name="moder_quizes")
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param RouterInterface $router
+     * @return RedirectResponse|Response
      */
     public function index(Request $request, PaginatorInterface $paginator, RouterInterface $router)
     {
@@ -75,7 +79,7 @@ class ModerController extends AbstractController
      * @param ModerService $moderService
      * @return Response
      */
-    public function quizInfo(int $id, PaginatorInterface $paginator, Request $request, ModerService $moderService)
+    public function quizInfo(PaginatorInterface $paginator, Request $request, ModerService $moderService, int $id)
     {
         /** @var Quiz $quiz */
         $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($id);
@@ -86,11 +90,11 @@ class ModerController extends AbstractController
             return $this->redirectToRoute('moder_quizes');
         }
 
-        // pagination
+        // Pagination for questions
         $questions = $quiz->getQuestions();
         $questions = $paginator->paginate($questions, $request->query->getInt('page', 1), 1);
 
-        // deny form
+        // Deny form
         $form = $this->createForm(DenyQuizType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -117,7 +121,7 @@ class ModerController extends AbstractController
      * @param ModerService $moderService
      * @return Response
      */
-    public function confirmQuiz(int $id, ModerService $moderService): Response
+    public function confirmQuiz(ModerService $moderService, int $id): Response
     {
         /** @var Quiz $quiz */
         $quiz = $this->getDoctrine()->getRepository(Quiz::class)->find($id);
@@ -131,9 +135,7 @@ class ModerController extends AbstractController
     }
 
     /**
-     * @Route("/moder/rules",
-     *     name="moder_rules"
-     * )
+     * @Route("/moder/rules", name="moder_rules")
      * @return Response
      */
     public function rules(): Response

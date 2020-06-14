@@ -23,9 +23,11 @@ class RecoveryPasswordController extends AbstractController
      * @param \Swift_Mailer $mailer
      * @return Response
      */
-    public function recoveryPassword(TokenGenerator $tokenGenerator,
-                                     Request $request,
-                                     \Swift_Mailer $mailer
+    public function recoveryPassword
+    (
+        TokenGenerator $tokenGenerator,
+        Request $request,
+        \Swift_Mailer $mailer
     ): Response
     {
        if ($this->getUser()){
