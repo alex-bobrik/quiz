@@ -175,7 +175,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gifts" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -238,7 +238,7 @@
       <workItem from="1591280367669" duration="12363000" />
       <workItem from="1591558459296" duration="2278000" />
       <workItem from="1591784667713" duration="625000" />
-      <workItem from="1592043448381" duration="304000" />
+      <workItem from="1592043448381" duration="1146000" />
     </task>
     <servers />
   </component>
@@ -250,10 +250,6 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="196" width="800" height="712" key="#Plugins/0.27.1920.1053@0.27.1920.1053" timestamp="1586954154647" />
-    <state x="656" y="357" width="598" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583273333884">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="656" y="357" width="598" height="390" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1583273333884" />
     <state x="612" y="27" width="748" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587284937712">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -262,10 +258,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="650" y="267" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1589526776863" />
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591791451731">
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl" timestamp="1592129875288">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1591791451731" />
+    <state x="707" y="267" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1592129875288" />
     <state x="543" y="289" width="824" height="526" key="IDE.errors.dialog" timestamp="1586075901642">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
