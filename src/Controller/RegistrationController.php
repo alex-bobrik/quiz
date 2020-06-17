@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
             $mailSender->send(
                 'Подтверждение регистрации',
                 $user->getEmail(),
-                'http://quiz.work/register/verificate/' . $user->getToken()
+                'http://salty-cove-86547.herokuapp.com/register/verificate/' . $user->getToken()
             );
 
             $this->addFlash('info', 'Сообщение отправлено');

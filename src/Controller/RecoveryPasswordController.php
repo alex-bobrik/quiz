@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RecoveryPasswordEmailType;
 use App\Form\RecoveryPasswordType;
+use App\Service\MailSender;
 use App\Service\TokenGenerator;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +28,7 @@ class RecoveryPasswordController extends AbstractController
     (
         TokenGenerator $tokenGenerator,
         Request $request,
-        \Swift_Mailer $mailer
+        MailSender $mailer
     ): Response
     {
        if ($this->getUser()){
@@ -55,13 +56,11 @@ class RecoveryPasswordController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            //generate and send messages to the mail
-            $message = (new \Swift_Message('Восстановление пароля'))
-                ->setFrom('example@example.com')
-                ->setTo($user->getEmail())
-                ->setBody('http://quiz.work/recovery/' . $user->getToken());
-
-            $mailer->send($message);
+            $mailer->send(
+                'Восстановление пароля',
+                $user->getEmail(),
+                'http://salty-cove-86547.herokuapp.com/recovery/' . $user->getToken()
+            );
 
             $this->addFlash('info', 'Сообщение отправлено');
 
@@ -91,22 +90,24 @@ class RecoveryPasswordController extends AbstractController
         string $token
     ): Response
     {
+        /** @var User $user */
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->findOneBy(['token' => $token]);
 
-        if (!$user) {
+        if (!$user || !$user->getIsActive()) {
             throw $this->createNotFoundException();
         }
 
         $form = $this->createForm(RecoveryPasswordType::class, $user);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
 
-            $em = $this->getDoctrine()->getManager();
             $user->setToken('');
-            $userService->saveUser($encoder, $user);
+            $userService->saveUserAfterRecovery($encoder, $user);
+
+            $this->addFlash('success', 'Пароль успешно изменен');
 
             return $this->redirectToRoute('app_login');
         }

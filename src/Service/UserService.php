@@ -32,6 +32,15 @@ class UserService
         $this->em->flush();
     }
 
+    public function saveUserAfterRecovery(UserPasswordEncoderInterface $passwordEncoder, User $user): void
+    {
+        $user->setPassword($this->encodePassword($passwordEncoder, $user));
+        $user->setToken('');
+
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
     public function activateUser(User $user): void
     {
         $user->setIsActive(true);
