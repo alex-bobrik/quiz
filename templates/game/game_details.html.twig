@@ -71,22 +71,32 @@
             </div>
             <div class="user-leaderboard col-md-4">
                 <h3 class="text-center">Лидеры</h3>
-                <table class="table leaders">
-                    <thead>
-                    <tr>
-                        <th scope="col">Место</th>
-                        <th scope="col">Пользователи</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for leader in leaders|slice(0, 3) %}
-                        <tr class="place-{{ loop.index }}">
-                            <td>{{ loop.index }}</td>
-                            <td >{{ leader.nickname ?? '-' }}</td>
+                {% if leaders%}
+                    <table class="table leaders">
+                        <thead>
+                        <tr>
+                            <th scope="col">Место</th>
+                            <th scope="col">Пользователь</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {% for leader in leaders|slice(0, 3) %}
+                            <tr class="place-{{ loop.index }}">
+                                <td>{{ loop.index }}</td>
+                                <td>
+                                    <a href="{{ path('app.profile.info', {'nickname': leader.nickname}) }}"
+                                       class="text-decoration-none leader-link">{{ leader.nickname ?? '-' }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <hr>
+                    <h4 class="text-center">Нет лидеров на данной викторине</h4>
+                {% endif %}
+                <hr>
                 <div class="result">
                     {% if isPassed %}
                         <div class="quiz-result">

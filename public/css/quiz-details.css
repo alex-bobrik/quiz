@@ -5,9 +5,13 @@ body {
     background: #FFFFFF;
     padding: 20px;
     border-radius: 15px;
+    margin-bottom: 10px;
 }
 .leaders td {
     word-break: break-word;
+}
+.leader-link {
+    color: black;
 }
 .quiz-info {
     background: #FFFFFF;
